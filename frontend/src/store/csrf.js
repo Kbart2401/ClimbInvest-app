@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 
 export const fetch = async (url, options = {}) => {
-  options.headers = options.headers || 'GET';
-  options.method = options.method || {};
+  options.headers = options.headers || {};
+  options.method = options.method || 'GET';
 
   if (options.method.toUpperCase() !== 'GET') {
     options.headers['Content-Type'] =
@@ -20,4 +20,8 @@ export const fetch = async (url, options = {}) => {
   if (res.status >= 400) throw res;
 
   return res;
+}
+
+export const restoreCSRF = () => {
+  fetch('/api/csrf/restore')
 }

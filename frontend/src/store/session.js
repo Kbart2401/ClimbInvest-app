@@ -27,6 +27,13 @@ export const removeUser = () => ({
   type: REMOVE_USER,
 })
 
+//thunk function
+export const restoreUser = user => async (dispatch) => {
+  const res = await fetch('/api/session');
+  dispatch(setUser(res.data.user))
+  return res;
+}
+
 
 export const sessionReducer = (state = { user: null }, action) => {
   let newState;

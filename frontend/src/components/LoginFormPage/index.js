@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './loginFormPage.css';
 
-const LoginPageForm = () => {
+const LoginFormPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
   const [credentials, setCredential] = useState('')
@@ -21,7 +21,7 @@ const LoginPageForm = () => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       })
   }
-
+  
   return (
     <form onSubmit={handleSubmit} >
       <ul>
@@ -40,4 +40,4 @@ const LoginPageForm = () => {
   )
 }
 
-export default LoginPageForm;
+export default LoginFormPage;

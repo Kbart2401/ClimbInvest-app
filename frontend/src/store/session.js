@@ -10,7 +10,7 @@ export const logUserIn = (user) => async (dispatch) => {
   const res = await fetch('/api/session', {
     method: 'POST',
     body: JSON.stringify({
-      credential: user.credential,
+      credential: user.credentials,
       password: user.password,
     }),
   })

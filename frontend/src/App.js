@@ -1,16 +1,17 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import LoginPageForm from './components/LoginFormPage/index';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import LoginFormPage from './components/LoginFormPage/index';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Switch>
+        <Route exact path='/' render={() => <h1>Hello there friend!</h1>} />
         <Route path='/login'>
-          <LoginPageForm />
+          <LoginFormPage />
         </Route>
       </Switch>
-    </>
+    </BrowserRouter>
   );
 }
 

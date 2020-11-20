@@ -5,7 +5,7 @@ import { fetch } from './csrf';
 const SET_USER = 'SET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 
-//thunk function
+//Login thunk function
 export const logUserIn = (user) => async (dispatch) => {
   const res = await fetch('/api/session', {
     method: 'POST',
@@ -27,9 +27,23 @@ export const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-//thunk function
+//Restore User thunk function
 export const restoreUser = user => async (dispatch) => {
   const res = await fetch('/api/session');
+  dispatch(setUser(res.data.user))
+  return res;
+}
+
+export const signUpUser = user => async (dispatch) => {
+  const { username, email, password } = user;
+  const res = await fetch('/api/users', {
+    method: 'POST',
+    body: JSON.stringify({
+      username,
+      email,
+      password
+    })
+  })
   dispatch(setUser(res.data.user))
   return res;
 }

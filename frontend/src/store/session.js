@@ -1,4 +1,3 @@
-import thunk from 'redux-thunk';
 import { fetch } from './csrf';
 
 
@@ -50,11 +49,11 @@ export const signUpUser = user => async (dispatch) => {
 
 
 export const sessionReducer = (state = { user: null }, action) => {
-  let newState;
+  
   switch (action.type) {
     case SET_USER:
       return {
-        user: action.payload, state
+        ...state, user: action.payload
       }
     case REMOVE_USER:
       return { user: null }

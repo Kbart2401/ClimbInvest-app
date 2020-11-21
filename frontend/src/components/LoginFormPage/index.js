@@ -23,20 +23,23 @@ const LoginFormPage = () => {
   }
   
   return (
+    <div className='login-container'>
+      <h1>Log in to your account</h1>
     <form onSubmit={handleSubmit} >
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label for='username'>Username or Email</label>
-      <input required id='username' name='username'
-        type='text' value={credentials} 
+      {/* <label for='username'>Username or Email</label> */}
+      <input className='login-input' required id='username' name='username'
+        type='text' value={credentials} placeholder='Username'
         onChange={e => setCredential(e.target.value)} />
-      <label for='password'>Password</label>
-      <input required id='password' name='password'
-        type='password' 
+      {/* <label for='password'>Password</label> */}
+      <input className='login-input' required id='password' name='password'
+        type='password' placeholder='Password'
         value={password} onChange={e => setPassword(e.target.value)} />
-      <input type='submit' value='Submit' />
+      <input className='login-submit' type='submit' value='Log in' />
     </form>
+    </div>
   )
 }
 

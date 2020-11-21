@@ -31,7 +31,7 @@ const SignupFormPage = () => {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>

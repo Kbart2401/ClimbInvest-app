@@ -32,7 +32,7 @@ export const restoreUser = user => async (dispatch) => {
   dispatch(setUser(res.data.user))
   return res;
 }
-
+//Signup thunk
 export const signUpUser = user => async (dispatch) => {
   const { username, email, password } = user;
   const res = await fetch('/api/users', {
@@ -47,7 +47,16 @@ export const signUpUser = user => async (dispatch) => {
   return res;
 }
 
+//Logout thunk
+export const logOutUser = user => async (dispatch) => {
+  const res = await fetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeUser());
+  return res;
+}
 
+/***********Reducer**********/
 export const sessionReducer = (state = { user: null }, action) => {
   
   switch (action.type) {

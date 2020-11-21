@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import './loginFormPage.css';
 
 const LoginFormPage = () => {
@@ -29,16 +29,16 @@ const LoginFormPage = () => {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      {/* <label for='username'>Username or Email</label> */}
       <input className='login-input' required id='username' name='username'
         type='text' value={credentials} placeholder='Username'
         onChange={e => setCredential(e.target.value)} />
-      {/* <label for='password'>Password</label> */}
       <input className='login-input' required id='password' name='password'
         type='password' placeholder='Password'
         value={password} onChange={e => setPassword(e.target.value)} />
       <input className='login-submit' type='submit' value='Log in' />
     </form>
+      <NavLink className='signup-link' to='/signup'>
+        Create a username</NavLink>
     </div>
   )
 }

@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
 .login-container {
   background-color: white;
-  height: 350px;
+  height: 375px;
   width: 33%;
   display: flex;
   flex-direction: column;
@@ -9,8 +11,8 @@
 .login-container > h1 {
   align-self: center;
   color: #002b51;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 22px;
+  font-family: 'Karla', sans-serif;
+  font-size: 25px;
 }
 
 .login-container > form {
@@ -35,5 +37,21 @@
   height: 40px;
   border-radius: 24px;
   border: none;
+}
+
+.login-submit:hover {
+  cursor: pointer;
+}
+
+.signup-link {
+  color: #187aba;
+  margin-top: 25px;
+  align-self: center;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+}
+
+.signup-link:hover {
   cursor: pointer;
 }

@@ -13,7 +13,6 @@ const dispatch = useDispatch();
       {!sessionUser &&
       <>
       <NavLink to='/login'>Login</NavLink>
-      <NavLink to='signup'>Sign Up</NavLink>
       </>}
       {sessionUser &&
       <>

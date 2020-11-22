@@ -1,7 +1,7 @@
 
 .signup-page-container {
   display: flex;
-  height: 475px;
+  height: 500px;
 }
 
 .signup-page-sidebar {
@@ -68,5 +68,13 @@ form button {
 form button:hover {
   cursor: pointer;
   background-color: #002b51;
+}
 
+form ul {
+  align-self: start;
+}
+
+form li {
+  color: #a00;
+  list-style-type: none;
 }

@@ -49,3 +49,7 @@ form button {
   border: none;
   align-self: center;
 }
+
+form button:hover {
+  cursor: pointer;
+}

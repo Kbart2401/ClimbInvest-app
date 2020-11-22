@@ -23,6 +23,14 @@ const LoginFormPage = () => {
       })
   }
 
+  const loginImage = () => {
+    const array = ['/images/money.jpg', '/images/bank-note.jpg',
+      '/images/arrow.jpg', '/images/inspiration.jpg',
+      '/images/success.jpg'];
+    const num = Math.floor(Math.random() * (array.length - 0) + 0)
+    return array[num];
+  }
+
   return (
     <div className='login-body'>
       <div className='login-container'>
@@ -41,6 +49,9 @@ const LoginFormPage = () => {
         </form>
         <NavLink className='signup-link' to='/signup'>
           Create a username</NavLink>
+      </div>
+      <div className='login-image'>
+        <img src={loginImage()} alt='money' />
       </div>
     </div>
   )

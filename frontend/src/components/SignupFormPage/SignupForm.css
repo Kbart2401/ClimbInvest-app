@@ -1,7 +1,7 @@
 
 .signup-page-container {
   display: flex;
-  height: auto;
+  height: 475px;
 }
 
 .signup-page-sidebar {
@@ -16,6 +16,7 @@
 .signup-page-form {
   width: 66%;
   display: flex;
+  flex-direction: column;
   justify-content: left;
   background-color: white;
   /* margin-right: -100px; */
@@ -26,6 +27,15 @@
   flex-direction: column;
   margin-left: 80px;
   width: 40%;
+}
+
+.signup-page-form .nav-link {
+  color: #187aba;
+  margin-top: 25px;
+  align-self: center;
+  text-decoration: none;
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
 }
 
 form input {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './SignupForm.css';
 
 
@@ -55,6 +56,9 @@ const SignupFormPage = () => {
             <input required name='confirmPassword' type='password' value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)} />
             <button type='submit'>Sign Up</button>
+            <NavLink className='nav-link' to='/login'>
+              Already have an account?
+            </NavLink>
           </form>
         </div>
       </div>

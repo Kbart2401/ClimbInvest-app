@@ -16,7 +16,7 @@ const dispatch = useDispatch();
     <ul>
       {!sessionUser &&
       <>
-      <NavLink to='/login'>Login</NavLink>
+      
       </>}
       {sessionUser &&
       <>

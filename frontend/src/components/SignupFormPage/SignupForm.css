@@ -38,6 +38,11 @@
   font-weight: 800;
 }
 
+.signup-page-form .nav-link:hover {
+  color: #002b51;
+}
+
+
 form input {
   margin-bottom: 30px;
   border: none;
@@ -62,4 +67,6 @@ form button {
 
 form button:hover {
   cursor: pointer;
+  background-color: #002b51;
+
 }

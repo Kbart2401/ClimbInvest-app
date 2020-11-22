@@ -47,6 +47,7 @@
 
 .login-submit:hover {
   cursor: pointer;
+  background-color: #002b51;
 }
 
 .signup-link {
@@ -60,6 +61,7 @@
 
 .signup-link:hover {
   cursor: pointer;
+  color: #002b51;
 }
 
 .login-image {

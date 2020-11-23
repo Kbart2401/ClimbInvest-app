@@ -21,11 +21,11 @@ function App() {
         <div className='page-container'>
           <Navigation />
           <Switch>
-            <Route path='/login'>
-              <LoginFormPage />
-            </Route>
             <Route path='/signup'>
               <SignupFormPage />
+            </Route>
+            <Route path='/'>
+              <LoginFormPage />
             </Route>
           </Switch>
         </div>

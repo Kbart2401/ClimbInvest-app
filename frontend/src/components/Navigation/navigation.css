@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 .header-title {
   color: #002b51;
@@ -6,10 +7,55 @@
 
 .nav-title-container {
   width: 1150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.nav-title-container a {
+  color: #187aba;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.nav-title-container p {
+  margin-left: 45%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/**** Nav Bar ****/
 .nav-bar {
   height: 44px;
   width: 100%;
   background-color: #013462;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-bar-content {
+  width: 1150px;
+}
+
+.nav-bar-content ul {
+  height: 100%;
+  margin: 0%;
+  padding: 0%;
+}
+
+.nav-bar-content a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navLink-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+}
+
+.navLink-container:hover {
+background-color: #187aba;
+cursor: pointer;
 }

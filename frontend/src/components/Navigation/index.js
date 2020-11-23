@@ -14,16 +14,24 @@ const Navigation = () => {
     <>
       <div className='nav-title-container'>
         <h1 className='header-title'>Morgan Stanley</h1>
-      </div>
-      <ul>
         {sessionUser &&
-          <>
-            <div className='nav-bar'>
-              <NavLink to='/'>Home</NavLink>
-              <button onClick={handleLogOut}>Log out</button>
+        <>
+        <p>Welcome {sessionUser.username}</p>
+        <NavLink to='/' onClick={handleLogOut}>Log out</NavLink>
+        </>}
+        </div>
+      {sessionUser &&
+        <>
+          <div className='nav-bar'>
+            <div className='nav-bar-content'>
+              <ul>
+                <div className='navLink-container'>
+                  <NavLink to='/'>Home</NavLink>
+                </div>
+              </ul>
             </div>
-          </>}
-      </ul>
+          </div>
+        </>}
     </>
   )
 }

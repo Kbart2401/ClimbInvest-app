@@ -49,7 +49,6 @@ export const signUpUser = user => async (dispatch) => {
 
 //Logout thunk
 export const logOutUser = () => async (dispatch) => {
-  console.log('LogOut Thunk')
   const res = await fetch('/api/session', {
     method: 'DELETE',
   });

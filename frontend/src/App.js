@@ -5,7 +5,7 @@ import SignupFormPage from './components/SignupFormPage/index';
 import Navigation from './components/Navigation/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
-import Footer from './components/LoginFormPage/Footer';
+import Footer from './components/Footer';
 
 function App() {
   const state = useSelector((state) => state.session.user)

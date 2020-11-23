@@ -7,3 +7,9 @@
 .nav-title-container {
   width: 1150px;
 }
+
+.nav-bar {
+  height: 44px;
+  width: 100%;
+  background-color: #013462;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
@@ -11,6 +11,19 @@ const LoginFormPage = () => {
   const [credentials, setCredential] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState([])
+  const [image, setImage] = useState('')
+
+  const loginImage = () => {
+    const array = ['/images/money.jpg', '/images/bank-note.jpg',
+      '/images/arrow.jpg', '/images/inspiration.jpg',
+      '/images/success.jpg'];
+    const num = Math.floor(Math.random() * (array.length - 0) + 0)
+    return array[num];
+  }
+
+  useEffect(() => {
+    setImage(loginImage())
+  },[])
 
   if (sessionUser) return <Redirect to='/' />
 
@@ -23,14 +36,7 @@ const LoginFormPage = () => {
       })
   }
 
-  const loginImage = () => {
-    const array = ['/images/money.jpg', '/images/bank-note.jpg',
-      '/images/arrow.jpg', '/images/inspiration.jpg',
-      '/images/success.jpg'];
-    const num = Math.floor(Math.random() * (array.length - 0) + 0)
-    return array[num];
-  }
-
+  
   return (
     <div className='login-body'>
       <div className='login-container'>
@@ -51,7 +57,7 @@ const LoginFormPage = () => {
           Create a username</NavLink>
       </div>
       <div className='login-image'>
-        <img src={loginImage()} alt='money' />
+        <img src={image} alt='money' />
       </div>
     </div>
   )

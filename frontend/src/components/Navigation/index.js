@@ -16,14 +16,12 @@ const Navigation = () => {
         <h1 className='header-title'>Morgan Stanley</h1>
       </div>
       <ul>
-        {!sessionUser &&
-          <>
-
-          </>}
         {sessionUser &&
           <>
-            <NavLink to='/'>Home</NavLink>
-            <button onClick={handleLogOut}>Log out</button>
+            <div className='nav-bar'>
+              <NavLink to='/'>Home</NavLink>
+              <button onClick={handleLogOut}>Log out</button>
+            </div>
           </>}
       </ul>
     </>

@@ -1,7 +1,8 @@
 
 .signup-page-container {
   display: flex;
-  height: 500px;
+  height: 570px;
+  width: 1150px;
 }
 
 .signup-page-sidebar {
@@ -14,12 +15,13 @@
 }
 
 .signup-page-form {
-  width: 66%;
+  width: 67%;
   display: flex;
   flex-direction: column;
   justify-content: left;
   background-color: white;
-  /* margin-right: -100px; */
+  /* border-right: 400px solid white; */
+
 }
 
 .signup-page-form > form {

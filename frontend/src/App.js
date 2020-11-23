@@ -5,6 +5,7 @@ import SignupFormPage from './components/SignupFormPage/index';
 import Navigation from './components/Navigation/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
+import Footer from './components/LoginFormPage/Footer';
 
 function App() {
   const state = useSelector((state) => state.session.user)
@@ -15,19 +16,22 @@ function App() {
   }, [dispatch]);
 
   return isLoaded && (
-    <BrowserRouter>
-      <div className='page-container'>
-      <Navigation />
-        <Switch>
-          <Route path='/login'>
-            <LoginFormPage />
-          </Route>
-          <Route path='/signup'>
-            <SignupFormPage />
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <div className='page-container'>
+          <Navigation />
+          <Switch>
+            <Route path='/login'>
+              <LoginFormPage />
+            </Route>
+            <Route path='/signup'>
+              <SignupFormPage />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+      <Footer />
+    </>
   );
 }
 

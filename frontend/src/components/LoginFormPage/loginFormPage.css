@@ -2,14 +2,15 @@
 
 .login-body {
   display: flex;
-  flex-direction: row;
-  height: 400px;
+  height: 450px;
+  width: 1150px;
+  margin: 0;
 }
 
 .login-container {
   background-color: white;
   height: 100%;
-  width: 33%;
+  width: 380px;
   display: flex;
   flex-direction: column;
 }
@@ -66,7 +67,8 @@
 
 .login-image {
   height: 100%;
-  width: 66%;
+  width: 770px;
+  border-left: 20px solid #e9e9e9;
 }
 
 .login-image img {

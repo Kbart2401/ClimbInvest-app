@@ -16,15 +16,17 @@ function App() {
 
   return isLoaded && (
     <BrowserRouter>
+      <div className='page-container'>
       <Navigation />
-      <Switch>
-        <Route path='/login'>
-          <LoginFormPage />
-        </Route>
-        <Route path='/signup'>
-          <SignupFormPage />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route path='/login'>
+            <LoginFormPage />
+          </Route>
+          <Route path='/signup'>
+            <SignupFormPage />
+          </Route>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

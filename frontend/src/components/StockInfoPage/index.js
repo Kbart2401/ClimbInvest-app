@@ -9,15 +9,50 @@ const StockInfoPage = () => {
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock)
 
-  console.log(stockData)
+  console.log('stockData', stockData)
 
   return (
     <>
       <div className='stock-page-container'>
         {stockData &&
           <>
-            <h1>{stockData.symbol} {stockData.latestPrice}</h1>
-            <h1>Stock Info Page!</h1>
+            <span>As of {stockData.latestTime}</span>
+            <h1>{stockData.companyName} </h1>
+            <div className='header-stock-page-container'>
+              <dl>
+                <dt>Last Price</dt>
+                <dd>{stockData.latestPrice}</dd>
+              </dl>
+              <dl>
+                <dt>Today's Change</dt>
+                <dd>{stockData.change}</dd>
+              </dl>
+              <dl>
+                <dt>Today's Volume</dt>
+                <dd>{stockData.avgTotalVolume}</dd>
+              </dl>
+            </div>
+            <div className='stock-page-outerbody'>
+              <div className='financial-data'>
+                <table>
+                  <caption>Overview</caption>
+                  <tbody>
+                    <tr>
+                      <th>Previous Close</th>
+                      <td>{stockData.previousClose}</td>
+                    </tr>
+                    <tr>
+                      <th>52 Week High</th>
+                    <td>{stockData.week52High}</td>
+                    </tr>
+                    <tr>
+                      <th>52 Week Low</th>
+                    <td>{stockData.week52Low}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </>
         }
       </div>

@@ -7,16 +7,18 @@ import * as sessionActions from '../../store/session';
 const HomePage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
-  const [applQuote, setQuote] = useState('');
+  const [stockQuote, setQuote] = useState('');
 
   useEffect(() => {
-    dispatch(sessionActions.searchForStock('twtr')).then((data) => setQuote(data));
+    dispatch(sessionActions.searchForStock('aapl')).then((data) => setQuote(data));
   }, [dispatch]);
+
+  console.log(stockQuote)
 
   if (!sessionUser) return <Redirect to='/' />
 
   return (
-    <h1>TWTR {applQuote}!</h1>
+    <h1>{stockQuote.symbol} {stockQuote.latestPrice}</h1>
   )
 }
 

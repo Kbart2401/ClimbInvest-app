@@ -5,7 +5,7 @@ import { fetch } from "../../store/csrf";
 import * as sessionActions from '../../store/session';
 import Footer from '../Footer';
 
-const HomePage = () => {
+const StockInfoPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock)
@@ -15,17 +15,20 @@ const HomePage = () => {
   //   dispatch(sessionActions.setStockData('tsla'))
   // }, []);
 
-  console.log(stockData)
-
-  if (!sessionUser) return <Redirect to='/' />
+  
 
   return (
     <>
-    <h1>Home Page</h1>
+      {stockData && 
+        <>
+        <h1>{stockData.symbol} {stockData.latestPrice}</h1>
+        <h1>Stock Info Page!</h1>
+        </>
+      }
       <Footer />
     </>
-    
+
   )
 }
 
-export default HomePage;
+export default StockInfoPage;

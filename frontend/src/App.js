@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
+import StockInfoPage from './components/StockInfoPage';
 
 function App() {
-  const state = useSelector((state) => state.session.user)
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -28,13 +28,13 @@ function App() {
             <Route path='/home'>
               <HomePage />
             </Route>
-            <Route path='/'>
-              <LoginFormPage />
+            <Route path='/stock-info'>
+              <StockInfoPage />
             </Route>
+            <Route path='/' component={LoginFormPage} />
           </Switch>
         </div>
       </BrowserRouter>
-      <Footer />
     </>
   );
 }

@@ -1,23 +1,27 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './footer.css';
 import * as stockSearchActions from '../../store/stockSearch';
 import { fetch } from '../../store/csrf';
 import { set } from 'js-cookie';
+import { Redirect, useHistory, Route, BrowserRouter } from 'react-router-dom';
 
 
 const Footer = () => {
   const sessionUser = useSelector(state => state.session.user)
+  const stockData = useSelector(state => state.stockSearch.stock)
   const dispatch = useDispatch();
-  const [stockQuote, setQuote] = useState('');
   const [inputVal, setInput] = useState('');
-  console.log('stock', stockQuote)
+  const [isSubmitted, setSubmit] = useState(false);
+  const history = useHistory();
 
+  if(isSubmitted) return <Redirect to='/stock-info' />
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(stockSearchActions.searchForStock(inputVal));
+    dispatch(stockSearchActions.setStockData(inputVal));
     setInput('');
+    setSubmit(true);
   }
 
   const handleChange = (e) => {
@@ -28,17 +32,17 @@ const Footer = () => {
     <>
       {!sessionUser &&
         <div className='footer-container__no-user'></div>}
-      {sessionUser && 
+      {sessionUser &&
         <>
           <div className='footer-container__user'>
             <div className='footer-content'>
               <span>Markets</span>
-              <span className='index-quote'>DJIA {stockQuote.latestPrice}</span>
+              <span className='index-quote'>DJIA { }</span>
               <span className='index-quote'>NASDAQ</span>
               <span className='index-quote'>S&P</span>
               <form onSubmit={handleSubmit}>
                 <input autoComplete='off' type='text' name='search' placeholder='Quote Search'
-                onChange={handleChange} />
+                  onChange={handleChange} />
               </form>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import { fetch } from './csrf';
 
+//action types
 const SET_STOCK = 'SET_STOCK';
 
+//action creators
 const setStock = (stock) => {
   console.log({ stock });
   return {
@@ -11,7 +13,7 @@ const setStock = (stock) => {
 }
 
 //Search thunk
-export const searchForStock = (stock) => async (dispatch) => {
+export const setStockData = (stock) => async (dispatch) => {
 
   const stockQuote = await fetch('/api/search', {
     headers: {

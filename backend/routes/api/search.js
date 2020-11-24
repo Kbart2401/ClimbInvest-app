@@ -6,7 +6,8 @@ const router = express.Router();
 
 //fetch stock quote
 router.post('/', asyncHandler(async (req, res, next) => {
-  const quote = await fetch(`https://sandbox.iexapis.com/stable/stock/twtr/quote/latestPrice?token=${process.env.REACT_APP_API_KEY_IEXCLOUD}`)
+  const url = `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote/latestPrice?token=${process.env.API_KEY_IEXCLOUD}`
+  const quote = await fetch(url)
   const data = await quote.json();
   res.json(data);
 }))

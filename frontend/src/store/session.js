@@ -67,7 +67,6 @@ export const searchForStock = (stock) => async(dispatch) => {
       stock
     })
   })
-  // dispatch(restoreUser())
   return stockQuote.data;
 }
 

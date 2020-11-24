@@ -6,6 +6,7 @@ import Navigation from './components/Navigation/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
 import Footer from './components/Footer';
+import HomePage from './components/HomePage';
 
 function App() {
   const state = useSelector((state) => state.session.user)
@@ -23,6 +24,9 @@ function App() {
           <Switch>
             <Route path='/signup'>
               <SignupFormPage />
+            </Route>
+            <Route path='/home'>
+              <HomePage />
             </Route>
             <Route path='/'>
               <LoginFormPage />

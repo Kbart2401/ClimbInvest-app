@@ -1,6 +1,44 @@
-.footer-container {
+.footer-container__no-user {
   height: 30vh;
   width: 100%;
   background-color: #002b51;
   margin-top: 115px;
+}
+
+.footer-container__user {
+  height: 45px;
+  width: 100%;
+  background-color: #013461;
+  position: absolute;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  height: 100%;
+  width: 1150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content span {
+  color: white;
+}
+
+.footer-content span.index-quote {
+  
+}
+
+.footer-content form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.footer-content form input {
+  height: 50%;
+  margin: 0%;
 }

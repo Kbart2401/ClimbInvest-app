@@ -12,4 +12,10 @@ router.post('/', asyncHandler(async (req, res, next) => {
   res.json(data);
 }))
 
+router.get('/', asyncHandler(async (req, res, next) => {
+  const url = `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote?token=${process.env.API_KEY_IEXCLOUD}`
+  console.log('TESTING INSIDE GET!!')
+  res.json(data)
+}))
+
 module.exports = router;

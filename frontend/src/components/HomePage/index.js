@@ -7,18 +7,24 @@ import * as sessionActions from '../../store/session';
 const HomePage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
-  const [stockQuote, setQuote] = useState('');
+  const stockPage = useSelector(state => state.stockSearch.stock)
+  // const [stockQuote, setQuote] = useState('');
 
-  useEffect(() => {
-    dispatch(sessionActions.searchForStock('aapl')).then((data) => setQuote(data));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(sessionActions.searchForStock('tsla'))
+  // }, []);
 
-  console.log(stockQuote)
+  console.log(stockPage)
 
   if (!sessionUser) return <Redirect to='/' />
 
   return (
-    <h1>{stockQuote.symbol} {stockQuote.latestPrice}</h1>
+    <>
+    {stockPage && (
+      <h1>{stockPage.symbol} {stockPage.latestPrice}</h1>
+    )}
+    </>
+    
   )
 }
 

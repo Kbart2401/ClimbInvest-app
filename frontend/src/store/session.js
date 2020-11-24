@@ -4,6 +4,7 @@ import { fetch } from './csrf';
 const SET_USER = 'SET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 
+
 //Login thunk function
 export const logUserIn = (user) => async (dispatch) => {
   const res = await fetch('/api/session', {
@@ -56,19 +57,7 @@ export const logOutUser = () => async (dispatch) => {
   return res;
 }
 
-//Search thunk
-export const searchForStock = (stock) => async(dispatch) => {
-  const stockQuote = await fetch('/api/search', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      stock
-    })
-  })
-  return stockQuote.data;
-}
+
 
 /***********Reducer**********/
 export const sessionReducer = (state = { user: null }, action) => {

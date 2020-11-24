@@ -16,6 +16,7 @@ const Footer = () => {
   const history = useHistory();
 
   if(isSubmitted) return <Redirect to='/stock-info' />
+  console.log('FOOTER COMPONENT HERE')
 
   const handleSubmit = (e) => {
     e.preventDefault();

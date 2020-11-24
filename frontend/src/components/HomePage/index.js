@@ -15,8 +15,6 @@ const HomePage = () => {
   //   dispatch(sessionActions.setStockData('tsla'))
   // }, []);
 
-  console.log(stockData)
-
   if (!sessionUser) return <Redirect to='/' />
 
   return (

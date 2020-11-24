@@ -5,7 +5,6 @@ const SET_STOCK = 'SET_STOCK';
 
 //action creators
 const setStock = (stock) => {
-  console.log({ stock });
   return {
     type: SET_STOCK,
     payload: stock

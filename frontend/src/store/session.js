@@ -56,6 +56,21 @@ export const logOutUser = () => async (dispatch) => {
   return res;
 }
 
+//Search thunk
+export const searchForStock = (stock) => async(dispatch) => {
+  const stockQuote = await fetch('/api/search', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      stock
+    })
+  })
+  dispatch(restoreUser())
+  return stockQuote.data;
+}
+
 /***********Reducer**********/
 export const sessionReducer = (state = { user: null }, action) => {
   

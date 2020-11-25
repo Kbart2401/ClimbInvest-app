@@ -15,7 +15,6 @@ const Footer = () => {
   useEffect(() => {
     if(isSubmitted) {
       setSubmit(false)
-      console.log('INSIDE USE EFFECT', isSubmitted)
       return () => history.push('/stock-info')
     }
   }, [isSubmitted])
@@ -23,6 +22,7 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(stockSearchActions.setStockData(inputVal));
+    dispatch(stockSearchActions.setCompanyInfo(inputVal));
     setInput('');
     setSubmit(true);
     console.log('SUBMIT FORM')

@@ -24,9 +24,10 @@
   justify-content: flex-end;
 }
 
-.financial-data {
+.stock-financial-data {
   border: 1px solid #b2b2b2;
-  height: 100px;
+  height: 75%;
   width: 25%;
   display: flex;
+  justify-content: left;
 }

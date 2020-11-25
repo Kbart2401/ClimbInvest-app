@@ -7,9 +7,11 @@ import Footer from '../Footer';
 const StockInfoPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
-  const stockData = useSelector(state => state.stockSearch.stock)
+  const stockData = useSelector(state => state.stockSearch.stock);
+  const companyData = useSelector(state => state.stockSearch.company);
 
   console.log('stockData', stockData)
+  console.log('companyData', companyData)
 
   return (
     <>
@@ -20,7 +22,7 @@ const StockInfoPage = () => {
             <span>As of {stockData.latestTime}</span>
             <span>{stockData.isUSMarketOpen ? `Market is open` : `Market is closed`}</span>
           </div>
-            <h1>{stockData.companyName} {stockData.symbol} </h1>
+            <h1>{stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
             <div className='header-stock-page-container'>
               <dl>
                 <dt>Last Price</dt>
@@ -32,11 +34,12 @@ const StockInfoPage = () => {
               </dl>
               <dl>
                 <dt>Today's Volume</dt>
-                <dd>{stockData.avgTotalVolume}</dd>
+                <dd>{stockData.volume}</dd>
               </dl>
             </div>
             <div className='stock-page-outerbody'>
-              <div className='financial-data'>
+              <div>{companyData.description}</div>
+              <div className='stock-financial-data'>
                 <table>
                   <caption>Overview</caption>
                   <tbody>
@@ -51,6 +54,10 @@ const StockInfoPage = () => {
                     <tr>
                       <th>52 Week Low</th>
                       <td>{stockData.week52Low}</td>
+                    </tr>
+                    <tr>
+                      <th>Avg 30 Day Volume</th>
+                    <td>{stockData.avgTotalVolume}</td>
                     </tr>
                   </tbody>
                 </table>

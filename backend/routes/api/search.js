@@ -4,18 +4,29 @@ const fetch = require('node-fetch');
 
 const router = express.Router();
 
-//fetch latest stock quote price
+const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
+const APIKey = process.env.API_KEY_IEXCLOUD
+//choose here to use sandbox key or actual key
+const useKey = sandboxAPIKey;
+
+
+//fetch latest stock basic price
 router.post('/', asyncHandler(async (req, res, next) => {
-  const url = `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote?token=${process.env.API_KEY_IEXCLOUD}`
+  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote?token=${sandboxAPIKey}`
+    : `https://cloud.iexapis.com/stable/stock/${req.body.stock}/quote?token=${APIKey}`;
+
   const quote = await fetch(url)
   const data = await quote.json();
   res.json(data);
 }))
 
-router.get('/', asyncHandler(async (req, res, next) => {
-  const url = `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote?token=${process.env.API_KEY_IEXCLOUD}`
-  console.log('TESTING INSIDE GET!!')
-  res.json(data)
+//fetch company info
+router.post('/company_data', asyncHandler(async (req, res, next) => {
+  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.company}/company?token=${sandboxAPIKey}`
+    : `https://cloud.iexapis.com/stable/stock/${req.body.company}/company?token=${APIKey}`;
+  const company = await fetch(url)
+  const data = await company.json();
+  res.json(data);
 }))
 
 module.exports = router;

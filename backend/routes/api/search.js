@@ -10,7 +10,7 @@ const APIKey = process.env.API_KEY_IEXCLOUD
 const useKey = sandboxAPIKey;
 
 
-//fetch latest stock basic price
+//fetch latest stock standard info, price etc
 router.post('/', asyncHandler(async (req, res, next) => {
   const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote?token=${sandboxAPIKey}`
     : `https://cloud.iexapis.com/stable/stock/${req.body.stock}/quote?token=${APIKey}`;

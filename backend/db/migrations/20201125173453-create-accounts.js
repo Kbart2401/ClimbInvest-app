@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       previous_balance: {
         type: Sequelize.DECIMAL(19, 4)
       },

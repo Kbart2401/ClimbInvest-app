@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Account = sequelize.define('Account', {
+    name: DataTypes.STRING,
     previous_balance: DataTypes.DECIMAL,
     current_balance: DataTypes.DECIMAL,
     available_cash: DataTypes.DECIMAL,

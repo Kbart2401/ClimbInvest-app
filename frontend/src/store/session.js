@@ -1,9 +1,24 @@
 import { fetch } from './csrf';
 
-
+//action types
 const SET_USER = 'SET_USER';
 const REMOVE_USER = 'REMOVE_USER';
+const SET_ACCOUNT = 'SET_ACCOUNT'
 
+//action creators
+const setUser = (user) => ({
+  type: SET_USER,
+  payload: user
+})
+
+export const removeUser = () => ({
+  type: REMOVE_USER,
+})
+
+const setAccount = (account) => ({
+  type: SET_ACCOUNT,
+  payload: account
+})
 
 //Login thunk function
 export const logUserIn = (user) => async (dispatch) => {
@@ -18,16 +33,7 @@ export const logUserIn = (user) => async (dispatch) => {
   return res;                       //with a payload of the returned fetch call data
 }
 
-const setUser = (user) => ({
-  type: SET_USER,
-  payload: user
-})
-
-export const removeUser = () => ({
-  type: REMOVE_USER,
-})
-
-//Restore User thunk function
+//Restore User thunk 
 export const restoreUser = user => async (dispatch) => {
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user))
@@ -57,11 +63,23 @@ export const logOutUser = () => async (dispatch) => {
   return res;
 }
 
+//create account thunk
+export const createAccount = (account) => async (dispatch) => {
+  const { userId, name } = account;
+  const res = await fetch('/api/create-account', {
+    method: 'POST',
+    body: JSON.stringify({
+      userId, name
+    })
+  })
+  dispatch(setAccount(res.data))
+  return res;
+}
 
 
 /***********Reducer**********/
-export const sessionReducer = (state = { user: null }, action) => {
-  
+export const sessionReducer = (state = { user: null, account: null }, action) => {
+
   switch (action.type) {
     case SET_USER:
       return {
@@ -69,6 +87,10 @@ export const sessionReducer = (state = { user: null }, action) => {
       }
     case REMOVE_USER:
       return { user: null }
+    case SET_ACCOUNT:
+      return {
+        ...state, account: action.payload
+      }
     default:
       return state
   }

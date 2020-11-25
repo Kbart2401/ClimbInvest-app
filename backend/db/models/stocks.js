@@ -6,9 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   Stock.associate = function(models) {
     const columnMapping = {
       through: 'Stock_in_Account',
+      otherKey: 'accountId',
       foreignKey: 'stockId'
+
     }
-    Stock.belongsToMany(models.Stock_in_Account, columnMapping)
+    Stock.belongsToMany(models.Account, columnMapping)
   };
   return Stock;
 };

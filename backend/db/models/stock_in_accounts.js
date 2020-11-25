@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     cost_basis: DataTypes.DECIMAL
   }, {});
   Stock_in_Account.associate = function(models) {
-    // associations can be defined here
+    Stock_in_Account.hasMany(models.Stock, {foreignKey: 'stockId'})
+    
   };
   return Stock_in_Account;
 };

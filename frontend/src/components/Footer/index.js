@@ -12,6 +12,7 @@ const Footer = () => {
   const [isSubmitted, setSubmit] = useState(false);
   const history = useHistory()
 
+  //Redirect to stock info page once search input is submitted
   useEffect(() => {
     if(isSubmitted) {
       setSubmit(false)

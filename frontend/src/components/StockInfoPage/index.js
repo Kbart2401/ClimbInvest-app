@@ -20,7 +20,7 @@ const StockInfoPage = () => {
           <>
           <div className='top-of-page'>
             <span>As of {stockData.latestTime}</span>
-            <span>{stockData.isUSMarketOpen ? `Market is open` : `Market is closed`}</span>
+            <span>{stockData.isUSMarketOpen ? `Market is Open` : `Market is Closed`}</span>
           </div>
             <h1>{stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
             <div className='header-stock-page-container'>

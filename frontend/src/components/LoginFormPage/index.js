@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
+import Footer from '../Footer';
 import './loginFormPage.css';
 
 
@@ -38,6 +39,7 @@ const LoginFormPage = () => {
 
   
   return (
+    <>
     <div className='login-body'>
       <div className='login-container'>
         <h1>Log in to your account</h1>
@@ -60,6 +62,8 @@ const LoginFormPage = () => {
         <img src={image} alt='money' />
       </div>
     </div>
+    <Footer />
+    </>
   )
 }
 

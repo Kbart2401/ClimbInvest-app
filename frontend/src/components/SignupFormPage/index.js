@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import Footer from '../Footer';
 import './SignupForm.css';
 
 
@@ -62,6 +63,7 @@ const SignupFormPage = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

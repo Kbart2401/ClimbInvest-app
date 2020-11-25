@@ -16,8 +16,11 @@ const StockInfoPage = () => {
       <div className='stock-page-container'>
         {stockData &&
           <>
+          <div className='top-of-page'>
             <span>As of {stockData.latestTime}</span>
-            <h1>{stockData.companyName} </h1>
+            <span>{stockData.isUSMarketOpen ? `Market is open` : `Market is closed`}</span>
+          </div>
+            <h1>{stockData.companyName} {stockData.symbol} </h1>
             <div className='header-stock-page-container'>
               <dl>
                 <dt>Last Price</dt>
@@ -43,11 +46,11 @@ const StockInfoPage = () => {
                     </tr>
                     <tr>
                       <th>52 Week High</th>
-                    <td>{stockData.week52High}</td>
+                      <td>{stockData.week52High}</td>
                     </tr>
                     <tr>
                       <th>52 Week Low</th>
-                    <td>{stockData.week52Low}</td>
+                      <td>{stockData.week52Low}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -58,7 +61,6 @@ const StockInfoPage = () => {
       </div>
       <Footer />
     </>
-
   )
 }
 

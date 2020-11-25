@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './footer.css';
 import * as stockSearchActions from '../../store/stockSearch';
-import { fetch } from '../../store/csrf';
-import { set } from 'js-cookie';
-import { Redirect, useHistory, Route, BrowserRouter } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 
 const Footer = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -13,16 +10,22 @@ const Footer = () => {
   const dispatch = useDispatch();
   const [inputVal, setInput] = useState('');
   const [isSubmitted, setSubmit] = useState(false);
-  const history = useHistory();
+  const history = useHistory()
 
-  if(isSubmitted) return <Redirect to='/stock-info' />
-  console.log('FOOTER COMPONENT HERE')
+  useEffect(() => {
+    if(isSubmitted) {
+      setSubmit(false)
+      console.log('INSIDE USE EFFECT', isSubmitted)
+      return () => history.push('/stock-info')
+    }
+  }, [isSubmitted])
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(stockSearchActions.setStockData(inputVal));
     setInput('');
     setSubmit(true);
+    console.log('SUBMIT FORM')
   }
 
   const handleChange = (e) => {

@@ -9,7 +9,7 @@ const StockInfoPage = () => {
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock);
   const companyData = useSelector(state => state.stockSearch.company);
-
+  
   console.log('stockData', stockData)
   console.log('companyData', companyData)
 

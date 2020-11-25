@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <>
       <div className='nav-title-container'>
-        <h1 className='header-title'>Morgan Stanley</h1>
+        <h1 className='header-title'>ClimbInvest</h1>
         {sessionUser &&
         <>
         <p>Welcome {sessionUser.username}</p>

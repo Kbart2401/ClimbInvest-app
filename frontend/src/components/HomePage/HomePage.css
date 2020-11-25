@@ -1,0 +1,12 @@
+.create-account-modal {
+  position: fixed;
+  z-index: 1;
+  top: 30%;
+  width: 50%;
+  height: 30%;
+  background-color: white;
+  
+}
+
+.create-account-modal input {
+}

@@ -26,7 +26,6 @@ const Footer = () => {
     dispatch(stockSearchActions.setCompanyInfo(inputVal));
     setInput('');
     setSubmit(true);
-    console.log('SUBMIT FORM')
   }
 
   const handleChange = (e) => {

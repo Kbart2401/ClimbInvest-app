@@ -36,7 +36,6 @@ export const setStockData = (stock) => async (dispatch) => {
 
 //Search company info thunk
 export const setCompanyInfo = (company) => async (dispatch) => {
-
   const companyInfo = await fetch('/api/search/company_data', {
     headers: {
       'Content-Type': 'application/json'

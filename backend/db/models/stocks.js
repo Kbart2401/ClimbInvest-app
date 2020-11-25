@@ -1,10 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Stocks = sequelize.define('Stocks', {
+  const Stock = sequelize.define('Stock', {
     price: DataTypes.DECIMAL
   }, {});
-  Stocks.associate = function(models) {
-    // associations can be defined here
+  Stock.associate = function(models) {
+    const columnMapping = {
+      through: 'Stock_in_Account',
+      foreignKey: 'stockId'
+    }
+    Stock.belongsToMany(models.Stock_in_Account, columnMapping)
   };
-  return Stocks;
+  return Stock;
 };

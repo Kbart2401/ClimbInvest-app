@@ -1,13 +1,28 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Accounts = sequelize.define('Accounts', {
+  const Account = sequelize.define('Account', {
     previous_balance: DataTypes.DECIMAL,
     current_balance: DataTypes.DECIMAL,
     available_cash: DataTypes.DECIMAL,
     userId: DataTypes.INTEGER
   }, {});
-  Accounts.associate = function(models) {
-    // associations can be defined here
+  Account.associate = function(models) {
+    Account.belongsTo(models.User, {foreignKey: 'userId'})
+    Account.hasMany(models.Stock_in_Account, {foreignKey: 'accountId'})
   };
-  return Accounts;
+  return Account;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+

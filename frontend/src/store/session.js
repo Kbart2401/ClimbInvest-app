@@ -76,6 +76,11 @@ export const createAccount = (account) => async (dispatch) => {
   return res;
 }
 
+//restore account thunk
+export const restoreAccount = user => async (dispatch) => {
+  
+}
+
 
 /***********Reducer**********/
 export const sessionReducer = (state = { user: null, account: null }, action) => {

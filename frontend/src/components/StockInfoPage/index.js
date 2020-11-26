@@ -16,7 +16,7 @@ const StockInfoPage = () => {
   return (
     <>
       <div className='stock-page-container'>
-        {stockData &&
+        {stockData && companyData &&
           <>
           <div className='top-of-page'>
             <span>As of {stockData.latestTime}</span>

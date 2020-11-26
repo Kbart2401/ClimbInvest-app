@@ -12,7 +12,7 @@ const Navigation = () => {
   }
   return (
     <>
-      <div className='nav-title-container'>
+      <div className={`nav-title-container ${sessionUser ? 'logged-in' : ''}`}>
         <h1 className='header-title'>ClimbInvest</h1>
         {sessionUser &&
         <>

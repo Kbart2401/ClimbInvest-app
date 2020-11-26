@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.logged-in {
+  background-color: white;
+}
+
 .nav-title-container a {
   color: #187aba;
   font-family: 'Open Sans', sans-serif;

@@ -14,7 +14,7 @@ const Footer = () => {
 
   //Redirect to stock info page once search input is submitted
   useEffect(() => {
-    if(isSubmitted) {
+    if (isSubmitted) {
       setSubmit(false)
       return () => history.push('/stock-info')
     }
@@ -45,8 +45,12 @@ const Footer = () => {
               <span className='index-quote'>NASDAQ</span>
               <span className='index-quote'>S&P</span>
               <form onSubmit={handleSubmit}>
-                <input className='search-input' autoComplete='off' type='text' name='search' placeholder='Quote Search'
-                  onChange={handleChange} />
+                <div className='search-field'>
+                  <i class="fa fa-search icon">
+                  </i>
+                  <input className='search-input' autoComplete='off' type='text' name='search' placeholder='Quote Search'
+                    onChange={handleChange} />
+                </div>
               </form>
             </div>
           </div>

@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
 .footer-container__no-user {
   height: 30vh;
   width: 100%;
@@ -41,7 +43,7 @@
 .footer-content form input {
   height: 50%;
   margin: 0%;
-  padding-left: 30px;
+  padding-left: 15px;
   box-sizing: border-box;
   height: 70%;
   width: 185px;
@@ -52,9 +54,16 @@
   color: #187aba;
 }
 
-.footer-content form input::before {
-  content:  "";
-  height: 10px;
-  width: 10px;
-  margin-left: 30px;
+form input:focus {
+  outline: none;
 }
+
+.search-field {
+  background-color: white;
+}
+
+.fa-search {
+  padding-left: 10px;
+}
+
+

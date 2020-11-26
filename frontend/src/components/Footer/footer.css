@@ -41,4 +41,20 @@
 .footer-content form input {
   height: 50%;
   margin: 0%;
+  padding-left: 30px;
+  box-sizing: border-box;
+  height: 70%;
+  width: 185px;
+  line-height: 3em;
+  font-size: 1.2em;
+  padding-top: 10px;
+  font-family: 'Open Sans', sans-serif;
+  color: #187aba;
+}
+
+.footer-content form input::before {
+  content:  "";
+  height: 10px;
+  width: 10px;
+  margin-left: 30px;
 }

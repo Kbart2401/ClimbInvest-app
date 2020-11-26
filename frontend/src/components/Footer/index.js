@@ -45,7 +45,7 @@ const Footer = () => {
               <span className='index-quote'>NASDAQ</span>
               <span className='index-quote'>S&P</span>
               <form onSubmit={handleSubmit}>
-                <input autoComplete='off' type='text' name='search' placeholder='Quote Search'
+                <input className='search-input' autoComplete='off' type='text' name='search' placeholder='Quote Search'
                   onChange={handleChange} />
               </form>
             </div>

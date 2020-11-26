@@ -24,7 +24,7 @@ const LoginFormPage = () => {
 
   useEffect(() => {
     setImage(loginImage())
-  },[])
+  }, [])
 
   if (sessionUser) return <Redirect to='/home' />
 
@@ -37,32 +37,32 @@ const LoginFormPage = () => {
       })
   }
 
-  
+
   return (
     <>
-    <div className='login-body'>
-      <div className='login-container'>
-        <h1>Log in to your account</h1>
-        <form onSubmit={handleSubmit} >
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
-          <input className='login-input' required id='username' name='username'
-            type='text' value={credentials} placeholder='Username'
-            onChange={e => setCredential(e.target.value)} />
-          <input className='login-input' required id='password' name='password'
-            type='password' placeholder='Password'
-            value={password} onChange={e => setPassword(e.target.value)} />
-          <input className='login-submit' type='submit' value='Log in' />
-        </form>
-        <NavLink className='signup-link' to='/signup'>
-          Create a username</NavLink>
+      <div className='login-body'>
+        <div className='login-container'>
+          <h1>Log in to your account</h1>
+          <form onSubmit={handleSubmit} >
+            <ul>
+              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+            <input className='login-input' required id='username' name='username'
+              type='text' value={credentials} placeholder='Username'
+              onChange={e => setCredential(e.target.value)} />
+            <input className='login-input' required id='password' name='password'
+              type='password' placeholder='Password'
+              value={password} onChange={e => setPassword(e.target.value)} />
+            <input className='login-submit' type='submit' value='Log in' />
+          </form>
+          <NavLink className='signup-link' to='/signup'>
+            Create a username</NavLink>
+        </div>
+        <div className='login-image'>
+          <img src={image} alt='money' />
+        </div>
       </div>
-      <div className='login-image'>
-        <img src={image} alt='money' />
-      </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   )
 }

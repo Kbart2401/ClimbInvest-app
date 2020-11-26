@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+.top-title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .header-title {
   color: #002b51;
   font-family: 'Karla', sans-serif;

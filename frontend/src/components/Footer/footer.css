@@ -45,7 +45,7 @@
   margin: 0%;
   padding-left: 15px;
   box-sizing: border-box;
-  height: 70%;
+  height: 100%;
   width: 185px;
   line-height: 3em;
   font-size: 1.2em;
@@ -60,6 +60,7 @@ form input:focus {
 
 .search-field {
   background-color: white;
+  height: 70%;
 }
 
 .fa-search {

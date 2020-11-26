@@ -12,14 +12,16 @@ const Navigation = () => {
   }
   return (
     <>
-      <div className={`nav-title-container ${sessionUser ? 'logged-in' : ''}`}>
-        <h1 className='header-title'>ClimbInvest</h1>
-        {sessionUser &&
-        <>
-        <p>Welcome {sessionUser.username}</p>
-        <NavLink to='/' onClick={handleLogOut}>Log out</NavLink>
-        </>}
+      <div className={`top-title-container ${sessionUser ? 'logged-in' : ''}`}>
+        <div className='nav-title-container'>
+          <h1 className='header-title'>ClimbInvest</h1>
+          {sessionUser &&
+            <>
+              <p>Welcome {sessionUser.username}</p>
+              <NavLink to='/' onClick={handleLogOut}>Log out</NavLink>
+            </>}
         </div>
+      </div>
       {sessionUser &&
         <>
           <div className='nav-bar'>

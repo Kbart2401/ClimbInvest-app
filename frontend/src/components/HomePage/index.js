@@ -10,17 +10,28 @@ import './HomePage.css';
 const HomePage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
-  const stockData = useSelector(state => state.stockSearch.stock)
+  const stockData = useSelector(state => state.stockSearch.stock);
+  const userAccount = useSelector(state => state.session.account)
 
   if (!sessionUser) return <Redirect to='/' />
 
   return (
-    <> 
-    <h1>Home Page</h1>
-    <CreateAccountModal />
+    <>
+      <h1>Home Page</h1>
+      {!userAccount &&
+        <CreateAccountModal />
+      }
+      {userAccount &&
+        <>
+          <div>Name: {userAccount.name}</div>
+          <div>Current Value: {userAccount.current_balance}</div>
+          <div>Previous Balance: {userAccount.previous_balance}</div>
+          <div>Available Cash: {userAccount.available_cash}</div>
+        </>
+      }
       <Footer />
     </>
-    
+
   )
 }
 

@@ -72,7 +72,8 @@ export const createAccount = (account) => async (dispatch) => {
       userId, name
     })
   })
-  dispatch(setAccount(res.data))
+  dispatch(setAccount(res.data.account))
+  console.log('IN REDUX', res.data.account)
   return res;
 }
 

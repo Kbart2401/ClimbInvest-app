@@ -9,7 +9,7 @@ const StockInfoPage = () => {
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock);
   const companyData = useSelector(state => state.stockSearch.company);
-  
+
   console.log('stockData', stockData)
   console.log('companyData', companyData)
 
@@ -18,10 +18,13 @@ const StockInfoPage = () => {
       <div className='stock-page-container'>
         {stockData && companyData &&
           <>
-          <div className='top-of-page'>
-            <span>As of {stockData.latestTime}</span>
-            <span>{stockData.isUSMarketOpen ? `Market is Open` : `Market is Closed`}</span>
-          </div>
+            <div className='top-of-page'>
+              <span>As of {stockData.latestTime}</span>
+              <span>Market is&nbsp;
+            <span className={stockData.isUSMarketOpen ? `green` : `red`}>
+                  {stockData.isUSMarketOpen ? `Open` : `Closed`}</span>
+              </span>
+            </div>
             <h1>{stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
             <div className='header-stock-page-container'>
               <dl>
@@ -57,7 +60,7 @@ const StockInfoPage = () => {
                     </tr>
                     <tr>
                       <th>Avg 30 Day Volume</th>
-                    <td>{stockData.avgTotalVolume}</td>
+                      <td>{stockData.avgTotalVolume}</td>
                     </tr>
                   </tbody>
                 </table>

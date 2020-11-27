@@ -3,11 +3,28 @@
   justify-content: space-between;
 }
 
+.top-of-page > span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-style: italic;
+}
+
+span.red {
+  font-weight: 800;
+  color: red;
+}
+
+span.green {
+  font-weight: 800;
+  color: green;
+}
+
 .stock-page-container {
   width: 1150px;
   height: 100vh;
   box-shadow: 0px 0 5px;
   background-color: #f5f5f5;
+  padding: 30px 20px 20px 20px 
 }
 
 .header-stock-page-container {

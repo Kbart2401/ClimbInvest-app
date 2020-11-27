@@ -27,10 +27,25 @@ span.green {
   padding: 30px 20px 20px 20px 
 }
 
+.stock-header {
+  font-family: 'Karla', sans-serif;
+  margin-top: 10px;
+}
+
 .header-stock-page-container {
   width: 50%;
   display: flex;
   justify-content: space-between;
+}
+
+.header-stock-page-container dt {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+.header-stock-page-container dd {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 23px;
 }
 
 .stock-page-outerbody {

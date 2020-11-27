@@ -25,11 +25,11 @@ const StockInfoPage = () => {
                   {stockData.isUSMarketOpen ? `Open` : `Closed`}</span>
               </span>
             </div>
-            <h1>{stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
+            <h1 className='stock-header'>{stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
             <div className='header-stock-page-container'>
               <dl>
                 <dt>Last Price</dt>
-                <dd>{stockData.latestPrice}</dd>
+                <dd>${stockData.latestPrice}</dd>
               </dl>
               <dl>
                 <dt>Today's Change</dt>
@@ -48,15 +48,15 @@ const StockInfoPage = () => {
                   <tbody>
                     <tr>
                       <th>Previous Close</th>
-                      <td>{stockData.previousClose}</td>
+                      <td>${stockData.previousClose}</td>
                     </tr>
                     <tr>
                       <th>52 Week High</th>
-                      <td>{stockData.week52High}</td>
+                      <td>${stockData.week52High}</td>
                     </tr>
                     <tr>
                       <th>52 Week Low</th>
-                      <td>{stockData.week52Low}</td>
+                      <td>${stockData.week52Low}</td>
                     </tr>
                     <tr>
                       <th>Avg 30 Day Volume</th>

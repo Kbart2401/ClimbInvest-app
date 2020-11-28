@@ -15,20 +15,50 @@ const HomePage = () => {
 
   if (!sessionUser) return <Redirect to='/' />
 
+  const todayChange = () => {
+    let difference = userAccount.current_balance - userAccount.previous_balance;
+    if (difference === 0) difference = '–';
+    if (difference > 0) difference = `+${difference}`
+    if (difference < 0) difference = `-${difference}`
+    return difference
+  }
+
   return (
     <>
-      <h1>Home Page</h1>
-      {!userAccount &&
-        <CreateAccountModal />
-      }
-      {userAccount &&
-        <>
-          <div>Name: {userAccount.name}</div>
-          <div>Current Value: {userAccount.current_balance}</div>
-          <div>Previous Balance: {userAccount.previous_balance}</div>
-          <div>Available Cash: {userAccount.available_cash}</div>
-        </>
-      }
+      <div className='below-nav-container'>
+
+        {!userAccount &&
+          <CreateAccountModal />
+        }
+        {userAccount &&
+          <>
+            <div className='home-page-header'>
+              <h1>{userAccount.name}</h1>
+              <div className='header-info'>
+                <dl>
+                  <dt>Total Assets</dt>
+                  <dd>{parseInt(userAccount.current_balance)
+                    .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                </dl>
+                <dl>
+                  <dt>Today's Change</dt>
+                  <dd>{todayChange()}</dd>
+                </dl>
+                <dl>
+                  <dt>Previous Balance</dt>
+                <dd>{parseInt(userAccount.previous_balance)
+                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                </dl>
+                <dl>
+                  <dt>Available Cash</dt>
+                <dd>{parseInt(userAccount.available_cash)
+                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                </dl>
+              </div>
+            </div>
+          </>
+        }
+      </div>
       <Footer />
     </>
 

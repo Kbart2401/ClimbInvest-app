@@ -30,7 +30,7 @@ const StockInfoPage = () => {
 
   return (
     <>
-      <div className='stock-page-container'>
+      <div className='below-nav-container'>
         {stockData && companyData &&
           <>
             <div className='top-of-page'>

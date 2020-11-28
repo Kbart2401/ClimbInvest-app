@@ -59,16 +59,21 @@ const StockInfoPage = () => {
                 <dd>{(stockData.volume).toLocaleString()}</dd>
               </dl>
             </div>
-            <button onClick={handleOverviewClick}>Overview</button>
-            <button onClick={handleProfileClick}>Profile</button>
+            <div className='stock-buttons'>
+              <button className={`stock-page-button ${overview ? 'is-selected' : ''}`}
+                onClick={handleOverviewClick}>Overview</button>
+              <button className={`stock-page-button ${profilePage ? 'is-selected' : ''}`}
+                onClick={handleProfileClick}>Profile</button>
+              <div id='page-divider'></div>
+            </div>
             <div className='stock-page-outerbody'>
               {profilePage &&
                 <StockProfilePage companyData={companyData}
                   stockData={stockData} />
               }
               {overview &&
-              <StockOverview companyData={companyData}
-              stockData={stockData} />
+                <StockOverview companyData={companyData}
+                  stockData={stockData} />
               }
             </div>
           </>

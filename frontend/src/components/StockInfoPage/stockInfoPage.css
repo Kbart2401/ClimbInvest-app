@@ -63,6 +63,8 @@ span.green {
   height: 80%;
   display: flex;
   justify-content: flex-end;
+  /* border-top: 1px solid #b2b2b2; */
+  padding-top: 20px;
 }
 
 .stock-financial-data {
@@ -71,4 +73,40 @@ span.green {
   width: 25%;
   display: flex;
   justify-content: left;
+}
+
+.stock-page-button {
+  background-color: #1574b1;
+  border: none;
+  color: white;
+  height: 40px;
+  margin-left: 4px;
+  cursor: pointer;
+  border-radius: 3px 0 0;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0 20px;
+}
+
+.stock-page-button.is-selected {
+  background-color: white;
+  color: black;
+  border-top: 4px solid #1574b1;
+  border-right: 1px solid #b2b2b2;
+  border-left: 1px solid #b2b2b2;
+}
+
+.stock-page-button:hover {
+  background-color: #002b51;
+  color: white;
+}
+
+.stock-buttons {
+  display: flex;
+}
+
+#page-divider {
+  width: 100%;
+  border-bottom: 1px solid #b2b2b2; 
+;
 }

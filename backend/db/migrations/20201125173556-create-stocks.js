@@ -8,6 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      symbol: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       price: {
         allowNull: false,
         type: Sequelize.DECIMAL(19, 4)

@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     previous_balance: DataTypes.DECIMAL,
     current_balance: DataTypes.DECIMAL,
     available_cash: DataTypes.DECIMAL,
-    userId: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.INTEGER,
+      unique: true
+    }
   }, {});
   Account.associate = function(models) {
     Account.belongsTo(models.User, {foreignKey: 'userId'})

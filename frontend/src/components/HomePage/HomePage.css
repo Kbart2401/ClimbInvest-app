@@ -8,6 +8,9 @@
 
 .home-page-header h1 {
   margin-bottom: 15px;
+  color: #187aba;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 22px;
 }
 
 .header-info {
@@ -19,7 +22,7 @@
 .header-info dd {
   margin-left: 0%;
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .header-info dt {

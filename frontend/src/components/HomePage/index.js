@@ -46,13 +46,13 @@ const HomePage = () => {
                 </dl>
                 <dl>
                   <dt>Previous Balance</dt>
-                <dd>{parseInt(userAccount.previous_balance)
-                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                  <dd>{parseInt(userAccount.previous_balance)
+                    .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
                 </dl>
                 <dl>
                   <dt>Available Cash</dt>
-                <dd>{parseInt(userAccount.available_cash)
-                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                  <dd>{parseInt(userAccount.available_cash)
+                    .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
                 </dl>
               </div>
             </div>

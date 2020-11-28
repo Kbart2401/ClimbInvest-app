@@ -1,0 +1,10 @@
+.company-description-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.company-description-body {
+  font-size: 14px;
+  font-weight: normal;
+}

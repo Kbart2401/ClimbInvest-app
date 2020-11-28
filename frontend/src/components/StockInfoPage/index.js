@@ -3,15 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
 import './stockInfoPage.css';
 import Footer from '../Footer';
+import StockProfilePage from '../StockProfilePage';
+import StockOverview from '../StockOverview';
 
 const StockInfoPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock);
   const companyData = useSelector(state => state.stockSearch.company);
+  const [profilePage, setProfilePage] = useState(false)
+  const [overview, setOverview] = useState(true)
 
+  //console logs to check out stock objects
   console.log('stockData', stockData)
   console.log('companyData', companyData)
+
+  const handleProfileClick = () => {
+    setProfilePage(true);
+    setOverview(false);
+  }
+
+  const handleOverviewClick = () => {
+    setOverview(true);
+    setProfilePage(false);
+  }
 
   return (
     <>
@@ -36,39 +51,25 @@ const StockInfoPage = () => {
                 <dt>Today's Change</dt>
                 <dd className={(stockData.change < 0) ? 'red' : 'green'}>
                   {(stockData.change > 0) ?
-                  `+${stockData.change} / ${(stockData.changePercent * 100).toFixed(2)}%` 
-                  : `${stockData.change} / ${(stockData.changePercent * 100).toFixed(2)}%`}</dd>
+                    `+${stockData.change} / ${(stockData.changePercent * 100).toFixed(2)}%`
+                    : `${stockData.change} / ${(stockData.changePercent * 100).toFixed(2)}%`}</dd>
               </dl>
               <dl>
                 <dt>Today's Volume</dt>
-                <dd>{stockData.volume}</dd>
+                <dd>{(stockData.volume).toLocaleString()}</dd>
               </dl>
             </div>
+            <button onClick={handleOverviewClick}>Overview</button>
+            <button onClick={handleProfileClick}>Profile</button>
             <div className='stock-page-outerbody'>
-              <div>{companyData.description}</div>
-              <div className='stock-financial-data'>
-                <table>
-                  <caption>Overview</caption>
-                  <tbody>
-                    <tr>
-                      <th>Previous Close</th>
-                      <td>${stockData.previousClose}</td>
-                    </tr>
-                    <tr>
-                      <th>52 Week High</th>
-                      <td>${stockData.week52High}</td>
-                    </tr>
-                    <tr>
-                      <th>52 Week Low</th>
-                      <td>${stockData.week52Low}</td>
-                    </tr>
-                    <tr>
-                      <th>Avg 30 Day Volume</th>
-                      <td>{stockData.avgTotalVolume}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              {profilePage &&
+                <StockProfilePage companyData={companyData}
+                  stockData={stockData} />
+              }
+              {overview &&
+              <StockOverview companyData={companyData}
+              stockData={stockData} />
+              }
             </div>
           </>
         }

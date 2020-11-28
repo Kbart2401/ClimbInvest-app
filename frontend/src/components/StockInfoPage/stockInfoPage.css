@@ -19,6 +19,14 @@ span.green {
   color: green;
 }
 
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
 .stock-page-container {
   width: 1150px;
   height: 100vh;
@@ -46,6 +54,7 @@ span.green {
 .header-stock-page-container dd {
   font-family: 'Open Sans', sans-serif;
   font-size: 23px;
+  margin-left: 0%;
 }
 
 .stock-page-outerbody {

@@ -21,11 +21,12 @@ const StockInfoPage = () => {
             <div className='top-of-page'>
               <span>As of {stockData.latestTime}</span>
               <span>Market is&nbsp;
-            <span className={stockData.isUSMarketOpen ? `green` : `red`}>
+               <span className={stockData.isUSMarketOpen ? `green` : `red`}>
                   {stockData.isUSMarketOpen ? `Open` : `Closed`}</span>
               </span>
             </div>
-            <h1 className='stock-header'>{stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
+            <h1 className='stock-header'>
+              {stockData.companyName} {stockData.symbol} : {stockData.primaryExchange} </h1>
             <div className='header-stock-page-container'>
               <dl>
                 <dt>Last Price</dt>
@@ -33,7 +34,10 @@ const StockInfoPage = () => {
               </dl>
               <dl>
                 <dt>Today's Change</dt>
-                <dd>{stockData.change}</dd>
+                <dd className={(stockData.change < 0) ? 'red' : 'green'}>
+                  {(stockData.change > 0) ?
+                  `+${stockData.change} / ${(stockData.changePercent * 100).toFixed(2)}%` 
+                  : `${stockData.change} / ${(stockData.changePercent * 100).toFixed(2)}%`}</dd>
               </dl>
               <dl>
                 <dt>Today's Volume</dt>

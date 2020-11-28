@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Account } = require("../../db/models");
 
 const router = express.Router();
 
@@ -34,11 +34,16 @@ router.post(
       err.errors = ['The provided credentials were invalid.'];
       return next(err);
     }
-
+    const userAccount = await Account.findOne({
+      where: {
+        userId: user.id
+      }
+    })
     await setTokenCookie(res, user);
 
     return res.json({
       user,
+      account: userAccount
     });
   }),
 );
@@ -56,14 +61,21 @@ router.delete(
 router.get(
   '/',
   restoreUser,
-  (req, res) => {
+  asyncHandler(async(req, res) => {
     const { user } = req;
+    const userAccount = await Account.findOne({
+      where: {
+        userId: user.id
+      }
+    })
+    // console.log('USER ACCOUNT', user.id, userAccount)
     if (user) {
       return res.json({
-        user: user.toSafeObject()
+        user: user.toSafeObject(),
+        account: userAccount
       });
     } else return res.json({});
   }
-);
+));
 
 module.exports = router;

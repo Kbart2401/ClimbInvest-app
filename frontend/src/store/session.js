@@ -29,14 +29,16 @@ export const logUserIn = (user) => async (dispatch) => {
       password: user.password,
     }),
   })
-  dispatch(setUser(res.data.user))   //this will send setUser with to the reducer 
-  return res;                       //with a payload of the returned fetch call data
+  dispatch(setUser(res.data.user))        //this will send setUser with to the reducer 
+  dispatch(setAccount(res.data.account))    //with a payload of the returned fetch call data
+  return res;                       
 }
 
 //Restore User thunk 
-export const restoreUser = user => async (dispatch) => {
+export const restoreUser = (user) => async (dispatch) => {
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user))
+  dispatch(setAccount(res.data.account))
   return res;
 }
 //Signup thunk
@@ -79,7 +81,7 @@ export const createAccount = (account) => async (dispatch) => {
 
 //restore account thunk
 export const restoreAccount = user => async (dispatch) => {
-  
+
 }
 
 

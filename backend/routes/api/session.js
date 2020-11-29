@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User, Account } = require("../../db/models");
+const { User, Account, Stock_in_Account, Stock } = require("../../db/models");
 
 const router = express.Router();
 
@@ -64,6 +64,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const { user } = req;
     let userAccount;
+    let stocks;
     if (user) {
       userAccount = await Account.findOne({
         where: {
@@ -71,10 +72,25 @@ router.get(
         }
       })
     }
+    if (userAccount) {
+      stockCosts = await Stock_in_Account.findAll({
+        where: {
+          accountId: userAccount.id
+        }
+      })
+      stocks = await Promise.all(
+      stockCosts.map(async stockCost => {
+        const stockName = await Stock.findByPk(stockCost.dataValues.stockId);
+        return [stockName.dataValues.name, stockName.dataValues.symbol, stockCost.dataValues.cost_basis]
+      })
+      )
+    }
     if (user) {
+      // console.log('STOCKS', stocks)
       return res.json({
         user: user.toSafeObject(),
-        account: userAccount
+        account: userAccount,
+        stocks
       });
     } else return res.json({});
   }

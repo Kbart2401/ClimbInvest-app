@@ -3,7 +3,8 @@ import { fetch } from './csrf';
 //action types
 const SET_USER = 'SET_USER';
 const REMOVE_USER = 'REMOVE_USER';
-const SET_ACCOUNT = 'SET_ACCOUNT'
+const SET_ACCOUNT = 'SET_ACCOUNT';
+const SET_ACCOUNT_STOCK = 'SET_ACCOUNT_STOCK';
 
 //action creators
 const setUser = (user) => ({
@@ -18,6 +19,11 @@ export const removeUser = () => ({
 const setAccount = (account) => ({
   type: SET_ACCOUNT,
   payload: account
+})
+
+const setAccountPortfolio = (stock) => ({
+  type: SET_ACCOUNT_STOCK,
+  payload: stock
 })
 
 //Login thunk function
@@ -37,8 +43,10 @@ export const logUserIn = (user) => async (dispatch) => {
 //Restore User thunk 
 export const restoreUser = (user) => async (dispatch) => {
   const res = await fetch('/api/session');
+  console.log('RES', res);
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
+  dispatch(setAccountPortfolio(res.data.stocks))
   return res;
 }
 //Signup thunk
@@ -75,18 +83,11 @@ export const createAccount = (account) => async (dispatch) => {
     })
   })
   dispatch(setAccount(res.data.account))
-  console.log('IN REDUX', res.data.account)
   return res;
 }
 
-//restore account thunk
-export const restoreAccount = user => async (dispatch) => {
-
-}
-
-
 /***********Reducer**********/
-export const sessionReducer = (state = { user: null, account: null }, action) => {
+export const sessionReducer = (state = { user: null, account: null, accountPortfolio: null }, action) => {
 
   switch (action.type) {
     case SET_USER:
@@ -99,6 +100,10 @@ export const sessionReducer = (state = { user: null, account: null }, action) =>
       return {
         ...state, account: action.payload
       }
+      case SET_ACCOUNT_STOCK:
+        return {
+          ...state, accountPortfolio: action.payload
+        }
     default:
       return state
   }

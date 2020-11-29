@@ -12,6 +12,8 @@ const HomePage = () => {
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account)
+  const stockName = useSelector(state => state.stockInAccount.stock)
+  const stockCost = useSelector(state => state.stockInAccount.stock)
 
   if (!sessionUser) return <Redirect to='/' />
 
@@ -56,6 +58,12 @@ const HomePage = () => {
                 </dl>
               </div>
             </div>
+            {stockName && 
+            <>
+              <div>Stock: {stockName.name.name}</div>
+              <div>Cost Basis: {stockCost.cost.cost_basis}</div>
+            </>
+            }
           </>
         }
       </div>

@@ -25,7 +25,7 @@ router.post(
   validateLogin,
   asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
-    
+
     const user = await User.login({ credential, password });
     if (!user) {
       const err = new Error('Login failed');
@@ -61,13 +61,16 @@ router.delete(
 router.get(
   '/',
   restoreUser,
-  asyncHandler(async(req, res) => {
+  asyncHandler(async (req, res) => {
     const { user } = req;
-    const userAccount = await Account.findOne({
-      where: {
-        userId: user.id
-      }
-    })
+    let userAccount;
+    if (user) {
+      userAccount = await Account.findOne({
+        where: {
+          userId: user.id
+        }
+      })
+    }
     if (user) {
       return res.json({
         user: user.toSafeObject(),
@@ -75,6 +78,6 @@ router.get(
       });
     } else return res.json({});
   }
-));
+  ));
 
 module.exports = router;

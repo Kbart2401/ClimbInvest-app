@@ -2,8 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Stock = sequelize.define('Stock', {
     name: DataTypes.STRING,
-    symbol: DataTypes.STRING,
-    price: DataTypes.DECIMAL
+    symbol: DataTypes.STRING
   }, {});
   Stock.associate = function(models) {
     const columnMapping = {

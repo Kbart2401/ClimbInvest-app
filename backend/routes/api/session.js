@@ -68,7 +68,6 @@ router.get(
         userId: user.id
       }
     })
-    // console.log('USER ACCOUNT', user.id, userAccount)
     if (user) {
       return res.json({
         user: user.toSafeObject(),

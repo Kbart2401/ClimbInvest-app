@@ -5,9 +5,9 @@ import SignupFormPage from './components/SignupFormPage/index';
 import Navigation from './components/Navigation/index';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from './store/session';
-import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import StockInfoPage from './components/StockInfoPage';
+import TradePage from './components/TradePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ function App() {
             <Route path='/stock-info'>
               <StockInfoPage />
             </Route>
+            <Route path='/trade' component={TradePage} />
             <Route path='/' component={LoginFormPage} />
           </Switch>
         </div>

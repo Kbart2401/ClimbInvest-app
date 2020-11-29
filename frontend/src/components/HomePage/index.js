@@ -12,8 +12,7 @@ const HomePage = () => {
   const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account)
-  const stockName = useSelector(state => state.stockInAccount.stock)
-  const stockCost = useSelector(state => state.stockInAccount.stock)
+  const accountPortfolio = useSelector(state => state.session.accountPortfolio)
 
   if (!sessionUser) return <Redirect to='/' />
 
@@ -58,10 +57,11 @@ const HomePage = () => {
                 </dl>
               </div>
             </div>
-            {stockName && 
+            {accountPortfolio && 
             <>
-              <div>Stock: {stockName.name.name}</div>
-              <div>Cost Basis: {stockCost.cost.cost_basis}</div>
+              {accountPortfolio.map((stock, idx) => (
+                <div key={idx}>{stock.name} {stock.symbol} {stock.cost_basis}</div>
+              ))}
             </>
             }
           </>

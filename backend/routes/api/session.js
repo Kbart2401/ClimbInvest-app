@@ -81,7 +81,7 @@ router.get(
       stocks = await Promise.all(
       stockCosts.map(async stockCost => {
         const stockName = await Stock.findByPk(stockCost.dataValues.stockId);
-        return [stockName.dataValues.name, stockName.dataValues.symbol, stockCost.dataValues.cost_basis]
+        return {name: stockName.dataValues.name, symbol: stockName.dataValues.symbol, cost_basis: stockCost.dataValues.cost_basis}
       })
       )
     }

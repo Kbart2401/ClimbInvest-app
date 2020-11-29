@@ -28,7 +28,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
   const addStock = await Stock_in_Account.create({
     stockId: id, accountId, cost_basis
   })
-
+  res.json({ addStock, findStock })
 }))
 
 module.exports = router;

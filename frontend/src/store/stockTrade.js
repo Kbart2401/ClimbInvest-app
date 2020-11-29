@@ -5,10 +5,10 @@ import { fetch } from './csrf';
 const ADD_STOCK = 'ADD_STOCK';
 
 //action creators
-const addStock = (stock) => {
+const addStock = (cost, name) => {
   return {
     type: ADD_STOCK,
-    payload: stock
+    cost, name
   }
 }
 
@@ -23,6 +23,7 @@ export const addNewStock = ({name, symbol, costBasis, accountId}) => async (disp
       name, symbol, cost_basis: costBasis, accountId
     })
   })
+  dispatch(addStock(createStock.data.addStock, createStock.data.findStock))
 }
 
 /********Reducer*********/
@@ -30,7 +31,10 @@ export const stockTradeReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_STOCK:
       return {
-        ...state, stock: action.payload
+        ...state, stock: {
+          cost: action.cost,
+          name: action.name
+        }
       }
     default:
       return state

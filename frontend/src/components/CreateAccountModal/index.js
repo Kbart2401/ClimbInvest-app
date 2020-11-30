@@ -52,7 +52,7 @@ function CreateAccountModal() {
       <div className='home-no-account'>
         <div className='home-create-account-container'>
           <p>Click here to begin!</p>
-          <button onClick={handleOpen}>Create Account</button>
+          <button className='modal-submit' onClick={handleOpen}>Create Account</button>
         </div>
       </div>
       <Modal

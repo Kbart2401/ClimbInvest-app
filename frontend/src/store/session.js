@@ -122,7 +122,7 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
       }
     case DECREASE_AVAILABLE_CASH:
       return {
-        ...state, account: { current_balance: action.payload }
+        ...state, account: { available_cash: action.payload }
   }
     default:
 return state

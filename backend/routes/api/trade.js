@@ -37,6 +37,8 @@ router.patch('/', asyncHandler(async (req, res) => {
   let accountCash = parseInt(getAccount.dataValues.current_balance)
   let changeVal = parseInt(req.body.amount)
   accountCash -= changeVal;
+  getAccount.available_cash = accountCash;
+  await getAccount.save()
   res.json({accountCash})
 }))
 

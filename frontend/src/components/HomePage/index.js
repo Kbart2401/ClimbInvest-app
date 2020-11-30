@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetch } from "../../store/csrf";
 import * as sessionActions from '../../store/session';
+import * as stockSearchActions from '../../store/stockSearch';
 import Footer from '../Footer';
 import CreateAccountModal from '../CreateAccountModal';
 import './HomePage.css';
@@ -13,6 +14,23 @@ const HomePage = () => {
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account)
   const accountPortfolio = useSelector(state => state.session.accountPortfolio)
+  const [stockSymbol, setStockSymbol] = useState('');
+
+  // console.log('STOCK DATA', stockSymbol);
+  // useEffect(() => {
+  //   dispatch(stockSearchActions.setStockData(stockSymbol))
+  //   // return stockData.latestPrice
+
+  // }, [stockSymbol])
+  // const stockPrice = async (symbol) => {
+  //   debugger
+  //   const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
+  //   const url = `https://sandbox.iexapis.com/stable/stock/${symbol}/quote?token=${sandboxAPIKey}`
+  //   const quote = await fetch(url)
+  //   const data = await quote.json();
+  //   // return data.latestPrice;
+  //   console.log('DATA', data);
+  // }
 
   if (!sessionUser) return <Redirect to='/' />
 
@@ -23,6 +41,15 @@ const HomePage = () => {
     if (difference < 0) difference = `-${difference}`
     return difference
   }
+
+  const portfolioView = accountPortfolio.map((stock, idx) => {
+    return (
+      <div key={idx}>
+        {stock.name} {stock.symbol} {stock.cost_basis} 
+        {/* {stockPrice(stock.symbol)} */}
+      </div>
+    )
+  })
 
   return (
     <>
@@ -57,12 +84,10 @@ const HomePage = () => {
                 </dl>
               </div>
             </div>
-            {accountPortfolio && 
-            <>
-              {accountPortfolio.map((stock, idx) => (
-                <div key={idx}>{stock.name} {stock.symbol} {stock.cost_basis}</div>
-              ))}
-            </>
+            {accountPortfolio &&
+              <>
+                {portfolioView}
+              </>
             }
           </>
         }

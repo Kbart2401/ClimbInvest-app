@@ -50,7 +50,6 @@ export const logUserIn = (user) => async (dispatch) => {
 //Restore User thunk 
 export const restoreUser = (user) => async (dispatch) => {
   const res = await fetch('/api/session');
-  console.log('RES', res);
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
   dispatch(setAccountPortfolio(res.data.stocks))

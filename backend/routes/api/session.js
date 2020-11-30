@@ -85,7 +85,6 @@ router.get(
       stockCosts.map(async stockCost => {
         const stockName = await Stock.findByPk(stockCost.dataValues.stockId);
         // const stockLatestPrice = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockName.dataValues.symbol}/quote?token=${APIKey}`)
-        // console.log('STOCK:', stockLatestPrice)
         return {name: stockName.dataValues.name, symbol: stockName.dataValues.symbol, 
           cost_basis: stockCost.dataValues.cost_basis,
         // latest_price: stockLatestPrice.latestPrice}
@@ -94,7 +93,6 @@ router.get(
       )
     }
     if (user) {
-      // console.log('STOCKS', stocks)
       return res.json({
         user: user.toSafeObject(),
         account: userAccount,

@@ -1,8 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const fetch = require('node-fetch');
-const { Stock } = require('../../db/models');
-const { Stock_in_Account } = require('../../db/models');
+const { Stock, Stock_in_Account, Account } = require('../../db/models');
 
 const router = express.Router();
 
@@ -29,6 +28,16 @@ router.post('/', asyncHandler(async (req, res, next) => {
     stockId: id, accountId, cost_basis
   })
   res.json({ addStock, findStock })
+}))
+
+//decrease available cash
+router.patch('/', asyncHandler(async (req, res) => {
+  console.log('INSIDE PATCH ROUTE!!!!')
+  const getAccount = await Account.findByPk(req.body.accountId)
+  let accountCash = parseInt(getAccount.dataValues.current_balance)
+  let changeVal = parseInt(req.body.amount)
+  accountCash -= changeVal;
+  res.json({accountCash})
 }))
 
 module.exports = router;

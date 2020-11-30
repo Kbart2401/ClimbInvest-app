@@ -42,14 +42,17 @@ const HomePage = () => {
     return difference
   }
 
-  const portfolioView = accountPortfolio.map((stock, idx) => {
-    return (
-      <div key={idx}>
-        {stock.name} {stock.symbol} {stock.cost_basis} 
-        {/* {stockPrice(stock.symbol)} */}
-      </div>
-    )
-  })
+  let portfolioView
+  if (accountPortfolio) {
+    portfolioView = accountPortfolio.map((stock, idx) => {
+      return (
+        <div key={idx}>
+          {stock.name} {stock.symbol} {stock.cost_basis}
+          {/* {stockPrice(stock.symbol)} */}
+        </div>
+      )
+    })
+  }
 
   return (
     <>

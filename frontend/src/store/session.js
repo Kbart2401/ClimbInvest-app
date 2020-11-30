@@ -5,6 +5,8 @@ const SET_USER = 'SET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const SET_ACCOUNT = 'SET_ACCOUNT';
 const SET_ACCOUNT_STOCK = 'SET_ACCOUNT_STOCK';
+const DECREASE_AVAILABLE_CASH = 'DECREASE_AVAILABLE_CASH';
+
 
 //action creators
 const setUser = (user) => ({
@@ -26,6 +28,11 @@ const setAccountPortfolio = (stock) => ({
   payload: stock
 })
 
+const setCash = (accountCash) => ({
+  type: DECREASE_AVAILABLE_CASH,
+  payload: accountCash
+})
+
 //Login thunk function
 export const logUserIn = (user) => async (dispatch) => {
   const res = await fetch('/api/session', {
@@ -37,7 +44,7 @@ export const logUserIn = (user) => async (dispatch) => {
   })
   dispatch(setUser(res.data.user))        //this will send setUser with to the reducer 
   dispatch(setAccount(res.data.account))    //with a payload of the returned fetch call data
-  return res;                       
+  return res;
 }
 
 //Restore User thunk 
@@ -86,6 +93,15 @@ export const createAccount = (account) => async (dispatch) => {
   return res;
 }
 
+//decrease available cash thunk
+export const decreaseCash = (accountId, amount) => async (dispatch) => {
+  const res = await fetch('/api/trade', {
+    method: 'PATCH',
+    body: JSON.stringify({ accountId, amount })
+  })
+  dispatch(setCash(res.data.accountCash))
+}
+
 /***********Reducer**********/
 export const sessionReducer = (state = { user: null, account: null, accountPortfolio: null }, action) => {
 
@@ -100,11 +116,15 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
       return {
         ...state, account: action.payload
       }
-      case SET_ACCOUNT_STOCK:
-        return {
-          ...state, accountPortfolio: action.payload
-        }
+    case SET_ACCOUNT_STOCK:
+      return {
+        ...state, accountPortfolio: action.payload
+      }
+    case DECREASE_AVAILABLE_CASH:
+      return {
+        ...state, account: { current_balance: action.payload }
+  }
     default:
-      return state
+return state
   }
 }

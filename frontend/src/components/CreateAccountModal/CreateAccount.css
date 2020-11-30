@@ -2,6 +2,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.modal-container h4 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.modal-container form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-container form input {
+  font-family: 'Open Sans', sans-serif;
+  color: #187aba;
+  line-height: 3em;
+  font-size: 1em;
+
 }
 
 .create-account-modal {
@@ -17,6 +36,28 @@
   
 }
 
-.create-account-modal input {
-  
+.home-no-account {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-create-account-container {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-create-account-container p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  color: white;
+  background-color: #187aba;
+  width: 75%;
+  height: 40px;
+  border-radius: 24px;
+  border: none;
 }

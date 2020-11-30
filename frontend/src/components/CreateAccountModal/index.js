@@ -13,7 +13,7 @@ function CreateAccountModal() {
   const handleOpen = () => {
     setOpen(true)
   }
-  
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -38,7 +38,7 @@ function CreateAccountModal() {
         <div className='create-account-modal' >
           <h4 className='model-header'>Create an Account</h4>
           <form onSubmit={handleSubmit}>
-            <label>Give your account a name</label>
+            <label>Give your account a name </label>
             <input placeholder='Type something' value={inputVal} onChange={handleChange} />
             <button>Submit</button>
           </form>
@@ -49,7 +49,12 @@ function CreateAccountModal() {
 
   return (
     <>
-      <button onClick={handleOpen}>Create Account</button>
+      <div className='home-no-account'>
+        <div className='home-create-account-container'>
+          <p>Click here to begin!</p>
+          <button onClick={handleOpen}>Create Account</button>
+        </div>
+      </div>
       <Modal
         open={open}
         onClose={handleClose}>

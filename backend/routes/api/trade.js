@@ -34,7 +34,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
 router.patch('/', asyncHandler(async (req, res) => {
   console.log('INSIDE PATCH ROUTE!!!!')
   const getAccount = await Account.findByPk(req.body.accountId)
-  let accountCash = parseInt(getAccount.dataValues.current_balance)
+  let accountCash = parseInt(getAccount.available_cash)
   let changeVal = parseInt(req.body.amount)
   accountCash -= changeVal;
   getAccount.available_cash = accountCash;

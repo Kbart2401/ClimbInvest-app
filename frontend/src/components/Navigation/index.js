@@ -29,6 +29,7 @@ const Navigation = () => {
               <ul>
                 <div className='navLink-container'>
                   <NavLink to='/'>Home</NavLink>
+                  <NavLink to='/trade'>Trade</NavLink>
                 </div>
               </ul>
             </div>

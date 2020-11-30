@@ -40,7 +40,7 @@ function CreateAccountModal() {
           <form onSubmit={handleSubmit}>
             <label>Give your account a name </label>
             <input placeholder='Type something' value={inputVal} onChange={handleChange} />
-            <button>Submit</button>
+            <button className='modal-submit'>Submit</button>
           </form>
         </div>
       </div>

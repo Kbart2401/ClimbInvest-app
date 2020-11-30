@@ -53,7 +53,7 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-button {
+.modal-submit {
   color: white;
   background-color: #187aba;
   width: 75%;

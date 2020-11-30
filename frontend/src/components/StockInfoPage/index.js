@@ -56,7 +56,7 @@ const StockInfoPage = () => {
               </dl>
               <dl>
                 <dt>Today's Volume</dt>
-                <dd>{(stockData.volume).toLocaleString()}</dd>
+              <dd>{stockData.volume? (stockData.volume).toLocaleString(): '–'}</dd>
               </dl>
             </div>
             <div className='stock-buttons'>

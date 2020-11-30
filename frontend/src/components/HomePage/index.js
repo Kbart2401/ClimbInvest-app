@@ -89,7 +89,12 @@ const HomePage = () => {
             </div>
             {accountPortfolio &&
               <>
-                {portfolioView}
+                <div className='home-page-body'> 
+                <h2>Portfolio</h2>
+                  <div className='portfolio-container'>
+                    {portfolioView}
+                  </div>
+                </div>
               </>
             }
           </>

@@ -29,15 +29,19 @@ const TradePage = () => {
   return (
     <>
       <div className='below-nav-container'>
-        <h1>Trade Page</h1>
-        <form onSubmit={handleSubmit}>
-          <label>Buy Stock</label>
-          <input placeholder='Enter Stock Symbol' value={stockSymbol}
-            onChange={(e) => setStockSymbol(e.target.value)}></input>
-          <button type="button" onClick={getStock}>Get Stock</button>
-          <button>Submit</button>
-        </form>
-        {stockData && <div>Success</div>}
+        <div className='trade-page-container'>
+          <h2>Place a Buy Order</h2>
+          <div className='buy-order-container'>
+            <form onSubmit={handleSubmit}>
+              <label>Buy Stock</label>
+              <input placeholder='Enter Stock Symbol' value={stockSymbol}
+                onChange={(e) => setStockSymbol(e.target.value)}></input>
+              <button type="button" onClick={getStock}>Get Stock</button>
+              {stockData && <div className='success'>Success</div>}
+              <button>Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
       <Footer />
     </>

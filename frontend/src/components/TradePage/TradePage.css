@@ -1,0 +1,32 @@
+.trade-page-container h2 {
+  color: #013462;
+  font-family: 'Karla', sans-serif;
+}
+
+.buy-order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buy-order-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+}
+
+.buy-order-container input {
+  line-height: 3em;
+  font-size: 1.2em;
+  font-family: 'Open Sans', sans-serif;
+  color: #187aba;
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
+form .success {
+  color: green;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 10px;
+}

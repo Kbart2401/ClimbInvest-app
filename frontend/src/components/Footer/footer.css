@@ -67,4 +67,28 @@ form input:focus {
   padding-left: 10px;
 }
 
+.footer-contact-container {
+  display: flex;
+  width: 33%;
+  height: 25px;
+  justify-content: center;
+}
 
+.login-page-footer-info {
+  margin-left: 10px;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+
+.login-page-footer-info a{
+  color: white;
+}
+
+#github-link {
+  background-image: url('./GitHub-Mark-Light-120px-plus.png');
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+  z-index: 9;
+}

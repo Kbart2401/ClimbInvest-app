@@ -35,7 +35,19 @@ const Footer = () => {
   return (
     <>
       {!sessionUser &&
-        <div className='footer-container__no-user'></div>}
+        <div className='footer-container__no-user'>
+          <p className='login-page-footer-info'>This project was created by Kyle Barthelmes and was
+          inspired by &nbsp;
+            <a href='https://login.morganstanleyclientserv.com/ux/'>
+              Morgan Stanley Online
+            </a>
+          </p>
+          <p className='login-page-footer-info'>If you would like to support this project or for more info, check out the link below:
+          </p>
+          <div className='footer-contact-container'>
+            <a id='github-link' href='https://github.com/Kbart2401/MS-clone'></a>
+          </div>
+        </div>}
       {sessionUser &&
         <>
           <div className='footer-container__user'>

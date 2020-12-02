@@ -6,6 +6,7 @@ import * as sessionActions from '../../store/session';
 import * as stockSearchActions from '../../store/stockSearch';
 import Footer from '../Footer';
 import CreateAccountModal from '../CreateAccountModal';
+import PortfolioView from '../PortfolioView';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -42,18 +43,6 @@ const HomePage = () => {
     return difference
   }
 
-  let portfolioView
-  if (accountPortfolio) {
-    portfolioView = accountPortfolio.map((stock, idx) => {
-      return (
-        <div key={idx}>
-          {stock.name} {stock.symbol} {stock.cost_basis}
-          {/* {stockPrice(stock.symbol)} */}
-        </div>
-      )
-    })
-  }
-
   return (
     <>
       <div className='below-nav-container'>
@@ -88,14 +77,7 @@ const HomePage = () => {
               </div>
             </div>
             {accountPortfolio &&
-              <>
-                <div className='home-page-body'> 
-                <h2>Portfolio</h2>
-                  <div className='portfolio-container'>
-                    {portfolioView}
-                  </div>
-                </div>
-              </>
+              <PortfolioView />
             }
           </>
         }

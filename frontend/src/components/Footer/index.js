@@ -38,7 +38,7 @@ const Footer = () => {
         <div className='footer-container__no-user'>
           <p className='login-page-footer-info'>This project was created by Kyle Barthelmes and was
           inspired by &nbsp;
-            <a href='https://login.morganstanleyclientserv.com/ux/'>
+            <a href='https://login.morganstanleyclientserv.com/ux/' target='_blank'>
               Morgan Stanley Online
             </a>
           </p>

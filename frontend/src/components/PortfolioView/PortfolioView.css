@@ -1,0 +1,22 @@
+.portfolio-container {
+  width: 50%;
+}
+
+.account-securities {
+  padding-left: 0%;
+}
+
+.account-securities li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 30px;
+}
+
+.account-securities li>div {
+  box-sizing: border-box;
+  width: 150px;
+  /* margin-right: 25px; */
+}
+

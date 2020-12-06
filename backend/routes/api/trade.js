@@ -12,7 +12,7 @@ const useKey = sandboxAPIKey;
 
 //Add stock 
 router.post('/', asyncHandler(async (req, res, next) => {
-  const { name, symbol, cost_basis, accountId } = req.body;
+  const { name, symbol, cost_basis, accountId, quantity } = req.body;
   //Find if stock is existing or add new stock to Stock table
   let findStock = await Stock.findOne({
     where: {
@@ -25,6 +25,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
     })
   }
   //see if stock is in stock_in_account, if so, add quantity (1 here)
+  //Note: cost basis remains the cost of the first purchase of stock
   const { id } = findStock
   let stockAlreadyInAccount = await Stock_in_Account.findOne({
     where: {
@@ -33,13 +34,13 @@ router.post('/', asyncHandler(async (req, res, next) => {
   })
   let addStock;
   if (stockAlreadyInAccount) {
-    stockAlreadyInAccount.quantity ++;
+    stockAlreadyInAccount.quantity += quantity;
     await stockAlreadyInAccount.save();
     addStock = stockAlreadyInAccount;
   }
   else {
     addStock = await Stock_in_Account.create({
-      stockId: id, accountId, cost_basis, quantity: 1
+      stockId: id, accountId, cost_basis, quantity
     })
   }
   res.json({ addStock, findStock })

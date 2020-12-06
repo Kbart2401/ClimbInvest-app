@@ -10,6 +10,7 @@ import * as stockTradeActions from '../../store/stockTrade';
 const TradePage = () => {
   const dispatch = useDispatch();
   const [stockSymbol, setStockSymbol] = useState('');
+  const [quantity, setQuantity] = useState('')
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account)
 
@@ -22,7 +23,8 @@ const TradePage = () => {
     e.preventDefault();
     dispatch(stockTradeActions.addNewStock({
       name: stockData.companyName, symbol: stockSymbol,
-      costBasis: stockData.latestPrice, accountId: userAccount.id
+      costBasis: stockData.latestPrice, accountId: userAccount.id,
+      quantity: quantity
     }))
     dispatch(sessionActions.decreaseCash(userAccount.id, stockData.latestPrice))
   }
@@ -37,8 +39,14 @@ const TradePage = () => {
               <input placeholder='Enter Stock Symbol' value={stockSymbol}
                 onChange={(e) => setStockSymbol(e.target.value)}></input>
               <button type="button" onClick={getStock}>Get Stock</button>
-              {stockData && <div className='success'>Success</div>}
-              <button>Submit</button>
+              {stockData &&
+                <>
+                  <div className='success'>Success</div>
+                  <label>Quantity</label>
+                  <input placeholder='Shares' value={quantity}
+                    onChange={e => setQuantity(parseInt(e.target.value))}></input>
+                  <button>Submit</button>
+                </>}
             </form>
           </div>
         </div>

@@ -13,14 +13,14 @@ const addStock = (cost, name) => {
 }
 
 //thunks
-export const addNewStock = ({name, symbol, costBasis, accountId}) => async (dispatch) => {
+export const addNewStock = ({name, symbol, costBasis, accountId, quantity}) => async (dispatch) => {
   const createStock = await fetch('/api/trade', {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'POST',
     body: JSON.stringify({
-      name, symbol, cost_basis: costBasis, accountId
+      name, symbol, cost_basis: costBasis, accountId, quantity
     })
   })
   dispatch(addStock(createStock.data.addStock, createStock.data.findStock))

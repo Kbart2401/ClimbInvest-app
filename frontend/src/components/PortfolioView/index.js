@@ -12,7 +12,7 @@ const PortfolioView = () => {
           <div>{stock.name} </div>
           <div>{stock.symbol} </div>
           <div>{stock.cost_basis} </div>
-          {/* {stockPrice(stock.symbol)} */}
+          <div>{stock.quantity}</div>
         </li>
       )
     })
@@ -26,7 +26,7 @@ const PortfolioView = () => {
           <div className='account-securities-container'>
             <ul className='account-securities'>
               <li><div>Name</div><div>Symbol</div>
-                <div>Cost Basis</div>
+                <div>Cost Basis</div><div>Quantity</div>
                 </li>
               {portfolioView}
             </ul>

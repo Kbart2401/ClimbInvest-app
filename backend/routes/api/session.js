@@ -86,7 +86,7 @@ router.get(
         const stockName = await Stock.findByPk(stockCost.dataValues.stockId);
         // const stockLatestPrice = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockName.dataValues.symbol}/quote?token=${APIKey}`)
         return {name: stockName.dataValues.name, symbol: stockName.dataValues.symbol, 
-          cost_basis: stockCost.dataValues.cost_basis,
+          cost_basis: stockCost.dataValues.cost_basis, quantity: stockCost.dataValues.quantity
         // latest_price: stockLatestPrice.latestPrice}
         }
       })

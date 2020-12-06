@@ -23,7 +23,7 @@ const PortfolioView = () => {
       <div className='home-page-body'>
         <div className='portfolio-container'>
           <h2>Portfolio</h2>
-          <div className='portfolio-container'>
+          <div className='account-securities-container'>
             <ul className='account-securities'>
               <li><div>Name</div><div>Symbol</div>
                 <div>Cost Basis</div>

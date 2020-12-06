@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Stock_in_Account = sequelize.define('Stock_in_Account', {
     stockId: DataTypes.INTEGER,
     accountId: DataTypes.INTEGER,
-    cost_basis: DataTypes.DECIMAL
+    cost_basis: DataTypes.DECIMAL,
+    quantity: DataTypes.INTEGER
   }, {});
   Stock_in_Account.associate = function(models) {
     // Stock_in_Account.hasMany(models.Stock, {foreignKey: 'stockId'})

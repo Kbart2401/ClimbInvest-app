@@ -2,6 +2,10 @@
   width: 50%;
 }
 
+.account-securities-container {
+  width: 100%;
+}
+
 .account-securities {
   padding-left: 0%;
 }

@@ -20,7 +20,7 @@ export const addNewStock = ({name, symbol, costBasis, accountId, quantity}) => a
     },
     method: 'POST',
     body: JSON.stringify({
-      name, symbol, cost_basis: costBasis, accountId, quantity
+      name, symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity
     })
   })
   dispatch(addStock(createStock.data.addStock, createStock.data.findStock))

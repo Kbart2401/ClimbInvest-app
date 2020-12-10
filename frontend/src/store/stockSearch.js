@@ -27,7 +27,7 @@ export const setStockData = (stock) => async (dispatch) => {
     },
     method: 'POST',
     body: JSON.stringify({
-      stock
+      stock: stock.toLowerCase()
     })
   })
   dispatch(setStock(stockQuote.data))

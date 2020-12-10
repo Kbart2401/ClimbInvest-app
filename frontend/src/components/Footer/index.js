@@ -45,7 +45,7 @@ const Footer = () => {
           <p className='login-page-footer-info'>If you would like to support this project or for more info, check out the link below:
           </p>
           <div className='footer-contact-container'>
-            <a id='github-link' href='https://github.com/Kbart2401/MS-clone'></a>
+            <a id='github-link' href='https://github.com/Kbart2401/ClimbInvest-app'></a>
           </div>
         </div>}
       {sessionUser &&

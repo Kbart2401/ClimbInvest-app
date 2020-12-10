@@ -10,13 +10,25 @@ import * as stockTradeActions from '../../store/stockTrade';
 const TradePage = () => {
   const dispatch = useDispatch();
   const [stockSymbol, setStockSymbol] = useState('');
-  const [quantity, setQuantity] = useState('')
+  const [quantity, setQuantity] = useState('');
+  const [searchSubmit, setSearchSubmit] = useState(false)
+  const [noData, setNoData] = useState(false)
   const stockData = useSelector(state => state.stockSearch.stock);
-  const userAccount = useSelector(state => state.session.account)
+  const userAccount = useSelector(state => state.session.account);
 
+  //TODO not sure if we need this useEffect here and searchSubmit 
+  useEffect(() => {
+    // debugger
+    if (!stockData && searchSubmit) {
+      setNoData(true);
+      setSearchSubmit(false)
+    }
+  })
 
   const getStock = () => {
+    setSearchSubmit(true);
     dispatch(stockSearchActions.setStockData(stockSymbol));
+
   }
 
   const handleSubmit = (e) => {
@@ -42,11 +54,14 @@ const TradePage = () => {
               {stockData &&
                 <>
                   <div className='success'>Success</div>
+                  <div>{stockData.latestPrice}</div>
                   <label>Quantity</label>
                   <input placeholder='Shares' value={quantity}
                     onChange={e => setQuantity(parseInt(e.target.value))}></input>
                   <button>Submit</button>
                 </>}
+              {noData && !stockData &&
+                <div>Please enter a valid symbol</div>}
             </form>
           </div>
         </div>

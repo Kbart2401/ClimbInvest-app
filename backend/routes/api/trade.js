@@ -24,7 +24,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
       name, symbol
     })
   }
-  //see if stock is in stock_in_account, if so, add quantity (1 here)
+  //see if stock is in stock_in_account, if so, add quantity 
   //Note: cost basis remains the cost of the first purchase of stock
   const { id } = findStock
   let stockAlreadyInAccount = await Stock_in_Account.findOne({
@@ -56,6 +56,12 @@ router.patch('/', asyncHandler(async (req, res) => {
   getAccount.available_cash = accountCash;
   await getAccount.save()
   res.json({ accountCash })
+}))
+
+//TODO sell stock 
+router.patch('/sell', asyncHandler(async (req, res) => {
+  const { name, symbol, cost_basis, accountId, quantity } = req.body;
+
 }))
 
 module.exports = router;

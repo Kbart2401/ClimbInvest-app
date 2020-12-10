@@ -16,9 +16,7 @@ const TradePage = () => {
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account);
 
-  //TODO not sure if we need this useEffect here and searchSubmit 
   useEffect(() => {
-    // debugger
     if (!stockData && searchSubmit) {
       setNoData(true);
       setSearchSubmit(false)

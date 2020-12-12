@@ -4,7 +4,6 @@ import * as sessionActions from '../../store/session';
 import './TradePage.css';
 import Footer from '../Footer';
 import * as stockSearchActions from '../../store/stockSearch';
-import * as stockTradeActions from '../../store/stockTrade';
 
 
 const TradePage = () => {
@@ -31,7 +30,7 @@ const TradePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(stockTradeActions.addNewStock({
+    dispatch(sessionActions.addNewStock({
       name: stockData.companyName, symbol: stockSymbol,
       costBasis: stockData.latestPrice, accountId: userAccount.id,
       quantity: quantity

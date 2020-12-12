@@ -10,9 +10,12 @@ const APIKey = process.env.API_KEY_IEXCLOUD
 //choose here to use sandbox key or actual key
 const useKey = sandboxAPIKey;
 
-//Add stock 
+/**********Add stock*********/
 router.post('/', asyncHandler(async (req, res, next) => {
   const { name, symbol, cost_basis, accountId, quantity } = req.body;
+  //set total cost of transaction
+  let totalCost = cost_basis * quantity
+
   //Find if stock is existing or add new stock to Stock table
   let findStock = await Stock.findOne({
     where: {
@@ -35,19 +38,21 @@ router.post('/', asyncHandler(async (req, res, next) => {
   let addStock;
   if (stockAlreadyInAccount) {
     stockAlreadyInAccount.quantity += quantity;
+    stockAlreadyInAccount.totalCost = parseInt(stockAlreadyInAccount.totalCost) + totalCost;
     await stockAlreadyInAccount.save();
     addStock = stockAlreadyInAccount;
   }
   else {
     addStock = await Stock_in_Account.create({
-      stockId: id, accountId, cost_basis, quantity
+      stockId: id, accountId, totalCost, quantity
     })
   }
-  res.json({ addStock, findStock })
+  res.json({ name: findStock.name, symbol: findStock.symbol,
+  totalCost: addStock.totalCost, quantity: addStock.quantity })
 }))
 
 
-//decrease available cash
+/********decrease available cash*******/
 router.patch('/', asyncHandler(async (req, res) => {
   const getAccount = await Account.findByPk(req.body.accountId)
   let accountCash = parseInt(getAccount.available_cash)
@@ -58,9 +63,35 @@ router.patch('/', asyncHandler(async (req, res) => {
   res.json({ accountCash })
 }))
 
-//TODO sell stock 
-router.patch('/sell', asyncHandler(async (req, res) => {
-  const { name, symbol, cost_basis, accountId, quantity } = req.body;
+/*******sell stock*********/
+router.delete('/sell', asyncHandler(async (req, res) => {
+  const { symbol, cost_basis, accountId, quantity } = req.body;
+  //proceeds for sale
+  let totalSale = cost_basis * quantity;
+
+  //Increase available cash
+  const getAccount = await Account.findByPk(accountId);
+  let accountCash = parseInt(getAccount.available_cash)
+  accountCash += totalSale
+  getAccount.available_cash = accountCash
+
+  //find stock being sold
+  let findStock = await Stock.findOne({
+    where: {
+      symbol: symbol
+    }
+  })
+  const { id } = findStock
+  //Decrease stock quantity and cost
+  const stockInAccount = await Stock_in_Account.findOne({
+    where: {
+      stockId: id, accountId: accountId
+    }
+  })
+  stockInAccount.quantity -= quantity;
+  stockInAccount.totalCost = parseInt(stockInAccount.totalCost) - totalSale
+  await stockInAccount.save()
+  res.json({getAccount, stockInAccount})
 
 }))
 

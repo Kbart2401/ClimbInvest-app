@@ -5,12 +5,10 @@ import {
 import thunk from 'redux-thunk';
 import { sessionReducer } from './session';
 import {stockSearchReducer} from './stockSearch';
-import {stockTradeReducer} from './stockTrade';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   stockSearch: stockSearchReducer,
-  stockInAccount: stockTradeReducer
 });
 
 let enhancer;

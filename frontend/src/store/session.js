@@ -1,14 +1,15 @@
 import { fetch } from './csrf';
 
-//action types
+/*****Action Types*******/
 const SET_USER = 'SET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const SET_ACCOUNT = 'SET_ACCOUNT';
 const SET_ACCOUNT_STOCK = 'SET_ACCOUNT_STOCK';
 const DECREASE_AVAILABLE_CASH = 'DECREASE_AVAILABLE_CASH';
+const ADD_STOCK = 'ADD_STOCK';
+const REMOVE_STOCK = 'REMOVE_STOCK'
 
-
-//action creators
+/*******Action Creators*******/
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -33,7 +34,22 @@ const setCash = (accountCash) => ({
   payload: accountCash
 })
 
-//Login thunk function
+const addStock = (newStock) => {
+  return {
+    type: ADD_STOCK,
+    payload: newStock,
+    name: newStock.name
+  }
+}
+
+const removeStock = () => {
+  return {
+    type: REMOVE_STOCK,
+  }
+}
+
+/*********Thunks*********/
+//Login thunk 
 export const logUserIn = (user) => async (dispatch) => {
   const res = await fetch('/api/session', {
     method: 'POST',
@@ -101,6 +117,32 @@ export const decreaseCash = (accountId, amount) => async (dispatch) => {
   dispatch(setCash(res.data.accountCash))
 }
 
+//Buy Stock
+export const addNewStock = ({ name, symbol, costBasis, accountId, quantity }) => async (dispatch) => {
+  const createStock = await fetch('/api/trade', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      name, symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity
+    })
+  })
+  dispatch(addStock(createStock.data))
+}
+
+//Sell Stock
+export const sellStock = ({ symbol, costBasis, accountId, quantity }) => async (dispatch) => {
+  const soldStock = await fetch('/api/trade', {
+    method: 'DELETE',
+    body: JSON.stringify({
+      symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity
+    })
+  })
+  dispatch(removeStock())
+}
+
+
 /***********Reducer**********/
 export const sessionReducer = (state = { user: null, account: null, accountPortfolio: null }, action) => {
 
@@ -122,6 +164,20 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
     case DECREASE_AVAILABLE_CASH:
       return {
         ...state, account: { ...state.account, available_cash: action.payload }
+      }
+    case ADD_STOCK:
+      for (let i = 0; i < state.accountPortfolio.length; i++) {
+        let stock = state.accountPortfolio[i]
+        if (stock.name === action.name) {
+          state.accountPortfolio[i] = action.payload
+          break
+        }
+        else if(i === state.accountPortfolio.length - 1) {
+          state.accountPortfolio = [...state.accountPortfolio, action.payload]
+        }
+      }
+      return {
+        ...state, accountPortfolio: [...state.accountPortfolio]
       }
     default:
       return state

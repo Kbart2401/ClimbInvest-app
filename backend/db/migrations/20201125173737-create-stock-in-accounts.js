@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Accounts' }
       },
-      cost_basis: {
+      totalCost: {
         allowNull: false,
         type: Sequelize.DECIMAL(19, 4)
       },

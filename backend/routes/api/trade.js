@@ -91,6 +91,9 @@ router.delete('/', asyncHandler(async (req, res) => {
   })
   stockInAccount.quantity -= quantity;
   stockInAccount.totalCost = parseInt(stockInAccount.totalCost) - totalSale
+  if (stockInAccount.quantity <= 0) {
+    await stockInAccount.destroy()
+  }
   await stockInAccount.save()
   res.json({accountCash: getAccount.available_cash, stock: stockInAccount})
 

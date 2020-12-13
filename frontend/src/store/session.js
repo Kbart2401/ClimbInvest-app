@@ -8,6 +8,7 @@ const SET_ACCOUNT_STOCK = 'SET_ACCOUNT_STOCK';
 const DECREASE_AVAILABLE_CASH = 'DECREASE_AVAILABLE_CASH';
 const ADD_STOCK = 'ADD_STOCK';
 const REMOVE_STOCK = 'REMOVE_STOCK'
+const INCREASE_AVAILABLE_CASH = 'INCREASE_AVAILABLE_CASH'
 
 /*******Action Creators*******/
 const setUser = (user) => ({
@@ -42,11 +43,17 @@ const addStock = (newStock) => {
   }
 }
 
-const removeStock = () => {
+const removeStock = (stockQuant) => {
   return {
     type: REMOVE_STOCK,
+    payload: stockQuant
   }
 }
+
+const increaseCash = (accountCash) => ({
+  type: INCREASE_AVAILABLE_CASH,
+  payload: accountCash
+})
 
 /*********Thunks*********/
 //Login thunk 
@@ -133,13 +140,15 @@ export const addNewStock = ({ name, symbol, costBasis, accountId, quantity }) =>
 
 //Sell Stock
 export const sellStock = ({ symbol, costBasis, accountId, quantity }) => async (dispatch) => {
-  const soldStock = await fetch('/api/trade', {
+  debugger
+  const soldStock = await fetch('/api/trade/', {
     method: 'DELETE',
     body: JSON.stringify({
       symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity
     })
   })
-  dispatch(removeStock())
+  dispatch(removeStock(soldStock.data.stock))
+  dispatch(increaseCash(soldStock.data.accountCash))
 }
 
 
@@ -179,6 +188,13 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
       return {
         ...state, accountPortfolio: [...state.accountPortfolio]
       }
+      case REMOVE_STOCK:
+        return state
+      case INCREASE_AVAILABLE_CASH:
+        return {
+          ...state, account: {...state.account, available_cash: action.payload}
+        }
+
     default:
       return state
   }

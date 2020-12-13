@@ -37,6 +37,16 @@ const TradePage = () => {
     }))
     dispatch(sessionActions.decreaseCash(userAccount.id, stockData.latestPrice))
   }
+
+  const handleSellSubmit = e => {
+    debugger;
+    e.preventDefault();
+    dispatch(sessionActions.sellStock({
+      symbol: stockSymbol,
+      costBasis: stockData.latestPrice, accountId: userAccount.id, 
+      quantity: quantity
+    }))
+  }
   return (
     <>
       <div className='below-nav-container'>
@@ -59,6 +69,13 @@ const TradePage = () => {
                 </>}
               {noData && !stockData &&
                 <div>Please enter a valid symbol</div>}
+            </form>
+          </div>
+          <div className='buy-order-container'>
+            <h2>Place a Sell Order</h2>
+            <form onSubmit={handleSellSubmit}>
+              <label>Sell Stock</label>
+                <button>Submit</button>
             </form>
           </div>
         </div>

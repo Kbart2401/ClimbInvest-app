@@ -64,7 +64,7 @@ router.patch('/', asyncHandler(async (req, res) => {
 }))
 
 /*******sell stock*********/
-router.delete('/sell', asyncHandler(async (req, res) => {
+router.delete('/', asyncHandler(async (req, res) => {
   const { symbol, cost_basis, accountId, quantity } = req.body;
   //proceeds for sale
   let totalSale = cost_basis * quantity;
@@ -74,6 +74,7 @@ router.delete('/sell', asyncHandler(async (req, res) => {
   let accountCash = parseInt(getAccount.available_cash)
   accountCash += totalSale
   getAccount.available_cash = accountCash
+  getAccount.save()
 
   //find stock being sold
   let findStock = await Stock.findOne({
@@ -91,7 +92,7 @@ router.delete('/sell', asyncHandler(async (req, res) => {
   stockInAccount.quantity -= quantity;
   stockInAccount.totalCost = parseInt(stockInAccount.totalCost) - totalSale
   await stockInAccount.save()
-  res.json({getAccount, stockInAccount})
+  res.json({accountCash: getAccount.available_cash, stock: stockInAccount})
 
 }))
 

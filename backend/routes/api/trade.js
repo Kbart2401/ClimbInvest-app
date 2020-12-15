@@ -47,8 +47,10 @@ router.post('/', asyncHandler(async (req, res, next) => {
       stockId: id, accountId, totalCost, quantity
     })
   }
-  res.json({ name: findStock.name, symbol: findStock.symbol,
-  totalCost: addStock.totalCost, quantity: addStock.quantity })
+  res.json({
+    name: findStock.name, symbol: findStock.symbol,
+    totalCost: addStock.totalCost, quantity: addStock.quantity
+  })
 }))
 
 
@@ -69,13 +71,6 @@ router.delete('/', asyncHandler(async (req, res) => {
   //proceeds for sale
   let totalSale = cost_basis * quantity;
 
-  //Increase available cash
-  const getAccount = await Account.findByPk(accountId);
-  let accountCash = parseInt(getAccount.available_cash)
-  accountCash += totalSale
-  getAccount.available_cash = accountCash
-  getAccount.save()
-
   //find stock being sold
   let findStock = await Stock.findOne({
     where: {
@@ -83,20 +78,30 @@ router.delete('/', asyncHandler(async (req, res) => {
     }
   })
   const { id } = findStock
-  //Decrease stock quantity and cost
   const stockInAccount = await Stock_in_Account.findOne({
     where: {
       stockId: id, accountId: accountId
     }
   })
-  stockInAccount.quantity -= quantity;
-  stockInAccount.totalCost = parseInt(stockInAccount.totalCost) - totalSale
-  if (stockInAccount.quantity <= 0) {
-    await stockInAccount.destroy()
-  }
-  await stockInAccount.save()
-  res.json({accountCash: getAccount.available_cash, stock: stockInAccount})
+  //make sure quantity being sold isn't more than is held in account
+  if (quantity <= stockInAccount.quantity) {
+    //Decrease stock quantity and cost
+    stockInAccount.quantity -= quantity;
+    stockInAccount.totalCost = parseInt(stockInAccount.totalCost) - totalSale
+    if (stockInAccount.quantity <= 0) {
+      await stockInAccount.destroy()
+    }
+    await stockInAccount.save()
 
+    //Increase available cash
+    const getAccount = await Account.findByPk(accountId);
+    let cashInAccount = parseInt(getAccount.available_cash)
+    cashInAccount += totalSale
+    getAccount.available_cash = cashInAccount
+    getAccount.save()
+    res.json({ accountCash: getAccount.available_cash, stock: stockInAccount })
+  }
+  
 }))
 
 module.exports = router;

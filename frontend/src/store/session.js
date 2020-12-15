@@ -43,10 +43,11 @@ const addStock = (newStock) => {
   }
 }
 
-const removeStock = (stockQuant) => {
+const removeStock = (stock) => {
   return {
     type: REMOVE_STOCK,
-    payload: stockQuant
+    payload: stock,
+    name: stock.name
   }
 }
 
@@ -140,7 +141,6 @@ export const addNewStock = ({ name, symbol, costBasis, accountId, quantity }) =>
 
 //Sell Stock
 export const sellStock = ({ symbol, costBasis, accountId, quantity }) => async (dispatch) => {
-  debugger
   const soldStock = await fetch('/api/trade/', {
     method: 'DELETE',
     body: JSON.stringify({
@@ -161,7 +161,9 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, user: action.payload
       }
     case REMOVE_USER:
-      return { user: null }
+      return {
+        user: null
+      }
     case SET_ACCOUNT:
       return {
         ...state, account: action.payload
@@ -181,19 +183,31 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
           state.accountPortfolio[i] = action.payload
           break
         }
-        else if(i === state.accountPortfolio.length - 1) {
+        else if (i === state.accountPortfolio.length - 1) {
           state.accountPortfolio = [...state.accountPortfolio, action.payload]
         }
       }
       return {
         ...state, accountPortfolio: [...state.accountPortfolio]
       }
-      case REMOVE_STOCK:
-        return state
-      case INCREASE_AVAILABLE_CASH:
-        return {
-          ...state, account: {...state.account, available_cash: action.payload}
+    case REMOVE_STOCK:
+      for (let i = 0; i < state.accountPortfolio.length; i++) {
+        let stock = state.accountPortfolio[i]
+        if (stock.name === action.name) {
+          state.accountPortfolio[i] = action.payload
+          break
         }
+        else if (i === state.accountPortfolio.length - 1) {
+          state.accountPortfolio = [...state.accountPortfolio, action.payload]
+        }
+      }
+      return {
+        ...state, accountPortfolio: [...state.accountPortfolio]
+      }
+    case INCREASE_AVAILABLE_CASH:
+      return {
+        ...state, account: { ...state.account, available_cash: action.payload }
+      }
 
     default:
       return state

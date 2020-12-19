@@ -33,9 +33,9 @@ const TradePage = () => {
     dispatch(sessionActions.addNewStock({
       name: stockData.companyName, symbol: stockSymbol,
       costBasis: stockData.latestPrice, accountId: userAccount.id,
-      quantity: quantity
+      quantity
     }))
-    dispatch(sessionActions.decreaseCash(userAccount.id, stockData.latestPrice))
+    dispatch(sessionActions.decreaseCash(userAccount.id, stockData.latestPrice, quantity))
   }
 
   const handleSellSubmit = e => {

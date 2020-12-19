@@ -60,14 +60,16 @@ router.delete(
   }
 );
 
-// Restore session user
+/******Restore session user*****/
 router.get(
   '/',
   restoreUser,
   asyncHandler(async (req, res) => {
+    //Get user
     const { user } = req;
     let userAccount;
     let stocks;
+    //Get account
     if (user) {
       userAccount = await Account.findOne({
         where: {
@@ -75,6 +77,7 @@ router.get(
         }
       })
     }
+    //Get portfolio
     if (userAccount) {
       stockCosts = await Stock_in_Account.findAll({
         where: {

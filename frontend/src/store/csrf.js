@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 
+//Create a custom fetch request method
 export const fetch = async (url, options = {}) => {
   options.headers = options.headers || {};
   options.method = options.method || 'GET';

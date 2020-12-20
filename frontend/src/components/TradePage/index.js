@@ -16,6 +16,10 @@ const TradePage = () => {
   const userAccount = useSelector(state => state.session.account);
 
   useEffect(() => {
+    dispatch(stockSearchActions.removeCompany())
+  }, [])
+
+  useEffect(() => {
     if (!stockData && searchSubmit) {
       setNoData(true);
       setSearchSubmit(false)

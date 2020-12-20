@@ -3,6 +3,7 @@ import { fetch } from './csrf';
 //action types
 const SET_STOCK = 'SET_STOCK';
 const SET_COMPANY = 'SET_COMPANY';
+const REMOVE_COMPANY = 'REMOVE_COMPANY'
 
 //action creators
 const setStock = (stock) => {
@@ -15,9 +16,14 @@ const setStock = (stock) => {
 const setCompany = (stock) => {
   return {
     type: SET_COMPANY,
-  payload: stock
+    payload: stock
   }
 }
+
+export const removeCompany = () => ({
+  type: REMOVE_COMPANY,
+  payload: null
+})
 
 //Search basic stock data thunk
 export const setStockData = (stock) => async (dispatch) => {
@@ -47,6 +53,7 @@ export const setCompanyInfo = (company) => async (dispatch) => {
   dispatch(setCompany(companyInfo.data))
 }
 
+
 /***********Reducer**********/
 export const stockSearchReducer = (state = { stock: null, company: null }, action) => {
 
@@ -55,10 +62,14 @@ export const stockSearchReducer = (state = { stock: null, company: null }, actio
       return {
         ...state, stock: action.payload
       }
-      case SET_COMPANY:
-        return {
-          ...state, company: action.payload
-        }
+    case SET_COMPANY:
+      return {
+        ...state, company: action.payload
+      }
+    case REMOVE_COMPANY:
+      return {
+        ...state, stock: action.payload, company: action.payload
+      }
     default:
       return state
   }

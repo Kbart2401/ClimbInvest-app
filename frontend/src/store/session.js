@@ -117,10 +117,10 @@ export const createAccount = (account) => async (dispatch) => {
 }
 
 //decrease available cash thunk
-export const decreaseCash = (accountId, amount) => async (dispatch) => {
+export const decreaseCash = (accountId, amount, quantity) => async (dispatch) => {
   const res = await fetch('/api/trade', {
     method: 'PATCH',
-    body: JSON.stringify({ accountId, amount })
+    body: JSON.stringify({ accountId, amount, quantity })
   })
   dispatch(setCash(res.data.accountCash))
 }
@@ -177,6 +177,7 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, account: { ...state.account, available_cash: action.payload }
       }
     case ADD_STOCK:
+      if(state.accountPortfolio) {
       for (let i = 0; i < state.accountPortfolio.length; i++) {
         let stock = state.accountPortfolio[i]
         if (stock.name === action.name) {
@@ -187,6 +188,7 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
           state.accountPortfolio = [...state.accountPortfolio, action.payload]
         }
       }
+    }
       return {
         ...state, accountPortfolio: [...state.accountPortfolio]
       }

@@ -29,4 +29,13 @@ router.post('/company_data', asyncHandler(async (req, res, next) => {
   res.json(data);
 }))
 
+
+// TODO
+//fetch multiple symbols test
+router.get('/multiple-companies', asyncHandler(async(req, res) => {
+  const companies = await fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote,news,chart&range=1m&last=5&token=${sandboxAPIKey}`)
+  const data = await companies.json();
+  res.json(data)
+}))
+
 module.exports = router;

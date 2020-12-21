@@ -8,6 +8,7 @@ import Footer from '../Footer';
 import CreateAccountModal from '../CreateAccountModal';
 import PortfolioView from '../PortfolioView';
 import './HomePage.css';
+import App, { AppWithContext } from "../../App";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -77,7 +78,9 @@ const HomePage = () => {
               </div>
             </div>
             {accountPortfolio &&
-              <PortfolioView />
+              <AppWithContext.Consumer>
+                {(value) => <PortfolioView value={value} />}
+              </AppWithContext.Consumer>
             }
           </>
         }

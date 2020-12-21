@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './PortfolioView.css';
 
-const PortfolioView = () => {
+const PortfolioView = (props) => {
   const accountPortfolio = useSelector(state => state.session.accountPortfolio);
   const [totalMarketValue, setTotalMarketValue] = useState(0)
 
+  console.log(props.setTotalAccountValue)
   let totalValue = 0;
   let portfolioView
 

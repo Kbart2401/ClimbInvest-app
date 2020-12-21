@@ -9,8 +9,11 @@ const fetch = require('node-fetch');
 
 const router = express.Router();
 
+//for api key
 const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
 const APIKey = process.env.API_KEY_IEXCLOUD
+//choose here to use sandbox key or actual key
+const useKey = sandboxAPIKey;
 
 const validateLogin = [
   check("credential")
@@ -92,18 +95,22 @@ router.get(
           stockPrices += `,${stockName.dataValues.symbol}`
           return {
             name: stockName.dataValues.name, symbol: stockName.dataValues.symbol,
-            totalCost: stockCost.dataValues.totalCost, quantity: stockCost.dataValues.quantity
+            totalCost: parseInt(stockCost.dataValues.totalCost).toFixed(2),
+            quantity: stockCost.dataValues.quantity
           }
         })
       )
       //Get stock current prices and today's change
-      const getStockPrices = await fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${sandboxAPIKey}`)
+      const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${sandboxAPIKey}`
+        : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${APIKey}`
+      const getStockPrices = await fetch(url)
       const latestStockPrices = await getStockPrices.json()
       for (let stock of stocks) {
         let stockSym = stock.symbol.toUpperCase()
         if (stockSym in latestStockPrices)
-        stock.latestPrice = latestStockPrices[stockSym].quote.latestPrice
-        stock.change = latestStockPrices[stockSym].quote.change
+          stock.latestPrice = latestStockPrices[stockSym].quote.latestPrice
+        stock.change = (latestStockPrices[stockSym].quote.change).toFixed(2)
+        stock.changePercent = (latestStockPrices[stockSym].quote.changePercent * 100).toFixed(2)
       }
 
     }

@@ -8,7 +8,6 @@ import Footer from '../Footer';
 import CreateAccountModal from '../CreateAccountModal';
 import PortfolioView from '../PortfolioView';
 import './HomePage.css';
-import { AppWithContext } from "../../App";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ const HomePage = () => {
   if (!sessionUser) return <Redirect to='/' />
 
   const todayChange = () => {
-    let difference = userAccount.current_balance - userAccount.previous_balance;
+    let difference = (userAccount.current_balance - userAccount.previous_balance).toFixed(2);
     if (difference === 0) difference = '–';
     if (difference > 0) difference = `+${difference}`
     if (difference < 0) difference = `-${difference}`
@@ -62,9 +61,7 @@ const HomePage = () => {
               </div>
             </div>
             {accountPortfolio &&
-              <AppWithContext.Consumer>
-            {(value) => <PortfolioView setTotalAccountValue={value} />}
-              </AppWithContext.Consumer>
+            <PortfolioView />
             }
           </>
         }

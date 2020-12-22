@@ -2,20 +2,14 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './PortfolioView.css';
 
-const PortfolioView = (props) => {
+const PortfolioView = () => {
   const accountPortfolio = useSelector(state => state.session.accountPortfolio);
 
-  let totalValue = 0;
   let portfolioView
-
-  useEffect(() => {
-    props.setTotalAccountValue(totalValue)
-  }, [])
 
   if (accountPortfolio) {
     portfolioView = accountPortfolio.map((stock, idx) => {
       let marketValue = (stock.latestPrice * stock.quantity).toFixed(2)
-      totalValue += marketValue
       return (
         <li key={idx}>
           <div>{stock.name} </div>

@@ -101,6 +101,7 @@ router.get(
         })
       )
       //Get stock current prices and today's change
+      let totalMarketValue = 0;
       const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${sandboxAPIKey}`
         : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${APIKey}`
       const getStockPrices = await fetch(url)
@@ -109,10 +110,13 @@ router.get(
         let stockSym = stock.symbol.toUpperCase()
         if (stockSym in latestStockPrices)
           stock.latestPrice = latestStockPrices[stockSym].quote.latestPrice
-        stock.change = (latestStockPrices[stockSym].quote.change).toFixed(2)
-        stock.changePercent = (latestStockPrices[stockSym].quote.changePercent * 100).toFixed(2)
+          totalMarketValue += stock.latestPrice * stock.quantity
+          stock.change = (latestStockPrices[stockSym].quote.change).toFixed(2)
+          stock.changePercent = (latestStockPrices[stockSym].quote.changePercent * 100).toFixed(2)
       }
-
+      //Set total account value
+      userAccount.current_balance = totalMarketValue + parseInt(userAccount.available_cash)
+      await userAccount.save()
     }
     if (user) {
       return res.json({

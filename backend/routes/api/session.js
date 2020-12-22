@@ -144,10 +144,10 @@ router.get('/top-investors', asyncHandler(async (req, res) => {
   let topAccounts = await Promise.all(
     sortedAccounts.map(async account => {
       let user = await User.findByPk(account.userId)
-      return {username: user.username, current_balance: account.current_balance}
+      return { username: user.username, current_balance: account.current_balance }
     })
   )
-  res.json({ topAccounts })
+  res.json(topAccounts)
 }))
 
 module.exports = router;

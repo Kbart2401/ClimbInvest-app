@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
-import './TradePage.css';
-import Footer from '../Footer';
 import * as stockSearchActions from '../../store/stockSearch';
+import Footer from '../Footer';
+import './TradePage.css';
 
 
 const TradePage = () => {

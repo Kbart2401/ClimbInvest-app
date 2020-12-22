@@ -76,9 +76,21 @@ export const restoreUser = () => async (dispatch) => {
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
-  dispatch(setAccountPortfolio(res.data.stocks))
+  //sort stocks alphabetically by name
+  function compare(a, b) {
+    const stockA = a.name
+    const stockB = b.name
+    let comparison = 0
+    if (stockA > stockB) comparison = 1
+    else if (stockB > stockA) comparison = -1
+    return comparison
+  }
+  const stocks = res.data.stocks
+  stocks.sort(compare)
+  dispatch(setAccountPortfolio(stocks))
   return res;
 }
+
 //Signup thunk
 export const signUpUser = user => async (dispatch) => {
   const { username, email, password } = user;

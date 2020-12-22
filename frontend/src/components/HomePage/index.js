@@ -10,12 +10,9 @@ import PortfolioView from '../PortfolioView';
 import './HomePage.css';
 
 const HomePage = () => {
-  const dispatch = useDispatch();
   const sessionUser = useSelector((state => state.session.user));
-  const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account)
   const accountPortfolio = useSelector(state => state.session.accountPortfolio)
-  const [stockSymbol, setStockSymbol] = useState('');
 
   if (!sessionUser) return <Redirect to='/' />
 

@@ -14,13 +14,13 @@ export const AppWithContext = createContext()
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [totalAccountValue, setTotalAccountValue] = useState(0);
+  const [totalMarketValue, setTotalAccountValue] = useState(0);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreUser(totalMarketValue)).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return isLoaded && (
-    <AppWithContext.Provider value={totalAccountValue}>
+    <AppWithContext.Provider value={setTotalAccountValue}>
       <BrowserRouter>
         <div className='page-container'>
           <Navigation />

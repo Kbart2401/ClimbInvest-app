@@ -1,22 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './PortfolioView.css';
 
 const PortfolioView = (props) => {
   const accountPortfolio = useSelector(state => state.session.accountPortfolio);
-  const [totalMarketValue, setTotalMarketValue] = useState(0)
 
-  console.log(props.setTotalAccountValue)
   let totalValue = 0;
   let portfolioView
 
-  useEffect(() =>{
-    setTotalMarketValue(totalValue)
-  },[])
+  useEffect(() => {
+    props.setTotalAccountValue(totalValue)
+  }, [])
 
   if (accountPortfolio) {
     portfolioView = accountPortfolio.map((stock, idx) => {
-      let marketValue = stock.latestPrice * stock.quantity
+      let marketValue = (stock.latestPrice * stock.quantity).toFixed(2)
       totalValue += marketValue
       return (
         <li key={idx}>
@@ -32,24 +30,24 @@ const PortfolioView = (props) => {
     })
   }
 
-return (
-  <>
-    <div className='home-page-body'>
-      <div className='portfolio-container'>
-        <h2>Portfolio</h2>
-        <div className='account-securities-container'>
-          <ul className='account-securities'>
-            <li><div>Name</div><div>Symbol</div>
-              <div>Latest Price($)</div><div>Price Change</div>
-              <div>Quantity</div><div>Market Value($)</div><div>Total Cost($)</div>
-            </li>
-            {portfolioView}
-          </ul>
+  return (
+    <>
+      <div className='home-page-body'>
+        <div className='portfolio-container'>
+          <h2>Portfolio</h2>
+          <div className='account-securities-container'>
+            <ul className='account-securities'>
+              <li><div>Name</div><div>Symbol</div>
+                <div>Latest Price($)</div><div>Price Change</div>
+                <div>Quantity</div><div>Market Value($)</div><div>Total Cost($)</div>
+              </li>
+              {portfolioView}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </>
-)
+    </>
+  )
 
 }
 

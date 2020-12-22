@@ -8,7 +8,7 @@ import Footer from '../Footer';
 import CreateAccountModal from '../CreateAccountModal';
 import PortfolioView from '../PortfolioView';
 import './HomePage.css';
-import App, { AppWithContext } from "../../App";
+import { AppWithContext } from "../../App";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -17,22 +17,6 @@ const HomePage = () => {
   const userAccount = useSelector(state => state.session.account)
   const accountPortfolio = useSelector(state => state.session.accountPortfolio)
   const [stockSymbol, setStockSymbol] = useState('');
-
-  // console.log('STOCK DATA', stockSymbol);
-  // useEffect(() => {
-  //   dispatch(stockSearchActions.setStockData(stockSymbol))
-  //   // return stockData.latestPrice
-
-  // }, [stockSymbol])
-  // const stockPrice = async (symbol) => {
-  //   debugger
-  //   const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
-  //   const url = `https://sandbox.iexapis.com/stable/stock/${symbol}/quote?token=${sandboxAPIKey}`
-  //   const quote = await fetch(url)
-  //   const data = await quote.json();
-  //   // return data.latestPrice;
-  //   console.log('DATA', data);
-  // }
 
   if (!sessionUser) return <Redirect to='/' />
 
@@ -79,7 +63,7 @@ const HomePage = () => {
             </div>
             {accountPortfolio &&
               <AppWithContext.Consumer>
-                {(value) => <PortfolioView value={value} />}
+            {(value) => <PortfolioView setTotalAccountValue={value} />}
               </AppWithContext.Consumer>
             }
           </>

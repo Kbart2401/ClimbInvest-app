@@ -72,7 +72,7 @@ export const logUserIn = (user) => async (dispatch) => {
 }
 
 //Restore User thunk 
-export const restoreUser = (user) => async (dispatch) => {
+export const restoreUser = () => async (dispatch) => {
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
@@ -177,18 +177,18 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, account: { ...state.account, available_cash: action.payload }
       }
     case ADD_STOCK:
-      if(state.accountPortfolio) {
-      for (let i = 0; i < state.accountPortfolio.length; i++) {
-        let stock = state.accountPortfolio[i]
-        if (stock.name === action.name) {
-          state.accountPortfolio[i] = action.payload
-          break
-        }
-        else if (i === state.accountPortfolio.length - 1) {
-          state.accountPortfolio = [...state.accountPortfolio, action.payload]
+      if (state.accountPortfolio) {
+        for (let i = 0; i < state.accountPortfolio.length; i++) {
+          let stock = state.accountPortfolio[i]
+          if (stock.name === action.name) {
+            state.accountPortfolio[i] = action.payload
+            break
+          }
+          else if (i === state.accountPortfolio.length - 1) {
+            state.accountPortfolio = [...state.accountPortfolio, action.payload]
+          }
         }
       }
-    }
       return {
         ...state, accountPortfolio: [...state.accountPortfolio]
       }

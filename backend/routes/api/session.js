@@ -26,7 +26,7 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
-// Log in
+/******Log in******/
 router.post(
   '/',
   validateLogin,
@@ -55,7 +55,7 @@ router.post(
   }),
 );
 
-// Log out
+/****Log out****/
 router.delete(
   '/',
   (_req, res) => {
@@ -110,9 +110,9 @@ router.get(
         let stockSym = stock.symbol.toUpperCase()
         if (stockSym in latestStockPrices)
           stock.latestPrice = latestStockPrices[stockSym].quote.latestPrice
-          totalMarketValue += stock.latestPrice * stock.quantity
-          stock.change = (latestStockPrices[stockSym].quote.change).toFixed(2)
-          stock.changePercent = (latestStockPrices[stockSym].quote.changePercent * 100).toFixed(2)
+        totalMarketValue += stock.latestPrice * stock.quantity
+        stock.change = (latestStockPrices[stockSym].quote.change).toFixed(2)
+        stock.changePercent = (latestStockPrices[stockSym].quote.changePercent * 100).toFixed(2)
       }
       //Set total account value
       userAccount.current_balance = totalMarketValue + parseInt(userAccount.available_cash)
@@ -127,5 +127,27 @@ router.get(
     } else return res.json({});
   }
   ));
+
+/******Get top investors******/
+router.get('/top-investors', asyncHandler(async (req, res) => {
+  let accounts = await Account.findAll()
+  function compare(a, b) {
+    let comparison = 0;
+    let parseA = parseInt(a.current_balance)
+    let parseB = parseInt(b.current_balance)
+    if (parseA > parseB) comparison = -1;
+    else if (parseB > parseA) comparison = 1;
+    return comparison;
+  }
+  const sortedAccounts = accounts.sort(compare)
+  if (accounts.length > 10) accounts = accounts.slice(0, 10)
+  let topAccounts = await Promise.all(
+    sortedAccounts.map(async account => {
+      let user = await User.findByPk(account.userId)
+      return {username: user.username, current_balance: account.current_balance}
+    })
+  )
+  res.json({ topAccounts })
+}))
 
 module.exports = router;

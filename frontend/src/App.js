@@ -12,7 +12,6 @@ import TradePage from './components/TradePage';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [totalMarketValue, setTotalAccountValue] = useState(0);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);

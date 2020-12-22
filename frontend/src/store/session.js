@@ -189,6 +189,7 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, account: { ...state.account, available_cash: action.payload }
       }
     case ADD_STOCK:
+      debugger
       if (state.accountPortfolio) {
         for (let i = 0; i < state.accountPortfolio.length; i++) {
           let stock = state.accountPortfolio[i]

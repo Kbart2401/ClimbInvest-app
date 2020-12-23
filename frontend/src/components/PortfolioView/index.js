@@ -10,8 +10,9 @@ const PortfolioView = () => {
   if (accountPortfolio) {
     portfolioView = accountPortfolio.map((stock, idx) => {
       let marketValue = (stock.latestPrice * stock.quantity).toFixed(2)
+      let gainLoss = (marketValue - stock.totalCost).toFixed(2)
       return (
-        <li key={idx}>
+        <li key={idx} className='portfolio-details'>
           <div>{stock.name} </div>
           <div>{stock.symbol} </div>
           <div>{stock.latestPrice}</div>
@@ -19,6 +20,7 @@ const PortfolioView = () => {
           <div>{stock.quantity}</div>
           <div>{marketValue}</div>
           <div>{stock.totalCost} </div>
+          <div>{gainLoss} </div>
         </li>
       )
     })
@@ -33,7 +35,8 @@ const PortfolioView = () => {
             <ul className='account-securities'>
               <li><div>Name</div><div>Symbol</div>
                 <div>Latest Price($)</div><div>Price Change</div>
-                <div>Quantity</div><div>Market Value($)</div><div>Total Cost($)</div>
+                <div>Quantity</div><div>Market Value($)</div>
+                <div>Total Cost($)</div><div>Unrealized Gain/Loss($)</div>
               </li>
               {portfolioView}
             </ul>

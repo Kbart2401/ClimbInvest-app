@@ -65,6 +65,7 @@ const TradePage = () => {
               {stockData &&
                 <>
                   <div className='success'>Success</div>
+                  <div>{stockData.companyName}</div>
                   <div>{stockData.latestPrice}</div>
                   <label>Quantity</label>
                   <input placeholder='Shares' value={quantity}

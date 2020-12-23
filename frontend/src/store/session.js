@@ -86,8 +86,10 @@ export const restoreUser = () => async (dispatch) => {
     return comparison
   }
   const stocks = res.data.stocks
-  stocks.sort(compare)
-  dispatch(setAccountPortfolio(stocks))
+  if (stocks) {
+    stocks.sort(compare)
+    dispatch(setAccountPortfolio(stocks))
+  }
   return res;
 }
 

@@ -11,16 +11,22 @@ const PortfolioView = () => {
     portfolioView = accountPortfolio.map((stock, idx) => {
       let marketValue = (stock.latestPrice * stock.quantity).toFixed(2)
       let gainLoss = (marketValue - stock.totalCost).toFixed(2)
+      let color;
+      let gLcolor;
+      if (stock.change < 0) color = 'red'
+      else color = 'green'
+      if (gainLoss < 0) gLcolor = 'red'
+      else gLcolor = 'green'
       return (
         <li key={idx} className='portfolio-details'>
           <div>{stock.name} </div>
           <div>{stock.symbol} </div>
           <div>{stock.latestPrice}</div>
-          <div>{`$${stock.change}`} {`${stock.changePercent}%`}</div>
+          <div style={color = { color }}>{`$${stock.change}`} {`${stock.changePercent}%`}</div>
           <div>{stock.quantity}</div>
           <div>{marketValue}</div>
           <div>{stock.totalCost} </div>
-          <div>{gainLoss} </div>
+          <div style={color = { gLcolor }}>{gainLoss}</div>
         </li>
       )
     })

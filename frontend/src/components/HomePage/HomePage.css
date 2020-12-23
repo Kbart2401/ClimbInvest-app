@@ -44,3 +44,24 @@
 .portfolio-container {
   font-family: 'Open Sans', sans-serif;
 }
+
+.page-margin-container {
+  display: flex;
+
+}
+
+.outside-margin {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../images/mountains.jpg');
+  filter: grayscale(80%) contrast(2);
+  opacity: 0.2;
+}
+
+.outside-margin.left {
+  background-position: right;
+}
+
+.outside-margin.right {
+    background-position: left;
+}

@@ -26,43 +26,47 @@ const HomePage = () => {
 
   return (
     <>
-      <div className='below-nav-container'>
+      <div className='page-margin-container'>
+        <div className='outside-margin left'></div>
+        <div className='below-nav-container'>
 
-        {!userAccount &&
-          <CreateAccountModal />
-        }
-        {userAccount &&
-          <>
-            <div className='home-page-header'>
-              <h1>{userAccount.name}</h1>
-              <div className='header-info'>
-                <dl>
-                  <dt>Total Assets</dt>
-                  <dd>{parseInt(userAccount.current_balance)
-                    .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
-                </dl>
-                <dl>
-                  <dt>Today's Change</dt>
-                  <dd>{todayChange()}</dd>
-                </dl>
-                <dl>
-                  <dt>Previous Balance</dt>
-                  <dd>{parseInt(userAccount.previous_balance)
-                    .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
-                </dl>
-                <dl>
-                  <dt>Available Cash</dt>
-                  <dd>{parseInt(userAccount.available_cash)
-                    .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
-                </dl>
+          {!userAccount &&
+            <CreateAccountModal />
+          }
+          {userAccount &&
+            <>
+              <div className='home-page-header'>
+                <h1>{userAccount.name}</h1>
+                <div className='header-info'>
+                  <dl>
+                    <dt>Total Assets</dt>
+                    <dd>{parseInt(userAccount.current_balance)
+                      .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                  </dl>
+                  <dl>
+                    <dt>Today's Change</dt>
+                    <dd>{todayChange()}</dd>
+                  </dl>
+                  <dl>
+                    <dt>Previous Balance</dt>
+                    <dd>{parseInt(userAccount.previous_balance)
+                      .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                  </dl>
+                  <dl>
+                    <dt>Available Cash</dt>
+                    <dd>{parseInt(userAccount.available_cash)
+                      .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
+                  </dl>
+                </div>
               </div>
-            </div>
-            {accountPortfolio &&
-            <PortfolioView />
-            }
-            <TopInvestors />
-          </>
-        }
+              {accountPortfolio &&
+                <PortfolioView />
+              }
+              <TopInvestors />
+            </>
+          }
+        </div>
+        <div className='outside-margin right'></div>
       </div>
       <Footer />
     </>

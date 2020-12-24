@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './PortfolioView.css';
 
@@ -17,12 +16,14 @@ const PortfolioView = () => {
       else color = 'green'
       if (gainLoss < 0) gLcolor = 'red'
       else gLcolor = 'green'
+      console.log(typeof stock.change)
       return (
         <li key={idx} className='portfolio-details'>
           <div>{stock.name} </div>
           <div>{stock.symbol} </div>
           <div>{stock.latestPrice.toLocaleString()}</div>
-          <div className={color}>{`$${stock.change}`} {`${stock.changePercent}%`}</div>
+          <div className={color}>{`$${parseFloat(stock.change).toFixed(2)}`} <br />
+            {`${parseFloat(stock.changePercent).toFixed(2)}%`}</div>
           <div>{stock.quantity}</div>
           <div>{parseFloat(marketValue).toLocaleString()}</div>
           <div>{parseFloat(stock.totalCost).toLocaleString()} </div>

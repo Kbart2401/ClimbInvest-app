@@ -147,7 +147,7 @@ export const decreaseCash = (accountId, amount, quantity) => async (dispatch) =>
 }
 
 //Buy Stock
-export const addNewStock = ({ name, symbol, costBasis, accountId, quantity }) => async (dispatch) => {
+export const addNewStock = ({ name, symbol, costBasis, accountId, quantity, latestPrice, change, changePercent }) => async (dispatch) => {
   const createStock = await fetch('/api/trade', {
     headers: {
       'Content-Type': 'application/json'
@@ -157,18 +157,26 @@ export const addNewStock = ({ name, symbol, costBasis, accountId, quantity }) =>
       name, symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity
     })
   })
-  dispatch(addStock(createStock.data))
+  let stock = createStock.data
+  stock.latestPrice = latestPrice
+  stock.change = change
+  stock.changePercent = changePercent
+  dispatch(addStock(stock))
 }
 
 //Sell Stock
-export const sellStock = ({ symbol, costBasis, accountId, quantity }) => async (dispatch) => {
+export const sellStock = ({ symbol, costBasis, accountId, quantity, latestPrice, change, changePercent }) => async (dispatch) => {
   const soldStock = await fetch('/api/trade/', {
     method: 'DELETE',
     body: JSON.stringify({
       symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity
     })
   })
-  dispatch(removeStock(soldStock.data.stock))
+  let stock = soldStock.data.stock
+  stock.latestPrice = latestPrice
+  stock.change = change
+  stock.changePercent = changePercent
+  dispatch(removeStock(stock))
   dispatch(increaseCash(soldStock.data.accountCash))
 }
 
@@ -198,7 +206,6 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, account: { ...state.account, available_cash: action.payload }
       }
     case ADD_STOCK:
-      debugger
       if (state.accountPortfolio) {
         for (let i = 0; i < state.accountPortfolio.length; i++) {
           let stock = state.accountPortfolio[i]
@@ -215,6 +222,7 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, accountPortfolio: [...state.accountPortfolio]
       }
     case REMOVE_STOCK:
+      debugger
       for (let i = 0; i < state.accountPortfolio.length; i++) {
         let stock = state.accountPortfolio[i]
         if (stock.name === action.name) {

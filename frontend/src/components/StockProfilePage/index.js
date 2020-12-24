@@ -25,7 +25,7 @@ const StockProfilePage = (props) => {
             </tr>
             <tr>
               <th>Avg 30 Day Volume</th>
-              <td>{props.stockData.avgTotalVolume}</td>
+              <td>{props.stockData.avgTotalVolume.toLocaleString()}</td>
             </tr>
           </tbody>
         </table>

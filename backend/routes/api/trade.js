@@ -28,7 +28,6 @@ router.post('/', asyncHandler(async (req, res, next) => {
     })
   }
   //see if stock is in stock_in_account, if so, add quantity 
-  //Note: cost basis remains the cost of the first purchase of stock
   const { id } = findStock
   let stockAlreadyInAccount = await Stock_in_Account.findOne({
     where: {
@@ -95,13 +94,18 @@ router.delete('/', asyncHandler(async (req, res) => {
 
     //Increase available cash
     const getAccount = await Account.findByPk(accountId);
-    let cashInAccount = parseInt(getAccount.available_cash)
-    cashInAccount += totalSale
+    let cashInAccount = parseInt(getAccount.available_cash) + totalSale
     getAccount.available_cash = cashInAccount
     getAccount.save()
-    res.json({ accountCash: getAccount.available_cash, stock: stockInAccount })
+
+    res.json({
+      accountCash: getAccount.available_cash, stock: {
+        name: findStock.name,
+        symbol: findStock.symbol, totalCost: stockInAccount.totalCost, quantity: stockInAccount.quantity
+      }
+    })
   }
-  
+
 }))
 
 module.exports = router;

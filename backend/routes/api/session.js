@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { getPortfolio } = require('../../utils/portfolio')
-const { User, Account, Stock_in_Account, Stock } = require("../../db/models");
+const { User, Account } = require("../../db/models");
 
 const router = express.Router();
 

@@ -37,18 +37,19 @@ const TradePage = () => {
     dispatch(sessionActions.addNewStock({
       name: stockData.companyName, symbol: stockSymbol,
       costBasis: stockData.latestPrice, accountId: userAccount.id,
-      quantity
+      quantity, latestPrice: stockData.latestPrice,
+      change: stockData.change, changePercent: stockData.changePercent
     }))
     dispatch(sessionActions.decreaseCash(userAccount.id, stockData.latestPrice, quantity))
   }
 
   const handleSellSubmit = e => {
-    debugger;
     e.preventDefault();
     dispatch(sessionActions.sellStock({
       symbol: stockSymbol,
-      costBasis: stockData.latestPrice, accountId: userAccount.id, 
-      quantity: quantity
+      costBasis: stockData.latestPrice, accountId: userAccount.id,
+      quantity, latestPrice: stockData.latestPrice,
+      change: stockData.change, changePercent: stockData.changePercent
     }))
   }
   return (
@@ -80,7 +81,7 @@ const TradePage = () => {
             <h2>Place a Sell Order</h2>
             <form onSubmit={handleSellSubmit}>
               <label>Sell Stock</label>
-                <button>Submit</button>
+              <button>Submit</button>
             </form>
           </div>
         </div>

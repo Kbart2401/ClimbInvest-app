@@ -7,8 +7,6 @@ import StockProfilePage from '../StockProfilePage';
 import StockOverview from '../StockOverview';
 
 const StockInfoPage = () => {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state => state.session.user));
   const stockData = useSelector(state => state.stockSearch.stock);
   const companyData = useSelector(state => state.stockSearch.company);
   const [profilePage, setProfilePage] = useState(false)

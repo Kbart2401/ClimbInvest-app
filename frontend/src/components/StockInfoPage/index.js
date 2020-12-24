@@ -13,8 +13,8 @@ const StockInfoPage = () => {
   const [overview, setOverview] = useState(true)
 
   //console logs to check out stock objects
-  // console.log('stockData', stockData)
-  // console.log('companyData', companyData)
+  console.log('stockData', stockData)
+  console.log('companyData', companyData)
 
   const handleProfileClick = () => {
     setProfilePage(true);

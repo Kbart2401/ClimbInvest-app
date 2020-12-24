@@ -65,3 +65,20 @@
 .outside-margin.right {
     background-position: left;
 }
+
+.lower-half-outer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.lower-half-home-container {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  
+}
+
+.lower-half-home-container h2 {
+  color: #013462;
+  font-family: 'Karla', sans-serif;
+}

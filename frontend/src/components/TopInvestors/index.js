@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as topInvestorsActions from '../../store/topInvestors'
+import './topInvestors.css'
 
 const TopInvestors = () => {
   const dispatch = useDispatch()
@@ -12,15 +13,17 @@ const TopInvestors = () => {
 
   return (
     <>
-      <h3>Top Climbers</h3>
-      <ul>
-        {topInvestors.map((investor, idx) => (
-          <li key={idx}>
-            <div>{investor.username}</div>
-            <div>{investor.current_balance}</div>
-          </li>
-        ))}
-      </ul>
+      <div className='top-investors-container'>
+        <h2>Top Climbers</h2>
+        <ul className='top-investors-list'>
+          {topInvestors.map((investor, idx) => (
+            <li key={idx}>
+              <div>{investor.username}</div>
+              <div>{parseFloat(investor.current_balance).toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   )
 }

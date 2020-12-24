@@ -16,7 +16,6 @@ const PortfolioView = () => {
       else color = 'green'
       if (gainLoss < 0) gLcolor = 'red'
       else gLcolor = 'green'
-      console.log(typeof stock.change)
       return (
         <li key={idx} className='portfolio-details'>
           <div>{stock.name} </div>

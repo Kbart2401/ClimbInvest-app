@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as sessionActions from '../../store/session';
-import * as stockSearchActions from '../../store/stockSearch';
 import Footer from '../Footer';
 import CreateAccountModal from '../CreateAccountModal';
 import PortfolioView from '../PortfolioView';
 import './HomePage.css';
 import TopInvestors from "../TopInvestors";
+import HomeNews from '../HomeNews';
 
 const HomePage = () => {
   const sessionUser = useSelector((state => state.session.user));
@@ -62,7 +60,12 @@ const HomePage = () => {
               {accountPortfolio &&
                 <PortfolioView />
               }
-              <TopInvestors />
+              <div className='lower-half-outer-container'>
+                <div className='lower-half-home-container'>
+                  <HomeNews />
+                  <TopInvestors />
+                </div>
+              </div>
             </>
           }
         </div>

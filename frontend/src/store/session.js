@@ -56,6 +56,16 @@ const increaseCash = (accountCash) => ({
   payload: accountCash
 })
 
+//Helper function
+const compare = (a, b) => {
+  const stockA = a.name
+  const stockB = b.name
+  let comparison = 0
+  if (stockA > stockB) comparison = 1
+  else if (stockB > stockA) comparison = -1
+  return comparison
+}
+
 /*********Thunks*********/
 //Login thunk 
 export const logUserIn = (user) => async (dispatch) => {
@@ -68,6 +78,11 @@ export const logUserIn = (user) => async (dispatch) => {
   })
   dispatch(setUser(res.data.user))        //this will send setUser with to the reducer 
   dispatch(setAccount(res.data.account))    //with a payload of the returned fetch call data
+  const stocks = res.data.stocks
+  if (stocks) {
+    stocks.sort(compare)
+    dispatch(setAccountPortfolio(stocks))
+  }
   return res;
 }
 
@@ -77,14 +92,6 @@ export const restoreUser = () => async (dispatch) => {
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
   //sort stocks alphabetically by name
-  function compare(a, b) {
-    const stockA = a.name
-    const stockB = b.name
-    let comparison = 0
-    if (stockA > stockB) comparison = 1
-    else if (stockB > stockA) comparison = -1
-    return comparison
-  }
   const stocks = res.data.stocks
   if (stocks) {
     stocks.sort(compare)

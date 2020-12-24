@@ -21,12 +21,12 @@ const PortfolioView = () => {
         <li key={idx} className='portfolio-details'>
           <div>{stock.name} </div>
           <div>{stock.symbol} </div>
-          <div>{stock.latestPrice}</div>
-          <div style={color = { color }}>{`$${stock.change}`} {`${stock.changePercent}%`}</div>
+          <div>{stock.latestPrice.toLocaleString()}</div>
+          <div className={color}>{`$${stock.change}`} {`${stock.changePercent}%`}</div>
           <div>{stock.quantity}</div>
-          <div>{marketValue}</div>
-          <div>{stock.totalCost} </div>
-          <div style={color = { gLcolor }}>{gainLoss}</div>
+          <div>{parseFloat(marketValue).toLocaleString()}</div>
+          <div>{parseFloat(stock.totalCost).toLocaleString()} </div>
+          <div className={gLcolor}>{gainLoss}</div>
         </li>
       )
     })

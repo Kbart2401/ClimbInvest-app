@@ -6,7 +6,6 @@ const TopInvestors = () => {
   const dispatch = useDispatch()
   const topInvestors = useSelector(state => state.topInvestors.topAccounts)
 
-  console.log(topInvestors)
   useEffect(() => {
     dispatch(topInvestorsActions.getTopInvestors())
   }, [])

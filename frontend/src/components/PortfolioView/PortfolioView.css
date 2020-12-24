@@ -25,6 +25,14 @@
   font-size: 14px;
 }
 
+.portfolio-details.red {
+  color: red;
+}
+
+.portfolio-details.green {
+  color: green;
+}
+
 .account-securities li>div {
   box-sizing: border-box;
   width: 150px;

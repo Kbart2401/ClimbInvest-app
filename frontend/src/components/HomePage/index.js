@@ -40,7 +40,7 @@ const HomePage = () => {
                 <div className='header-info'>
                   <dl>
                     <dt>Total Assets</dt>
-                    <dd>{parseInt(userAccount.current_balance)
+                    <dd>{parseFloat(userAccount.current_balance)
                       .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
                   </dl>
                   <dl>
@@ -49,12 +49,12 @@ const HomePage = () => {
                   </dl>
                   <dl>
                     <dt>Previous Balance</dt>
-                    <dd>{parseInt(userAccount.previous_balance)
+                    <dd>{parseFloat(userAccount.previous_balance)
                       .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
                   </dl>
                   <dl>
                     <dt>Available Cash</dt>
-                    <dd>{parseInt(userAccount.available_cash)
+                    <dd>{parseFloat(userAccount.available_cash)
                       .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</dd>
                   </dl>
                 </div>

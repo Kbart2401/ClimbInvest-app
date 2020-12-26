@@ -56,8 +56,8 @@ router.post('/', asyncHandler(async (req, res, next) => {
 /********decrease available cash*******/
 router.patch('/', asyncHandler(async (req, res) => {
   const getAccount = await Account.findByPk(req.body.accountId)
-  let accountCash = parseInt(getAccount.available_cash)
-  let changeVal = parseInt(req.body.amount) * parseInt(req.body.quantity)
+  let accountCash = parseFloat(getAccount.available_cash)
+  let changeVal = parseFloat(req.body.amount) * parseFloat(req.body.quantity)
   accountCash -= changeVal;
   getAccount.available_cash = accountCash;
   await getAccount.save()

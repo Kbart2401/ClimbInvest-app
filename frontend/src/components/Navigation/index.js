@@ -12,9 +12,11 @@ const Navigation = () => {
   }
   return (
     <>
-      <div className={`top-title-container ${sessionUser ? 'logged-in' : ''}`}>
+      <div className={`top-title-container ${sessionUser ? 'logged-in' : 'no-user'}`}>
         <div className='nav-title-container'>
           <h1 className='header-title'>ClimbInvest</h1>
+          {!sessionUser &&
+            <a id='repo-nav-link' href='https://github.com/Kbart2401/ClimbInvest-app' target='_blank' rel='noreferrer'>GitHub Repo</a>}
           {sessionUser &&
             <>
               <p>Welcome {sessionUser.username}</p>

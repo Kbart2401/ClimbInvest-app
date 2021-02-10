@@ -9,6 +9,16 @@
 .header-title {
   color: #002b51;
   font-family: 'Karla', sans-serif;
+  font-weight: 300;
+}
+
+.no-user .header-title {
+  margin: 50px 0
+}
+
+#repo-nav-link {
+  color: #002b51;
+  text-decoration: none;
 }
 
 .nav-title-container {

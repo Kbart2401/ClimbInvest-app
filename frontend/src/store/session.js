@@ -222,7 +222,6 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
         ...state, accountPortfolio: [...state.accountPortfolio]
       }
     case REMOVE_STOCK:
-      debugger
       for (let i = 0; i < state.accountPortfolio.length; i++) {
         let stock = state.accountPortfolio[i]
         if (stock.name === action.name) {

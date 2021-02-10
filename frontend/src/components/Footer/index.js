@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './footer.css';
 import * as stockSearchActions from '../../store/stockSearch';
 import { useHistory } from 'react-router-dom';
+import { AiOutlineGithub } from 'react-icons/ai'
 
 const Footer = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -36,16 +37,16 @@ const Footer = () => {
     <>
       {!sessionUser &&
         <div className='footer-container__no-user'>
-          <p className='login-page-footer-info'>This project was created by Kyle Barthelmes and was
-          inspired by &nbsp;
-            <a href='https://login.morganstanleyclientserv.com/ux/' target='_blank'>
-              Morgan Stanley Online
-            </a>
-          </p>
-          <p className='login-page-footer-info'>If you would like to support this project or for more info, check out the link below:
-          </p>
-          <div className='footer-contact-container'>
-            <a id='github-link' href='https://github.com/Kbart2401/ClimbInvest-app'></a>
+          <div className='footer-left'>
+            <h1>ABOUT</h1>
+            <div>Created by <a href='https://kbart2401.github.io/' target='_blank' rel='noreferrer'>Kyle Barthelmes</a></div>
+          <div><a href='https://github.com/Kbart2401' target='_blank' rel='noreferrer'><AiOutlineGithub size='30px' /></a></div>
+          </div>
+          <div className='footer-middle'>
+            <h1>CONTACT</h1>
+          </div>
+          <div className='footer-right'>
+            <h1>MORE</h1>
           </div>
         </div>}
       {sessionUser &&

@@ -37,6 +37,10 @@ const LoginFormPage = () => {
       })
   }
 
+  const demoSignIn = () => {
+    dispatch(sessionActions.logUserIn({credentials: 'demo@aa.io', password: 'password'}))
+  }
+
 
   return (
     <>
@@ -57,6 +61,10 @@ const LoginFormPage = () => {
           </form>
           <NavLink className='signup-link' to='/signup'>
             Create a username</NavLink>
+          <div className='demo-login'>
+            <button onClick={demoSignIn}>Demo User Login</button>
+          </div>
+
         </div>
         <div className='login-image'>
           <img src={image} alt='money' />

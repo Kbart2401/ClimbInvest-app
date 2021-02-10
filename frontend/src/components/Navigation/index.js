@@ -30,7 +30,7 @@ const Navigation = () => {
             <div className='nav-bar-content'>
               <ul>
                 <div className='navLink-container'>
-                  <NavLink to='/'>Home</NavLink>
+                  <NavLink to='/home'>Home</NavLink>
                   <NavLink to='/trade'>Trade</NavLink>
                 </div>
               </ul>

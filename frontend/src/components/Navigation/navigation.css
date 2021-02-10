@@ -80,6 +80,11 @@
 }
 
 .navLink-container a:hover {
-background-color: #187aba;
-cursor: pointer;
+  background-color: #187aba;
+  cursor: pointer;
+}
+
+.navLink-container a.active {
+  background-color: #187aba;
+  outline: none;
 }

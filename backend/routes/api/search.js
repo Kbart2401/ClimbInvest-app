@@ -7,7 +7,7 @@ const router = express.Router();
 const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
 const APIKey = process.env.API_KEY_IEXCLOUD
 //choose here to use sandbox key or actual key
-const useKey = sandboxAPIKey;
+const useKey = APIKey;
 
 
 //fetch latest stock standard info, price etc
@@ -15,9 +15,9 @@ router.post('/', asyncHandler(async (req, res, next) => {
   const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/quote?token=${sandboxAPIKey}`
     : `https://cloud.iexapis.com/stable/stock/${req.body.stock}/quote?token=${APIKey}`;
 
-  const quote = await fetch(url)
-  if (quote.ok) {
-    const data = await quote.json();
+  const response = await fetch(url)
+  if (response.ok) {
+    const data = await response.json();
     res.json(data);
   }
   else {
@@ -33,9 +33,18 @@ router.post('/', asyncHandler(async (req, res, next) => {
 router.post('/company_data', asyncHandler(async (req, res, next) => {
   const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.company}/company?token=${sandboxAPIKey}`
     : `https://cloud.iexapis.com/stable/stock/${req.body.company}/company?token=${APIKey}`;
-  const company = await fetch(url)
-  const data = await company.json();
+  const response = await fetch(url)
+  const data = await response.json();
   res.json(data);
+}))
+
+//fetch news for home page
+router.get('/home_news', asyncHandler(async (req, res, next) => {
+  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/aapl/news?token=${sandboxAPIKey}`
+    : `https://cloud.iexapis.com/stable/stock/aapl/news?token=${APIKey}`
+  const response = await fetch(url)
+  const data = await response.json()
+  res.json(data)
 }))
 
 

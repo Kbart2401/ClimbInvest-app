@@ -14,13 +14,14 @@
   width: 80%;
   background-color: white;
   margin-right: 15px;
+  padding: 24px 16px;
 }
 
 .order-form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 33%;
+  width: 50%;
 }
 
 .order-form-container input {
@@ -55,4 +56,29 @@ form .success {
 
 #trade-symbol-error {
   color: red;
+}
+
+.trade-action-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.buy-sell-container {
+  margin-right: 40px;
+}
+
+.buy-sell-container select {
+  height: 32px;
+  margin-top: 10px;
+  border: none;
+  border-bottom: 2px solid rgb(226, 223, 223);
+  width: 228px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+}
+
+#trade-available-shares {
+  color: #8f8d8d;
+  font-size: 14px;
 }

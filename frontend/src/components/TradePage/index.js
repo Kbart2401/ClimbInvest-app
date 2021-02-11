@@ -11,8 +11,9 @@ const TradePage = () => {
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account);
   const portfolio = useSelector(state => state.session.accountPortfolio);
+  const formLabel1 = useRef(null);
+  const formLabel2 = useRef(null);
   const reviewButton = useRef(null);
-  const formLabel = useRef(null);
   const [stockSymbol, setStockSymbol] = useState('');
   const [quantity, setQuantity] = useState('');
   const [searchSubmit, setSearchSubmit] = useState(false);
@@ -37,7 +38,8 @@ const TradePage = () => {
     dispatch(stockSearchActions.setStockData(stockSymbol))
       .then(() => setSearchSubmit(true))
       .then(() => reviewButton.current.classList.remove('disabled'))
-      .then(() => formLabel.current.classList.remove('disabled'))
+      .then(() => formLabel1.current.classList.remove('disabled'))
+      .then(() => formLabel2.current.classList.remove('disabled'))
       .catch(() => setNoData(true))
   }
 
@@ -96,19 +98,25 @@ const TradePage = () => {
             {noData &&
               <div id='trade-symbol-error'>Please enter a valid symbol</div>}
 
-            <label className='disabled' ref={formLabel}>Action</label>
-            <select disabled={!searchSubmit} onChange={e => setOrderType(e.target.value)} placeholder='hi' >
-              <option value=''>Select an order type</option>
-              <option value='buy'>Buy</option>
-              <option value='sell'>Sell</option>
-            </select>
-            <label className='disabled' ref={formLabel}>Quantity</label>
-            <input disabled={!searchSubmit} placeholder='Shares' value={quantity}
-              onChange={e => setQuantity(parseInt(e.target.value))}></input>
+            <div className='trade-action-container'>
+              <div className='buy-sell-container'>
+                <label className='disabled' ref={formLabel1}>Action</label>
+                <select disabled={!searchSubmit} onChange={e => setOrderType(e.target.value)} >
+                  <option value='buy'>Buy</option>
+                  <option value='sell'>Sell</option>
+                </select>
+              </div>
+              <div className='trade-quantity-containter'>
+                <label className='disabled' ref={formLabel2}>Quantity</label>
+                <input disabled={!searchSubmit} placeholder='Shares' value={quantity}
+                  onChange={e => setQuantity(parseInt(e.target.value))}></input>
+              </div>
+            </div>
+
             {orderType === 'sell' &&
-              <div>Available shares: {getShareQuant()}</div>
+              <div id='trade-available-shares'>Available shares: {getShareQuant()}</div>
             }
-            <button className='disabled' disabled={!searchSubmit} ref={reviewButton}>Review order</button>
+            <button className='disabled' disabled={!searchSubmit} ref={reviewButton}>Submit order</button>
           </form>
         </div>
         <div className='trade-info-container'>Trading info here</div>

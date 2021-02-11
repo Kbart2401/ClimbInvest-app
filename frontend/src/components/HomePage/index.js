@@ -18,7 +18,7 @@ const HomePage = () => {
     let difference = (userAccount.current_balance - userAccount.previous_balance).toFixed(2);
     if (difference === 0) difference = '–';
     if (difference > 0) difference = `+${difference}`
-    if (difference < 0) difference = `-${difference}`
+    if (difference < 0) difference = `${difference}`
     return difference
   }
 

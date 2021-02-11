@@ -1,6 +1,5 @@
 import React from 'react';
 import TradePage from '../TradePage';
-import Footer from '../Footer';
 import './TradeHeader.css';
 
 const TradeHeader = () => {

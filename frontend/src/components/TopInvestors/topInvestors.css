@@ -5,4 +5,10 @@
 .top-investors-list {
   list-style-type: decimal;
   font-family: 'Open Sans', sans-serif;
+  padding-left: 20px;
+}
+
+.top-investors-list th {
+  display: flex;
+  padding-right: 20px;
 }

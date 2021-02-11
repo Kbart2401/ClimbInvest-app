@@ -16,15 +16,15 @@ const TopInvestors = () => {
       <div className='top-investors-container'>
         <h2>Top Climbers</h2>
         <ul className='top-investors-list'>
-          {topInvestors.map((investor, idx) => (
-            <li key={idx}>
-              <div>{investor.username} &nbsp;
-                <span>{parseFloat(investor.current_balance)
-                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</span>
-              </div>
-
-            </li>
-          ))}
+          <table>
+            {topInvestors.map((investor, idx) => (
+              <tr key={idx} >
+                <th>{idx +1}. {investor.username} </th>
+                <td>{parseFloat(investor.current_balance)
+                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</td>
+              </tr>
+            ))}
+          </table>
         </ul>
       </div>
     </>

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import * as stockSearchActions from '../../store/stockSearch';
-import Footer from '../Footer';
 import './TradePage.css';
 
 const TradePage = () => {
@@ -49,7 +48,7 @@ const TradePage = () => {
           return stock.quantity
         }
       }
-      return 'You do not have this stock in your account'
+      return "You don't own this stock"
     }
   }
 
@@ -79,44 +78,41 @@ const TradePage = () => {
   }
   return (
     <>
-      <div className='below-nav-container' style={{ padding: 0 }}>
-        <div className='trade-page-container'>
-          <div className='order-form-container'>
-            <form onSubmit={handleSubmit}>
-              <label>Symbol</label>
-              <input placeholder='Enter Stock Symbol' value={stockSymbol}
-                onChange={(e) => setStockSymbol(e.target.value)}></input>
-              <button type="button" onClick={getStock}>Get Stock</button>
+      <div className='trade-page-container'>
+        <div className='order-form-container'>
+          <form onSubmit={handleSubmit}>
+            <label>Symbol</label>
+            <input placeholder='Enter Stock Symbol' value={stockSymbol}
+              onChange={(e) => setStockSymbol(e.target.value)}></input>
+            <button type="button" onClick={getStock}>Get Stock</button>
 
-              {stockData &&
-                <>
-                  <div className='success'>Success</div>
-                  <div>{stockData.companyName}</div>
-                  <div>{stockData.latestPrice}</div>
+            {stockData &&
+              <>
+                <div className='success'>Success</div>
+                <div>{stockData.companyName}</div>
+                <div>{stockData.latestPrice}</div>
 
-                </>}
-              {noData &&
-                <div>Please enter a valid symbol</div>}
+              </>}
+            {noData &&
+              <div id='trade-symbol-error'>Please enter a valid symbol</div>}
 
-              <label className='disabled' ref={formLabel}>Action</label>
-              <select disabled={!searchSubmit} onChange={e => setOrderType(e.target.value)} placeholder='hi' >
-                <option value=''>Select an order type</option>
-                <option value='buy'>Buy</option>
-                <option value='sell'>Sell</option>
-              </select>
-              <label className='disabled' ref={formLabel}>Quantity</label>
-              <input disabled={!searchSubmit} placeholder='Shares' value={quantity}
-                onChange={e => setQuantity(parseInt(e.target.value))}></input>
-              {orderType === 'sell' &&
-                <div>Available shares: {getShareQuant()}</div>
-              }
-              <button className='disabled' disabled={!searchSubmit} ref={reviewButton}>Review order</button>
-            </form>
-          </div>
-          <div className='trade-info-container'>Trading info here</div>
+            <label className='disabled' ref={formLabel}>Action</label>
+            <select disabled={!searchSubmit} onChange={e => setOrderType(e.target.value)} placeholder='hi' >
+              <option value=''>Select an order type</option>
+              <option value='buy'>Buy</option>
+              <option value='sell'>Sell</option>
+            </select>
+            <label className='disabled' ref={formLabel}>Quantity</label>
+            <input disabled={!searchSubmit} placeholder='Shares' value={quantity}
+              onChange={e => setQuantity(parseInt(e.target.value))}></input>
+            {orderType === 'sell' &&
+              <div>Available shares: {getShareQuant()}</div>
+            }
+            <button className='disabled' disabled={!searchSubmit} ref={reviewButton}>Review order</button>
+          </form>
         </div>
+        <div className='trade-info-container'>Trading info here</div>
       </div>
-      <Footer />
     </>
   )
 }

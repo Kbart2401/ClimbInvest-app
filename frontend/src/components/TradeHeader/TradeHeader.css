@@ -32,3 +32,7 @@
   align-self: center;
   font-size: .9375rem;
 }
+
+.trade-nav-container button.active {
+  border-bottom: 4px solid #002b51;
+}

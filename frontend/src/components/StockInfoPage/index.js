@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as sessionActions from '../../store/session';
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import './stockInfoPage.css';
 import Footer from '../Footer';
 import StockProfilePage from '../StockProfilePage';
@@ -11,10 +10,6 @@ const StockInfoPage = () => {
   const companyData = useSelector(state => state.stockSearch.company);
   const [profilePage, setProfilePage] = useState(false)
   const [overview, setOverview] = useState(true)
-
-  //console logs to check out stock objects
-  // console.log('stockData', stockData)
-  // console.log('companyData', companyData)
 
   const handleProfileClick = () => {
     setProfilePage(true);

@@ -1,5 +1,6 @@
 .trade-page-container {
   display: flex;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .trade-page-container h2 {
@@ -50,4 +51,8 @@ form .success {
 .trade-info-container {
   background-color: white;
   flex-grow: 1;
+}
+
+#trade-symbol-error {
+  color: red;
 }

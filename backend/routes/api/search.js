@@ -16,8 +16,17 @@ router.post('/', asyncHandler(async (req, res, next) => {
     : `https://cloud.iexapis.com/stable/stock/${req.body.stock}/quote?token=${APIKey}`;
 
   const quote = await fetch(url)
-  const data = await quote.json();
-  res.json(data);
+  if (quote.ok) {
+    const data = await quote.json();
+    res.json(data);
+  }
+  else {
+    const err = new Error('Invalid stock symbol');
+    err.status = 401;
+    err.title = 'Invalid stock symbol';
+    err.errors = ['Your stock request was invalid.'];
+    next(err);
+  }
 }))
 
 //fetch company info

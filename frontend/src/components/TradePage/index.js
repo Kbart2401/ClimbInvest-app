@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {useHistory} from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import * as stockSearchActions from '../../store/stockSearch';
 import Footer from '../Footer';
@@ -7,6 +8,7 @@ import './TradePage.css';
 
 const TradePage = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
   const [stockSymbol, setStockSymbol] = useState('');
   const [quantity, setQuantity] = useState('');
   const [searchSubmit, setSearchSubmit] = useState(false)
@@ -17,24 +19,26 @@ const TradePage = () => {
 
   useEffect(() => {
     dispatch(stockSearchActions.removeCompany())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
+    setNoData(false)
     if (!stockData && searchSubmit) {
       setNoData(true);
       setSearchSubmit(false)
     }
-  })
+  }, [stockData, searchSubmit])
 
   const getStock = () => {
     setSearchSubmit(true);
-    dispatch(stockSearchActions.setStockData(stockSymbol));
-
+    dispatch(stockSearchActions.setStockData(stockSymbol))
+      .catch(() => setNoData(true))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     orderType === 'buy' ? handleBuy() : handleSell()
+    return history.push('/home')
   }
 
   const handleBuy = () => {
@@ -72,7 +76,7 @@ const TradePage = () => {
                   <div>{stockData.latestPrice}</div>
 
                 </>}
-              {noData && !stockData &&
+              {noData && 
                 <div>Please enter a valid symbol</div>}
               <label>Action</label>
               <select onChange={e => setOrderType(e.target.value)} placeholder='hi' >
@@ -86,12 +90,6 @@ const TradePage = () => {
               <button>Review order</button>
             </form>
           </div>
-          {/* <div className='buy-order-container'>
-            <form onSubmit={handleSellSubmit}>
-              <label>Sell Stock</label>
-              <button>Submit</button>
-            </form>
-          </div> */}
         </div>
       </div>
       <Footer />

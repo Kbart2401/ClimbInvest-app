@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import * as stockSearchActions from '../../store/stockSearch';
 import Footer from '../Footer';
@@ -16,11 +16,14 @@ const TradePage = () => {
   const [orderType, setOrderType] = useState('buy')
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account);
+  const portfolio = useSelector(state => state.session.accountPortfolio)
 
+  //Clear the stock symbol each time the component is remounted
   useEffect(() => {
     dispatch(stockSearchActions.removeCompany())
   }, [dispatch])
 
+  //This is to render the error when trying to fetch an invalid stock symbol
   useEffect(() => {
     setNoData(false)
     if (!stockData && searchSubmit) {
@@ -33,6 +36,15 @@ const TradePage = () => {
     setSearchSubmit(true);
     dispatch(stockSearchActions.setStockData(stockSymbol))
       .catch(() => setNoData(true))
+  }
+
+  const getShareQuant = () => {
+    debugger
+    if (stockData) {
+      for (let stock in portfolio) {
+        return stock.symbol === stockData.symbol.toLowerCase() ? stock.quantity : 'You do not have this stock in your account'
+      }
+    }
   }
 
   const handleSubmit = (e) => {
@@ -76,7 +88,7 @@ const TradePage = () => {
                   <div>{stockData.latestPrice}</div>
 
                 </>}
-              {noData && 
+              {noData &&
                 <div>Please enter a valid symbol</div>}
               <label>Action</label>
               <select onChange={e => setOrderType(e.target.value)} placeholder='hi' >
@@ -87,6 +99,9 @@ const TradePage = () => {
               <label>Quantity</label>
               <input placeholder='Shares' value={quantity}
                 onChange={e => setQuantity(parseInt(e.target.value))}></input>
+              {orderType === 'sell' &&
+                <div>Available shares: {getShareQuant()}</div>
+              }
               <button>Review order</button>
             </form>
           </div>

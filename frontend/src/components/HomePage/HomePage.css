@@ -52,18 +52,19 @@
 
 .outside-margin {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url('../../images/mountains.jpg');
   filter: grayscale(80%) contrast(2);
   opacity: 0.2;
+  background-repeat: repeat-y;
 }
 
 .outside-margin.left {
-  background-position: right;
+  background-position: top right;
 }
 
 .outside-margin.right {
-    background-position: left;
+    background-position: top left;
 }
 
 .lower-half-outer-container {

@@ -18,7 +18,13 @@ const HomeNews = () => {
         <h2>Top News Stories</h2>
         <ul>
           {news?.map((article, idx) => (
-            <li key={idx}>{article.headline}</li>
+            <li key={idx}><a href={article.url} target='_blank' rel='noreferrer'>
+              <img src={article.image} alt='news' /></a>
+              <div className='article-container'>
+                <div className='article-header'>{article.headline}</div>
+                <div className='article-summary'>{article.summary}</div>
+              </div>
+            </li>
           ))}
         </ul>
       </div>

@@ -40,8 +40,8 @@ router.post('/company_data', asyncHandler(async (req, res, next) => {
 
 //fetch news for home page
 router.get('/home_news', asyncHandler(async (req, res, next) => {
-  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/aapl/news?token=${sandboxAPIKey}`
-    : `https://cloud.iexapis.com/stable/stock/aapl/news?token=${APIKey}`
+  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
+    : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
   const response = await fetch(url)
   const data = await response.json()
   res.json(data)

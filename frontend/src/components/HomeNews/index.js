@@ -15,7 +15,7 @@ const HomeNews = () => {
   return (
     <>
       <div className='top-news-container-home'>
-        <h2>Top News Stories</h2>
+        <h2>Recent News Stories</h2>
         <ul>
           {news?.map((article, idx) => (
             <li key={idx}><a href={article.url} target='_blank' rel='noreferrer'>

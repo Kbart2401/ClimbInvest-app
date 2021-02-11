@@ -28,7 +28,8 @@ span.green {
 }
 
 .below-nav-container {
-  width: 1150px;
+  box-sizing: border-box;
+  width: 1190px;
   height: 100vh;
   box-shadow: 0px 0 5px;
   background-color: #f5f5f5;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
@@ -8,15 +8,17 @@ import './TradePage.css';
 
 const TradePage = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const [stockSymbol, setStockSymbol] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [searchSubmit, setSearchSubmit] = useState(false)
-  const [noData, setNoData] = useState(false)
-  const [orderType, setOrderType] = useState('buy')
+  const history = useHistory();
   const stockData = useSelector(state => state.stockSearch.stock);
   const userAccount = useSelector(state => state.session.account);
-  const portfolio = useSelector(state => state.session.accountPortfolio)
+  const portfolio = useSelector(state => state.session.accountPortfolio);
+  const reviewButton = useRef(null);
+  const formLabel = useRef(null);
+  const [stockSymbol, setStockSymbol] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [searchSubmit, setSearchSubmit] = useState(false);
+  const [noData, setNoData] = useState(false);
+  const [orderType, setOrderType] = useState('buy');
 
   //Clear the stock symbol each time the component is remounted
   useEffect(() => {
@@ -33,17 +35,21 @@ const TradePage = () => {
   }, [stockData, searchSubmit])
 
   const getStock = () => {
-    setSearchSubmit(true);
     dispatch(stockSearchActions.setStockData(stockSymbol))
+      .then(() => setSearchSubmit(true))
+      .then(() => reviewButton.current.classList.remove('disabled'))
+      .then(() => formLabel.current.classList.remove('disabled'))
       .catch(() => setNoData(true))
   }
 
   const getShareQuant = () => {
-    debugger
     if (stockData) {
-      for (let stock in portfolio) {
-        return stock.symbol === stockData.symbol.toLowerCase() ? stock.quantity : 'You do not have this stock in your account'
+      for (let stock of portfolio) {
+        if (stock.symbol === stockData.symbol.toLowerCase()) {
+          return stock.quantity
+        }
       }
+      return 'You do not have this stock in your account'
     }
   }
 
@@ -73,14 +79,15 @@ const TradePage = () => {
   }
   return (
     <>
-      <div className='below-nav-container'>
+      <div className='below-nav-container' style={{ padding: 0 }}>
         <div className='trade-page-container'>
-          <div className='buy-order-container'>
+          <div className='order-form-container'>
             <form onSubmit={handleSubmit}>
               <label>Symbol</label>
               <input placeholder='Enter Stock Symbol' value={stockSymbol}
                 onChange={(e) => setStockSymbol(e.target.value)}></input>
               <button type="button" onClick={getStock}>Get Stock</button>
+
               {stockData &&
                 <>
                   <div className='success'>Success</div>
@@ -90,21 +97,23 @@ const TradePage = () => {
                 </>}
               {noData &&
                 <div>Please enter a valid symbol</div>}
-              <label>Action</label>
-              <select onChange={e => setOrderType(e.target.value)} placeholder='hi' >
+
+              <label className='disabled' ref={formLabel}>Action</label>
+              <select disabled={!searchSubmit} onChange={e => setOrderType(e.target.value)} placeholder='hi' >
                 <option value=''>Select an order type</option>
                 <option value='buy'>Buy</option>
                 <option value='sell'>Sell</option>
               </select>
-              <label>Quantity</label>
-              <input placeholder='Shares' value={quantity}
+              <label className='disabled' ref={formLabel}>Quantity</label>
+              <input disabled={!searchSubmit} placeholder='Shares' value={quantity}
                 onChange={e => setQuantity(parseInt(e.target.value))}></input>
               {orderType === 'sell' &&
                 <div>Available shares: {getShareQuant()}</div>
               }
-              <button>Review order</button>
+              <button className='disabled' disabled={!searchSubmit} ref={reviewButton}>Review order</button>
             </form>
           </div>
+          <div className='trade-info-container'>Trading info here</div>
         </div>
       </div>
       <Footer />

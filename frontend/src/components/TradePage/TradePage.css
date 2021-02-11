@@ -1,22 +1,28 @@
+.trade-page-container {
+  display: flex;
+}
+
 .trade-page-container h2 {
   color: #013462;
   font-family: 'Karla', sans-serif;
 }
 
-.buy-order-container {
+.order-form-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 80%;
+  background-color: white;
+  margin-right: 15px;
 }
 
-.buy-order-container form {
+.order-form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 33%;
 }
 
-.buy-order-container input {
+.order-form-container input {
   line-height: 3em;
   font-size: 1.2em;
   font-family: 'Open Sans', sans-serif;
@@ -25,10 +31,23 @@
   margin-top: 10px;
 }
 
+.order-form-container button.disabled {
+  border: 5px solid #b7b7b7;
+  background-color: white;
+  color: black;
+}
+
+.order-form-container label.disabled {
+  color: #b7b7b7;
+}
+
 form .success {
   color: green;
   font-family: 'Open Sans', sans-serif;
   margin-top: 10px;
 }
 
-/* disabled color #b7b7b7 */
+.trade-info-container {
+  background-color: white;
+  flex-grow: 1;
+}

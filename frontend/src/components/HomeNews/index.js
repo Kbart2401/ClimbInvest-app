@@ -4,7 +4,9 @@ const HomeNews = () => {
 
   return (
     <>
-    <h2>Top News Stories</h2>
+      <div className='top-news-container-home'>
+        <h2>Top News Stories</h2>
+      </div>
     </>
   )
 }

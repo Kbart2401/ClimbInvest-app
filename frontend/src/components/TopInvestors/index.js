@@ -9,7 +9,7 @@ const TopInvestors = () => {
 
   useEffect(() => {
     dispatch(topInvestorsActions.getTopInvestors())
-  }, [])
+  }, [dispatch])
 
   return (
     <>
@@ -18,8 +18,11 @@ const TopInvestors = () => {
         <ul className='top-investors-list'>
           {topInvestors.map((investor, idx) => (
             <li key={idx}>
-              <div>{investor.username}</div>
-              <div>{parseFloat(investor.current_balance).toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</div>
+              <div>{investor.username} &nbsp;
+                <span>{parseFloat(investor.current_balance)
+                  .toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</span>
+              </div>
+
             </li>
           ))}
         </ul>

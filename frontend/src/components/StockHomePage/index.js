@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import './stockInfoPage.css';
+import './StockHomePage.css';
 import Footer from '../Footer';
 import StockProfilePage from '../StockProfilePage';
 import StockOverview from '../StockOverview';
 
-const StockInfoPage = () => {
+const StockHomePage = () => {
   const stockData = useSelector(state => state.stockSearch.stock?.quote)
   const companyData = useSelector(state => state.stockSearch.stock?.company)
   const companyNews = useSelector(state => state.stockSearch.stock?.news)
@@ -79,4 +79,4 @@ const StockInfoPage = () => {
   )
 }
 
-export default StockInfoPage;
+export default StockHomePage;

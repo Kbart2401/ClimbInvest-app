@@ -1,35 +1,18 @@
-import './StockProfilePage.css'
+import StockDetails from '../StockDetails';
+import './StockProfilePage.css';
 
 const StockProfilePage = (props) => {
+
+  const checkIfDescriptionAvailable = () => {
+    return props.companyData.description === '' ? 'Company description coming soon!' : props.companyData.description
+  }
 
   return (
     <>
       <div className='company-description-title'>Business Description
-        <div className='company-description-body'>{props.companyData.description}</div>
+        <div className='company-description-body'>{checkIfDescriptionAvailable()}</div>
       </div>
-      <div className='stock-financial-data'>
-        <table>
-          <caption>Overview</caption>
-          <tbody>
-            <tr>
-              <th>Previous Close</th>
-              <td>${props.stockData.previousClose}</td>
-            </tr>
-            <tr>
-              <th>52 Week High</th>
-              <td>${props.stockData.week52High}</td>
-            </tr>
-            <tr>
-              <th>52 Week Low</th>
-              <td>${props.stockData.week52Low}</td>
-            </tr>
-            <tr>
-              <th>Avg 30 Day Volume</th>
-              <td>{props.stockData.avgTotalVolume.toLocaleString()}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <StockDetails {...props} />
     </>
   )
 }

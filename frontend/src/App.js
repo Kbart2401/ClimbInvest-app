@@ -6,7 +6,7 @@ import Navigation from './components/Navigation/index';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import HomePage from './components/HomePage';
-import StockInfoPage from './components/StockInfoPage';
+import StockHomePage from './components/StockHomePage';
 import TradeHeader from './components/TradeHeader';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
         <Switch>
           <Route path='/signup' component={SignupFormPage} />
           <Route path='/home' component={HomePage} />
-          <Route path='/stock-info' component={StockInfoPage} />
+          <Route path='/stock-info' component={StockHomePage} />
           <Route path='/trade' component={TradeHeader} />
           <Route path='/' component={LoginFormPage} />
         </Switch>

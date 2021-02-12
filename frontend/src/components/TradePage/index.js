@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import * as stockSearchActions from '../../store/stockSearch';
+import TradingInfo from '../TradingInfo';
 import './TradePage.css';
 
 const TradePage = () => {
@@ -119,7 +120,7 @@ const TradePage = () => {
             <button className='disabled' disabled={!searchSubmit} ref={reviewButton}>Submit order</button>
           </form>
         </div>
-        <div className='trade-info-container'>Trading info here</div>
+        <TradingInfo />
       </div>
     </>
   )

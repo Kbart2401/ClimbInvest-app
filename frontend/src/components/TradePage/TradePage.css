@@ -11,7 +11,7 @@
 .order-form-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  min-width: 75%;
   background-color: white;
   margin-right: 15px;
   padding: 24px 16px;
@@ -63,6 +63,7 @@ form .success {
   display: flex;
   justify-content: center;
   padding-top: 16px;
+  padding-left: 15px;
 }
 
 .buy-sell-container {
@@ -74,7 +75,7 @@ form .success {
   margin-top: 10px;
   border: none;
   border-bottom: 2px solid rgb(226, 223, 223);
-  width: 228px;
+  width: 220px;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.2em;
 }

@@ -6,8 +6,10 @@ import StockProfilePage from '../StockProfilePage';
 import StockOverview from '../StockOverview';
 
 const StockInfoPage = () => {
-  const stockData = useSelector(state => state.stockSearch.stock?.quote);
-  const companyData = useSelector(state => state.stockSearch.stock?.company);
+  const stockData = useSelector(state => state.stockSearch.stock?.quote)
+  const companyData = useSelector(state => state.stockSearch.stock?.company)
+  const companyNews = useSelector(state => state.stockSearch.stock?.news)
+  const chartData = useSelector(state => state.stockSearch.stock?.chart)
   const [profilePage, setProfilePage] = useState(false)
   const [overview, setOverview] = useState(true)
 
@@ -62,7 +64,7 @@ const StockInfoPage = () => {
             <div className='stock-page-outerbody'>
               {overview &&
                 <StockOverview companyData={companyData}
-                  stockData={stockData} />
+              stockData={stockData} companyNews={companyNews} chartData={chartData}/>
               }
               {profilePage &&
                 <StockProfilePage companyData={companyData}

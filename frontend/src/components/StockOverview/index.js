@@ -1,20 +1,36 @@
+import { useEffect, useState } from 'react';
 import StockDetails from '../StockDetails';
 import ReactHighcharts from 'react-highcharts';
 
 const StockOverview = (props) => {
+  const [prices, setPrices] = useState([])
+  const [dates, setDates] = useState([])
 
-  const data = [[1220832000000, 22.56], [1220918400000, 21.67], [1221004800000, 21.66], [1221091200000, 21.81], [1221177600000, 21.28], [1221436800000, 20.05]]
+  useEffect(() => {
+    let priceArray = []
+    let dateArray = []
+    props.chartData.forEach(stock => {
+      priceArray.unshift([stock.close])
+      dateArray.unshift([stock.date])
+    })
+    setPrices([...priceArray])
+    setDates([...dateArray])
+  }, [props])
+
 
   const config = {
     rangeSelector: {
       selected: 1
     },
     title: {
-      text: 'AAPL Stock Price'
+      text: `${props.stockData.symbol.toUpperCase()} 10 day price`
+    },
+    xAxis: {
+      categories: dates
     },
     series: [{
-      name: 'AAPL',
-      data: data,
+      name: 'Closing price',
+      data: prices,
       tooltip: {
         valueDecimals: 2
       }
@@ -25,7 +41,7 @@ const StockOverview = (props) => {
     <>
       <div className='company-description-title'>
         <div className='company-description-body'>
-          <ReactHighcharts config={config}/>
+          <ReactHighcharts config={config} />
         </div>
       </div>
       <StockDetails {...props} />

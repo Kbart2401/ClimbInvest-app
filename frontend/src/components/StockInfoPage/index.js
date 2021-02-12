@@ -6,8 +6,8 @@ import StockProfilePage from '../StockProfilePage';
 import StockOverview from '../StockOverview';
 
 const StockInfoPage = () => {
-  const stockData = useSelector(state => state.stockSearch.stock);
-  const companyData = useSelector(state => state.stockSearch.company);
+  const stockData = useSelector(state => state.stockSearch.stock?.quote);
+  const companyData = useSelector(state => state.stockSearch.stock?.company);
   const [profilePage, setProfilePage] = useState(false)
   const [overview, setOverview] = useState(true)
 
@@ -24,7 +24,7 @@ const StockInfoPage = () => {
   return (
     <>
       <div className='below-nav-container'>
-        {stockData && companyData &&
+        {stockData &&
           <>
             <div className='top-of-page'>
               <span>As of {stockData.latestTime}</span>
@@ -49,7 +49,7 @@ const StockInfoPage = () => {
               </dl>
               <dl>
                 <dt>Today's Volume</dt>
-              <dd>{stockData.volume? (stockData.volume).toLocaleString(): '–'}</dd>
+                <dd>{stockData.volume ? (stockData.volume).toLocaleString() : '–'}</dd>
               </dl>
             </div>
             <div className='stock-buttons'>
@@ -60,12 +60,12 @@ const StockInfoPage = () => {
               <div id='page-divider'></div>
             </div>
             <div className='stock-page-outerbody'>
-              {profilePage &&
-                <StockProfilePage companyData={companyData}
-                  stockData={stockData} />
-              }
               {overview &&
                 <StockOverview companyData={companyData}
+                  stockData={stockData} />
+              }
+              {profilePage &&
+                <StockProfilePage companyData={companyData}
                   stockData={stockData} />
               }
             </div>

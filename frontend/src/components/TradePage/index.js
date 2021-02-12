@@ -9,7 +9,7 @@ import './TradePage.css';
 const TradePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const stockData = useSelector(state => state.stockSearch.stock);
+  const stockData = useSelector(state => state.stockSearch.stock?.quote);
   const userAccount = useSelector(state => state.session.account);
   const portfolio = useSelector(state => state.session.accountPortfolio);
   const formLabel1 = useRef(null);

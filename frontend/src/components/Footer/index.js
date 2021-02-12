@@ -23,7 +23,6 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(stockSearchActions.setCompanyInfo(inputVal));
     dispatch(stockSearchActions.setStockData(inputVal));
     setInput('');
     setSubmit(true);

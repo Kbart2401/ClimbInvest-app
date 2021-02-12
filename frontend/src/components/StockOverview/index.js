@@ -1,34 +1,34 @@
+import StockDetails from '../StockDetails';
+import ReactHighcharts from 'react-highcharts';
 
 const StockOverview = (props) => {
 
+  const data = [[1220832000000, 22.56], [1220918400000, 21.67], [1221004800000, 21.66], [1221091200000, 21.81], [1221177600000, 21.28], [1221436800000, 20.05]]
+
+  const config = {
+    rangeSelector: {
+      selected: 1
+    },
+    title: {
+      text: 'AAPL Stock Price'
+    },
+    series: [{
+      name: 'AAPL',
+      data: data,
+      tooltip: {
+        valueDecimals: 2
+      }
+    }]
+  };
+
   return (
     <>
-      <div className='company-description-title'>Business Description
-        <div className='company-description-body'></div>
+      <div className='company-description-title'>
+        <div className='company-description-body'>
+          <ReactHighcharts config={config}/>
+        </div>
       </div>
-      <div className='stock-financial-data'>
-        <table>
-          <caption>Overview</caption>
-          <tbody>
-            <tr>
-              <th>Previous Close</th>
-              <td>${props.stockData.previousClose}</td>
-            </tr>
-            <tr>
-              <th>52 Week High</th>
-              <td>${props.stockData.week52High}</td>
-            </tr>
-            <tr>
-              <th>52 Week Low</th>
-              <td>${props.stockData.week52Low}</td>
-            </tr>
-            <tr>
-              <th>Avg 30 Day Volume</th>
-              <td>{props.stockData.avgTotalVolume.toLocaleString()}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <StockDetails {...props} />
     </>
   )
 }

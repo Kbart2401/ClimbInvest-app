@@ -12,7 +12,7 @@ const useKey = APIKey;
 
 //fetch latest stock standard info, price etc
 router.post('/', asyncHandler(async (req, res, next) => {
-  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/batch?types=quote,company,chart,news&range=1m&last=10&token=${sandboxAPIKey}`
+  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.stock}/batch?types=quote,company,chart,news&range=1m&last=10&chartCloseOnly=true&token=${sandboxAPIKey}`
     : `https://cloud.iexapis.com/stable/stock/${req.body.stock}/batch?types=quote,company,chart,news&range=1m&last=10&token=${APIKey}`;
 
   const response = await fetch(url)

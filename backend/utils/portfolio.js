@@ -29,7 +29,7 @@ const getPortfolio = async (userAccount) => {
     //Get stock current prices and today's change for stock
     let totalMarketValue = 0;
 
-    const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${sandboxAPIKey}`
+    const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&token=${sandboxAPIKey}`
       : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${APIKey}`
     const res = await fetch(url)
     const latestStockPrices = await res.json()

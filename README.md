@@ -14,6 +14,7 @@
 <div align='center'>By
 <br>
 <a href='https://www.linkedin.com/in/kyle-barthelmes-a5120b51/'>Kyle Barthelmes </a>
+</div>
 <br>
 <div align='center' style='font-size: 25px'>
 <a href='https://climbinvest.herokuapp.com/'>Live Link</a>
@@ -24,50 +25,40 @@
 ClimbInvest is a simulated stock trading platform that serves as a great risk-free exposure to the world of investing. Sign-up to be rewarded with an account worth $10,000 in simulated cash and trade your way to the top! Top performers ("Top Climbers") are highlighted on the home page as well as your current portfolio and a financial news feed. All prices are real-time via IEX Cloud Services api. 
 
 ## Features
-### Modern interactive landing page
-- Includes several items on the page that change according to user interaction
+### Dynamic Landing Page
+- Changing image for every page visit
 
-![Screen Shot 2021-02-08 at 10 50 08 AM](https://user-images.githubusercontent.com/67812737/107246216-0451a000-69fe-11eb-993c-c1cfed9bbeb4.png)
-
-### Interactive map using © MapBox api 
-  - Create routes using markers for start and finish of a route
-
-  ![Screen Shot 2021-02-08 at 10 52 33 AM](https://user-images.githubusercontent.com/67812737/107245486-34e50a00-69fd-11eb-80a5-5467e77754af.png)
+![Screen Shot 2021-02-15 at 11 23 29 AM](https://user-images.githubusercontent.com/67812737/107973173-e696b480-6f82-11eb-844e-5fd264a6e308.png)
 
 
-  - Search for beginning points of routes within a certain radius using the app's Find a Route feature
+### Account Portfolio with real-time data via iex cloud api
+  - Account totals are updated with every page visit and every trade placed
+  - Get recent financial news on home page
+  - See list of top 10 ClimbInvest investors
 
-![Screen Shot 2021-02-08 at 10 57 43 AM](https://user-images.githubusercontent.com/67812737/107245686-6c53b680-69fd-11eb-8a5a-e27854959ef1.png)
+![Screen Shot 2021-02-15 at 11 24 20 AM](https://user-images.githubusercontent.com/67812737/107973338-1d6cca80-6f83-11eb-8eae-a82d285b9400.png)
 
-### Dashboard that tracks several key metrics
-  - Most recent route's time to completion and distance
-  - Total distance along routes
-  - Total time on routes
-  - Total calories burned
+### Search for stocks and etfs with real-time data and historical 10 day chart
+  - See if the market is currently open 
+  - 10 day chart rendered with Highcharts JS library
 
-  ![Screen Shot 2021-02-08 at 10 51 14 AM](https://user-images.githubusercontent.com/67812737/107245737-7d042c80-69fd-11eb-99b9-2ee1fea2c94f.png)
+  ![Screen Shot 2021-02-15 at 11 25 29 AM](https://user-images.githubusercontent.com/67812737/107973568-5ad15800-6f83-11eb-8050-f5b68f1266d1.png)
 
-### Community page with the following features
-  - Search for other users ("rivals") and add them to your community
-  - See community members' profile and dashboard
+### Dynamic trade page allows you to buy stocks and etfs or sell what you currently have
+  - Find valid stocks and etfs
+  - Dynamic page responds to what stock you select and how many shares you currently own if any (with sell selection)
 
-  ![Screen Shot 2021-02-08 at 10 59 16 AM](https://user-images.githubusercontent.com/67812737/107245934-b5a40600-69fd-11eb-81fe-9c8f375b6e69.png)
+  ![Screen Shot 2021-02-15 at 11 25 55 AM](https://user-images.githubusercontent.com/67812737/107973993-f1057e00-6f83-11eb-817f-80ef9aaa7cbb.png)
 
-### Fun animated 404 page
-![Screen Shot 2021-02-08 at 10 59 44 AM](https://user-images.githubusercontent.com/67812737/107246394-3531d500-69fe-11eb-85c4-ad2cd0ea96ee.png)
-
-### View all the personal routes you've added and view their leaderboards
-![Screen Shot 2021-02-08 at 11 12 02 AM](https://user-images.githubusercontent.com/67812737/107246729-8b9f1380-69fe-11eb-99b3-cf93fc607692.png)
-<br>
 
 # Database Schema
-<img width="1458" alt="Screen Shot 2021-02-08 at 11 32 37 AM" src="https://user-images.githubusercontent.com/67812737/107249485-6c55b580-6a01-11eb-83f5-9a13447b47ea.png">
+<img width="1458" alt="Screen Shot 2021-02-08 at 11 32 37 AM" src="https://user-images.githubusercontent.com/67812737/107974294-5f4a4080-6f84-11eb-869c-f91d34e12c49.png">
 <br />
 
 # Usage 
 
-## Demo User
-There is a **Demo** login that allows access to the site. However, the Demo User Login does **NOT** use your geolocation, but instead uses a hard-coded latitude and longitude. If you would like to see routes in your local area, either manually navigate to your region or sign up for the site to get instant data on your area.
+### Demo User
+There is a **Demo** login for those wishing to tour the site.
 
 ## Contribution
 If you would like to contribute to this project in any way, you may take the following steps
@@ -83,11 +74,12 @@ If you would like to contribute to this project in any way, you may take the fol
   ## Development
   Follow these steps if you need guidance on setting up and running a local server for this project
   1. Clone or fork this repo
-  2. **cd** into **backend** and run `pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt`
+  2. **cd** into **backend** and run `npm install`
   3. **cd** into **frontend** and run `npm install`
-  4. Create a **.env** file in both the **frontend** and **backend** and follow the **.env.example** files
-  5. Create a postgresql database according to the `DATABASE_URL` in **.env.example**
-  6. Start your Flask app from **backend** with `pipenv run flask run`
+  4. Create a **.env** file in the **backend** directory and follow the **.env.example** files
+  6. You will need to create a free account with iexcloud to get an api key
+  5. Create a postgresql database according to the `DB` sections in **.env.example**
+  6. Start your Express server from **backend** with `npm start`
   7. Start your React app from **frontend** with `npm start`
   - Server will be on **http://localhost:3000/**
 

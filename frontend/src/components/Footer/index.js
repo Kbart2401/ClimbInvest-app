@@ -52,8 +52,11 @@ const Footer = () => {
           </div>
           <div className='footer-right'>
             <h1>MORE</h1>
-            <div>
+            <div style={{marginBottom: '13px'}}>
               <a href='https://kbart2401.github.io/' target='_blank' rel='noreferrer'>Portfolio</a>
+            </div>
+            <div>
+            Inspired by <a href='https://login.morganstanleyclientserv.com/ux/' target='_blank' rel='noreferrer'>Morgan Stanley Online</a>
             </div>
           </div>
         </div>}

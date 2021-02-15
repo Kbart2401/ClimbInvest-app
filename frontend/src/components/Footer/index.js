@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './footer.css';
 import * as stockSearchActions from '../../store/stockSearch';
 import { useHistory } from 'react-router-dom';
-import { AiOutlineGithub } from 'react-icons/ai'
+import { AiOutlineGithub, AiFillLinkedin } from 'react-icons/ai';
+import { FaAngellist } from 'react-icons/fa';
 
 const Footer = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -38,14 +39,22 @@ const Footer = () => {
         <div className='footer-container__no-user'>
           <div className='footer-left'>
             <h1>ABOUT</h1>
-            <div>Created by <a href='https://kbart2401.github.io/' target='_blank' rel='noreferrer'>Kyle Barthelmes</a></div>
-          <div><a href='https://github.com/Kbart2401' target='_blank' rel='noreferrer'><AiOutlineGithub size='30px' /></a></div>
+            <div>Created by Kyle Barthelmes</div>
+            <div>
+              <a href='https://github.com/Kbart2401' target='_blank' rel='noreferrer'><AiOutlineGithub size='30px' /></a>
+              <a href='https://kbart2401.github.io/' target='_blank' rel='noreferrer'><AiFillLinkedin size='30px' /></a>
+              <a href='https://angel.co/u/kyle-barthelmes' target='_blank' rel='noreferrer'><FaAngellist size='30px' /></a>
+            </div>
           </div>
           <div className='footer-middle'>
             <h1>CONTACT</h1>
+            <div>Kbart2401@gmail.com</div>
           </div>
           <div className='footer-right'>
             <h1>MORE</h1>
+            <div>
+              <a href='https://kbart2401.github.io/' target='_blank' rel='noreferrer'>Portfolio</a>
+            </div>
           </div>
         </div>}
       {sessionUser &&

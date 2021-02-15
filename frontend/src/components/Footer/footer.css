@@ -7,7 +7,7 @@
   margin-top: 115px;
   color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   box-sizing: border-box;
   padding: 32px 100px 0 100px; 
   position: fixed;
@@ -25,6 +25,10 @@
 
 .footer-left div {
   margin-bottom: 13px;
+}
+
+.footer-left a {
+  padding-right: 15px;
 }
 
 .footer-container__user {

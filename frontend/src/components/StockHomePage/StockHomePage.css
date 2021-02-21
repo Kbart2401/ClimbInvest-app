@@ -70,7 +70,7 @@ span.green {
 .stock-financial-data {
   border: 1px solid #b2b2b2;
   height: 75%;
-  width: 250px;
+  min-width: 250px;
   display: flex;
   justify-content: left;
 }

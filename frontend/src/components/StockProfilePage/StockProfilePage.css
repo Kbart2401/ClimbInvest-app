@@ -1,12 +1,69 @@
 .company-description-title {
-  font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   font-weight: bold;
-  width: 75%;
+  width: 90%;
 }
 
 .company-description-body {
-  padding-top: 10px;
+  padding: 10px 0 25px 0;
   font-size: 14px;
   font-weight: normal;
+}
+
+.company-profile-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 30px 30px;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+.company-profile-execs, .company-profile-contact {
+  width: 50%;
+}
+
+.company-profile-execs {
+  border-collapse: collapse;
+  margin-right: 30px;
+}
+
+.company-profile-execs caption {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.company-profile-execs tr {
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  display: flex;
+  justify-content: space-between;
+}
+
+.company-profile-execs td {
+  font-size: 12px;
+  padding: 12px 0;
+}
+
+.company-profile-contact address {
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  font-style: normal;
+  font-size: 12px;
+  padding: 12px 0;
+}
+
+.company-profile-contact h3 {
+  text-align: left;
+  margin: 0 0 10px 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.company-contact-info span {
+  margin-right: 6px;
+}
+
+.company-contact-info a {
+  text-decoration: none;
+  color: #244c90;
 }

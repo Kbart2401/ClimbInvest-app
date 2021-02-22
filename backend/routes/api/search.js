@@ -7,7 +7,7 @@ const router = express.Router();
 const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
 const APIKey = process.env.API_KEY_IEXCLOUD
 //choose here to use sandbox key or actual key
-const useKey = APIKey;
+const useKey = sandboxAPIKey;
 
 
 //fetch latest stock standard info, price etc
@@ -27,15 +27,6 @@ router.post('/', asyncHandler(async (req, res, next) => {
     err.errors = ['Your stock request was invalid.'];
     next(err);
   }
-}))
-
-//fetch company info
-router.post('/company_data', asyncHandler(async (req, res, next) => {
-  const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/${req.body.company}/company?token=${sandboxAPIKey}`
-    : `https://cloud.iexapis.com/stable/stock/${req.body.company}/company?token=${APIKey}`;
-  const response = await fetch(url)
-  const data = await response.json();
-  res.json(data);
 }))
 
 //fetch news for home page

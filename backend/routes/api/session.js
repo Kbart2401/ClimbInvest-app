@@ -5,6 +5,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { getPortfolio } = require('../../utils/portfolio')
 const { User, Account } = require("../../db/models");
+const fetch = require('node-fetch');
 
 const router = express.Router();
 
@@ -18,6 +19,11 @@ const validateLogin = [
     .withMessage("Please provide a password."),
   handleValidationErrors,
 ];
+
+const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
+const APIKey = process.env.API_KEY_IEXCLOUD
+//choose here to use sandbox key or actual key
+const useKey = sandboxAPIKey;
 
 /******Log in******/
 router.post(
@@ -78,11 +84,18 @@ router.get(
     }
     //Get portfolio
     let stocks = await getPortfolio(userAccount)
+    //Get news feed
+    const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
+      : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
+    const response = await fetch(url)
+    const news = await response.json()
+    //Send out JSON data
     if (user) {
       return res.json({
         user: user.toSafeObject(),
         account: userAccount,
-        stocks
+        stocks,
+        news
       });
     } else return res.json({});
   }

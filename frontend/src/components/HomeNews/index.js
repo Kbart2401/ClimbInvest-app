@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
+import {useSelector} from 'react-redux';
 import './homeNews.css'
 
 const HomeNews = () => {
-  const [news, setNews] = useState([])
-
-  useEffect(() => {
-    (async () => {
-      const res = await fetch('/api/search/home_news')
-      const data = await res.json()
-      setNews(data)
-    })()
-  }, [])
+  const news = useSelector(state => state.session.news)
 
   return (
     <>

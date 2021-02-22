@@ -8,7 +8,8 @@ const SET_ACCOUNT_STOCK = 'SET_ACCOUNT_STOCK';
 const DECREASE_AVAILABLE_CASH = 'DECREASE_AVAILABLE_CASH';
 const ADD_STOCK = 'ADD_STOCK';
 const REMOVE_STOCK = 'REMOVE_STOCK'
-const INCREASE_AVAILABLE_CASH = 'INCREASE_AVAILABLE_CASH'
+const INCREASE_AVAILABLE_CASH = 'INCREASE_AVAILABLE_CASH';
+const SET_NEWS = 'SET_NEWS';
 
 /*******Action Creators*******/
 const setUser = (user) => ({
@@ -56,6 +57,11 @@ const increaseCash = (accountCash) => ({
   payload: accountCash
 })
 
+const addNews = (news) => ({
+  type: SET_NEWS,
+  payload: news
+})
+
 //Helper function
 const compare = (a, b) => {
   const stockA = a.name
@@ -88,9 +94,11 @@ export const logUserIn = (user) => async (dispatch) => {
 
 //Restore User thunk 
 export const restoreUser = () => async (dispatch) => {
+  debugger
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
+  dispatch(addNews(res.data.news))
   //sort stocks alphabetically by name
   const stocks = res.data.stocks
   if (stocks) {
@@ -182,7 +190,7 @@ export const sellStock = ({ symbol, costBasis, accountId, quantity, latestPrice,
 
 
 /***********Reducer**********/
-export const sessionReducer = (state = { user: null, account: null, accountPortfolio: null }, action) => {
+export const sessionReducer = (state = { user: null, account: null, accountPortfolio: null, news: null }, action) => {
 
   switch (action.type) {
     case SET_USER:
@@ -239,6 +247,8 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
       return {
         ...state, account: { ...state.account, available_cash: action.payload }
       }
+      case SET_NEWS:
+        return {...state, news: action.payload}
 
     default:
       return state

@@ -85,17 +85,23 @@ router.get(
     //Get portfolio
     let stocks = await getPortfolio(userAccount)
     //Get news feed
-    const url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
+    let url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
       : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
-    const response = await fetch(url)
-    const news = await response.json()
+    let response = await fetch(url)
+    const news = await response.json()        
+    //Get indexes for footer
+    url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,spy&types=quote&token=${sandboxAPIKey}`
+      : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
+    response = await fetch(url)
+    const indexes = await response.json()
     //Send out JSON data
     if (user) {
       return res.json({
         user: user.toSafeObject(),
         account: userAccount,
         stocks,
-        news
+        news,
+        indexes
       });
     } else return res.json({});
   }

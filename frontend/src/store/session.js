@@ -10,6 +10,7 @@ const ADD_STOCK = 'ADD_STOCK';
 const REMOVE_STOCK = 'REMOVE_STOCK'
 const INCREASE_AVAILABLE_CASH = 'INCREASE_AVAILABLE_CASH';
 const SET_NEWS = 'SET_NEWS';
+const SET_INDEXES = 'SET_INDEXES';
 
 /*******Action Creators*******/
 const setUser = (user) => ({
@@ -62,6 +63,11 @@ const addNews = (news) => ({
   payload: news
 })
 
+const addIndexes = (data) => ({
+  type: SET_INDEXES,
+  payload: data
+})
+
 //Helper function
 const compare = (a, b) => {
   const stockA = a.name
@@ -99,6 +105,7 @@ export const restoreUser = () => async (dispatch) => {
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
   dispatch(addNews(res.data.news))
+  dispatch(addIndexes(res.data.indexes))
   //sort stocks alphabetically by name
   const stocks = res.data.stocks
   if (stocks) {
@@ -190,7 +197,8 @@ export const sellStock = ({ symbol, costBasis, accountId, quantity, latestPrice,
 
 
 /***********Reducer**********/
-export const sessionReducer = (state = { user: null, account: null, accountPortfolio: null, news: null }, action) => {
+export const sessionReducer = (state = { 
+  user: null, account: null, accountPortfolio: null, news: null, indexes: null }, action) => {
 
   switch (action.type) {
     case SET_USER:
@@ -249,6 +257,8 @@ export const sessionReducer = (state = { user: null, account: null, accountPortf
       }
       case SET_NEWS:
         return {...state, news: action.payload}
+    case SET_INDEXES:
+      return {...state, indexes: action.payload}
 
     default:
       return state

@@ -67,15 +67,15 @@ const Footer = () => {
               <span>Markets*</span>
               <span className='index-quote'>
                 DJIA <span className={indexes?.DIA.quote.changePercent < 0 ? 'red' : 'green'}>
-                  {indexes?.DIA.quote.changePercent}</span>
+                  {indexes?.DIA.quote.changePercent}%</span>
               </span>
               <span className='index-quote'>
                 NASDAQ <span className={indexes?.QQQ.quote.changePercent < 0 ? 'red' : 'green'}>
-                  {indexes?.QQQ.quote.changePercent}</span>
+                  {indexes?.QQQ.quote.changePercent}%</span>
               </span>
               <span className='index-quote'>
                 S&P <span className={indexes?.SPY.quote.changePercent < 0 ? 'red' : 'green'}>
-                  {indexes?.SPY.quote.changePercent}</span>
+                  {indexes?.SPY.quote.changePercent}%</span>
               </span>
               <form onSubmit={handleSubmit}>
                 <div className='search-field'>

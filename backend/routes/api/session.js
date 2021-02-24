@@ -45,14 +45,27 @@ router.post(
         userId: user.id
       }
     })
-    await setTokenCookie(res, user);
     //Get portfolio
     let stocks = await getPortfolio(userAccount)
+    //Get news feed
+    let url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
+      : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
+    let response = await fetch(url)
+    const news = await response.json()
+    //Get indexes for footer
+    url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${sandboxAPIKey}`
+      : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${APIKey}`
+    response = await fetch(url)
+    const indexes = await response.json()
+    
+    await setTokenCookie(res, user);
 
     return res.json({
       user,
       account: userAccount,
-      stocks
+      stocks,
+      news,
+      indexes
     });
   }),
 );

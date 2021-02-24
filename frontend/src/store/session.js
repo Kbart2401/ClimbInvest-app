@@ -90,6 +90,8 @@ export const logUserIn = (user) => async (dispatch) => {
   })
   dispatch(setUser(res.data.user))        //this will send setUser with to the reducer 
   dispatch(setAccount(res.data.account))    //with a payload of the returned fetch call data
+  dispatch(addNews(res.data.news))
+  dispatch(addIndexes(res.data.indexes))
   const stocks = res.data.stocks
   if (stocks) {
     stocks.sort(compare)

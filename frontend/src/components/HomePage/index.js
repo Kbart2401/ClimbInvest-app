@@ -6,6 +6,7 @@ import PortfolioView from '../PortfolioView';
 import './HomePage.css';
 import TopInvestors from "../TopInvestors";
 import HomeNews from '../HomeNews';
+import Disclaimer from '../Disclaimer';
 
 const HomePage = () => {
   const sessionUser = useSelector((state => state.session.user));
@@ -66,6 +67,7 @@ const HomePage = () => {
                   <TopInvestors />
                 </div>
               </div>
+              <Disclaimer />
             </>
           }
         </div>

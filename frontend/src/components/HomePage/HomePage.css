@@ -71,6 +71,7 @@
 .lower-half-outer-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 .lower-half-home-container {

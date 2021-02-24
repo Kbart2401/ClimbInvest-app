@@ -90,8 +90,8 @@ router.get(
     let response = await fetch(url)
     const news = await response.json()        
     //Get indexes for footer
-    url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,spy&types=quote&token=${sandboxAPIKey}`
-      : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
+    url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${sandboxAPIKey}`
+      : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${APIKey}`
     response = await fetch(url)
     const indexes = await response.json()
     //Send out JSON data

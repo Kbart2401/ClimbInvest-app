@@ -8,7 +8,7 @@ import { FaAngellist } from 'react-icons/fa';
 
 const Footer = () => {
   const sessionUser = useSelector(state => state.session.user)
-  const stockData = useSelector(state => state.stockSearch.stock)
+  const indexes = useSelector(state => state.session.indexes)
   const dispatch = useDispatch();
   const [inputVal, setInput] = useState('');
   const [isSubmitted, setSubmit] = useState(false);
@@ -52,11 +52,11 @@ const Footer = () => {
           </div>
           <div className='footer-right'>
             <h1>MORE</h1>
-            <div style={{marginBottom: '13px'}}>
+            <div style={{ marginBottom: '13px' }}>
               <a href='https://kbart2401.github.io/' target='_blank' rel='noreferrer'>Portfolio</a>
             </div>
             <div>
-            Inspired by <a href='https://login.morganstanleyclientserv.com/ux/' target='_blank' rel='noreferrer'>Morgan Stanley Online</a>
+              Inspired by <a href='https://login.morganstanleyclientserv.com/ux/' target='_blank' rel='noreferrer'>Morgan Stanley Online</a>
             </div>
           </div>
         </div>}
@@ -64,10 +64,19 @@ const Footer = () => {
         <>
           <div className='footer-container__user'>
             <div className='footer-content'>
-              <span>Markets</span>
-              <span className='index-quote'>DJIA { }</span>
-              <span className='index-quote'>NASDAQ</span>
-              <span className='index-quote'>S&P</span>
+              <span>Markets*</span>
+              <span className='index-quote'>
+                DJIA <span className={indexes?.DIA.quote.changePercent < 0 ? 'red' : 'green'}>
+                  {indexes?.DIA.quote.changePercent}</span>
+              </span>
+              <span className='index-quote'>
+                NASDAQ <span className={indexes?.QQQ.quote.changePercent < 0 ? 'red' : 'green'}>
+                  {indexes?.QQQ.quote.changePercent}</span>
+              </span>
+              <span className='index-quote'>
+                S&P <span className={indexes?.SPY.quote.changePercent < 0 ? 'red' : 'green'}>
+                  {indexes?.SPY.quote.changePercent}</span>
+              </span>
               <form onSubmit={handleSubmit}>
                 <div className='search-field'>
                   <i class="fa fa-search icon">

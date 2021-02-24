@@ -100,7 +100,6 @@ export const logUserIn = (user) => async (dispatch) => {
 
 //Restore User thunk 
 export const restoreUser = () => async (dispatch) => {
-  debugger
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))

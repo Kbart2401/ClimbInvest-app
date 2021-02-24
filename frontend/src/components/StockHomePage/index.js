@@ -71,6 +71,20 @@ const StockHomePage = () => {
                   stockData={stockData} />
               }
             </div>
+          <div className='top-news-container-home'>
+            <h2 style={{ color: '#013462', fontFamily: "'Karla', sans-serif"}}>{stockData.companyName} News Stories</h2>
+            <ul>
+              {companyNews?.map((article, idx) => (
+                <li key={idx}><a href={article.url} target='_blank' rel='noreferrer'>
+                  <img src={article.image} alt='news' /></a>
+                  <div className='article-container'>
+                    <div className='article-header'>{article.headline}</div>
+                    <div className='article-summary'>{article.summary}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
           </>
         }
       </div>

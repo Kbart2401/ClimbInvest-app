@@ -15,7 +15,7 @@ const getPortfolio = async (userAccount) => {
       }
     })
     let stockPrices = '';
-    stocks = await Promise.all(
+    let stocks = await Promise.all(
       stockCosts.map(async stockCost => {
         const stockName = await Stock.findByPk(stockCost.dataValues.stockId);
         stockPrices += `,${stockName.dataValues.symbol}`
@@ -33,6 +33,10 @@ const getPortfolio = async (userAccount) => {
       : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${stockPrices}&types=quote&range=1m&last=5&token=${APIKey}`
     const res = await fetch(url)
     const latestStockPrices = await res.json()
+
+    //Set variable to add total stock price change for the day - needed for previous-day account balance
+    let totalChange = 0;
+    //Set data for each stock in portfolio
     for (let stock of stocks) {
       let stockSym = stock.symbol.toUpperCase()
       if (stockSym in latestStockPrices) {
@@ -40,10 +44,23 @@ const getPortfolio = async (userAccount) => {
         totalMarketValue += stock.latestPrice * stock.quantity
         stock.change = (latestStockPrices[stockSym].quote.change) ? (latestStockPrices[stockSym].quote.change).toFixed(2) : 0.00
         stock.changePercent = (latestStockPrices[stockSym].quote.changePercent * 100).toFixed(2)
+        stock.totalChange = parseFloat(stock.change) * stock.quantity
+        totalChange += stock.totalChange
       }
     }
     //Set total account value in db
     userAccount.current_balance = totalMarketValue + parseFloat(userAccount.available_cash)
+
+    //Check data here to see if it's not same as today and need to update Previous Balance for account
+    let date = Date()
+    date = date.slice(0, 15)
+    let previous = userAccount.updatedAt
+    previous = previous.toDateString()
+    
+    if (date === previous) {
+      userAccount.previous_balance = userAccount.current_balance - totalChange
+    }
+
     await userAccount.save()
     return stocks
   }

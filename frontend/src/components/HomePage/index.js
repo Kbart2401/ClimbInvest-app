@@ -44,7 +44,7 @@ const HomePage = () => {
                   </dl>
                   <dl>
                     <dt>Today's Change</dt>
-                    <dd>{todayChange()}</dd>
+                    <dd className={todayChange() < 0 ? `red` : `green`} >{todayChange()}</dd>
                   </dl>
                   <dl>
                     <dt>Previous Balance</dt>

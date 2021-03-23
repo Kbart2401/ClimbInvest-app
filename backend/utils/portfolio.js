@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
 const APIKey = process.env.API_KEY_IEXCLOUD
 //choose here to use sandbox key or actual key
-const useKey = APIKey;
+const useKey = sandboxAPIKey;
 
 const getPortfolio = async (userAccount) => {
   if (userAccount) {
@@ -43,7 +43,7 @@ const getPortfolio = async (userAccount) => {
       }
     }
     //Set total account value in db
-    userAccount.current_balance = totalMarketValue + parseInt(userAccount.available_cash)
+    userAccount.current_balance = totalMarketValue + parseFloat(userAccount.available_cash)
     await userAccount.save()
     return stocks
   }

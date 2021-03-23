@@ -52,12 +52,13 @@ const getPortfolio = async (userAccount) => {
     userAccount.current_balance = totalMarketValue + parseFloat(userAccount.available_cash)
 
     //Check data here to see if it's not same as today and need to update Previous Balance for account
+    //We don't need to worry about available cash effecting the previous day balance since there is no commission charge for trades, can only lose value on depreciation
     let date = Date()
     date = date.slice(0, 15)
     let previous = userAccount.updatedAt
     previous = previous.toDateString()
     
-    if (date === previous) {
+    if (date != previous) {
       userAccount.previous_balance = userAccount.current_balance - totalChange
     }
 

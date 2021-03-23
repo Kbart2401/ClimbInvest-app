@@ -3,7 +3,7 @@ const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { getPortfolio } = require('../../utils/accountData')
+const { getPortfolio, newsFeed, getIndexes } = require('../../utils/accountData')
 const { User, Account } = require("../../db/models");
 const fetch = require('node-fetch');
 
@@ -20,10 +20,6 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
-const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
-const APIKey = process.env.API_KEY_IEXCLOUD
-//choose here to use sandbox key or actual key
-const useKey = sandboxAPIKey;
 
 /******Log in******/
 router.post(
@@ -48,15 +44,9 @@ router.post(
     //Get portfolio
     let stocks = await getPortfolio(userAccount)
     //Get news feed
-    let url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
-      : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
-    let response = await fetch(url)
-    const news = await response.json()
+    let news = await newsFeed()
     //Get indexes for footer
-    url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${sandboxAPIKey}`
-      : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${APIKey}`
-    response = await fetch(url)
-    const indexes = await response.json()
+    let indexes = await getIndexes()
     
     await setTokenCookie(res, user);
 
@@ -98,15 +88,10 @@ router.get(
     //Get portfolio
     let stocks = await getPortfolio(userAccount)
     //Get news feed
-    let url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
-      : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
-    let response = await fetch(url)
-    const news = await response.json()        
+    let news = await newsFeed()
     //Get indexes for footer
-    url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${sandboxAPIKey}`
-      : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${APIKey}`
-    response = await fetch(url)
-    const indexes = await response.json()
+    let indexes = await getIndexes()
+
     //Send out JSON data
     if (user) {
       return res.json({

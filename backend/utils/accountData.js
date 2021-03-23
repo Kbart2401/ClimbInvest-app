@@ -57,7 +57,7 @@ const getPortfolio = async (userAccount) => {
     date = date.slice(0, 15)
     let previous = userAccount.updatedAt
     previous = previous.toDateString()
-    
+
     if (date != previous) {
       userAccount.previous_balance = userAccount.current_balance - totalChange
     }
@@ -67,4 +67,22 @@ const getPortfolio = async (userAccount) => {
   }
 }
 
-module.exports = { getPortfolio }
+const newsFeed = async () => {
+  //Get news feed
+  let url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/voo/news/filter=lang/?token=${sandboxAPIKey}`
+    : `https://cloud.iexapis.com/stable/stock/voo/news/filter=lang/?token=${APIKey}`
+  let response = await fetch(url)
+  const news = await response.json()
+  return news
+}
+
+const getIndexes = async () => {
+  //Get indexes for footer
+  url = (useKey === sandboxAPIKey) ? `https://sandbox.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${sandboxAPIKey}`
+    : `https://cloud.iexapis.com/stable/stock/market/batch?symbols=dia,qqq,spy&types=quote&token=${APIKey}`
+  response = await fetch(url)
+  const indexes = await response.json()
+  return indexes
+}
+
+module.exports = { getPortfolio, newsFeed, getIndexes }

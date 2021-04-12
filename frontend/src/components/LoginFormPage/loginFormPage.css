@@ -124,4 +124,12 @@
       width: 100vw;
     }
 
+    .top-title-container.no-user {
+      background-color: #002b51;
+    }
+
+    h1.header-title, a#repo-nav-link{
+      color: white;
+    }
+
   }

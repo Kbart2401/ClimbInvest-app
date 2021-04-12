@@ -97,3 +97,31 @@
 .demo-login button:hover {
   color: #002b51;
 }
+
+@media screen and (min-device-width: 320px)
+  and (max-device-width: 568px) 
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .footer-container__no-user {
+      height: 70vh;
+    }
+
+    .login-image img {
+      display: none;
+    }
+
+    .login-image {
+      height: 0;
+      width: 0;
+    }
+
+    .login-container {
+      width: 100vw;
+    }
+
+    .login-body {
+      display: flex;
+      justify-content: center;
+      width: 100vw;
+    }
+
+  }

@@ -99,8 +99,8 @@
 }
 
 @media screen and (min-device-width: 320px)
-  and (max-device-width: 568px) 
-  and (-webkit-min-device-pixel-ratio: 3) {
+  and (max-device-width: 1200px) 
+  and (orientation: portrait) {
     .footer-container__no-user {
       height: 70vh;
     }

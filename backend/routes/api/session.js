@@ -108,6 +108,7 @@ router.get(
 /******Get top investors******/
 router.get('/top-investors', asyncHandler(async (req, res) => {
   let accounts = await Account.findAll()
+
   function compare(a, b) {
     let comparison = 0;
     let parseA = parseInt(a.current_balance)
@@ -116,6 +117,7 @@ router.get('/top-investors', asyncHandler(async (req, res) => {
     else if (parseB > parseA) comparison = 1;
     return comparison;
   }
+  
   const sortedAccounts = accounts.sort(compare)
   if (accounts.length > 10) accounts = accounts.slice(0, 10)
   let topAccounts = await Promise.all(

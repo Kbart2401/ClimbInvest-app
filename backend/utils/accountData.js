@@ -1,11 +1,6 @@
 const { Stock_in_Account, Stock } = require("../db/models");
 const fetch = require('node-fetch');
-
-//for api key
-const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
-const APIKey = process.env.API_KEY_IEXCLOUD
-//choose here to use sandbox key or actual key
-const useKey = APIKey;
+const { useKey, sandboxAPIKey, APIKey } = require('./setKey');
 
 const getPortfolio = async (userAccount) => {
   if (userAccount) {

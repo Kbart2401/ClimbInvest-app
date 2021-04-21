@@ -1,14 +1,9 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const fetch = require('node-fetch');
+const {useKey, sandboxAPIKey, APIKey} = require('../../utils/setKey');
 
 const router = express.Router();
-
-const sandboxAPIKey = process.env.API_KEY_IEXCLOUD_SANDBOX
-const APIKey = process.env.API_KEY_IEXCLOUD
-//choose here to use sandbox key or actual key
-const useKey = APIKey;
-
 
 //fetch latest stock standard info, price etc
 router.post('/', asyncHandler(async (req, res, next) => {

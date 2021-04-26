@@ -115,7 +115,13 @@
     }
 
     .login-container {
+      height: 50vh;
       width: 100vw;
+      padding: 0;
+    }
+
+    .login-container h1 {
+      display: none;
     }
 
     .login-body {
@@ -130,6 +136,22 @@
 
     h1.header-title, a#repo-nav-link{
       color: white;
+    }
+
+    .login-submit {
+      border-radius: 10px;
+    }
+
+    .no-user .header-title {
+      font-size: 4em;
+    }
+
+    .nav-title-container {
+      padding: 0 2em;
+    }
+
+    #repo-nav-link {
+      font-size: 2em;
     }
 
   }

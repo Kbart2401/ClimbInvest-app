@@ -115,7 +115,7 @@
     }
 
     .login-container {
-      height: 50vh;
+      height: 30vh;
       width: 100vw;
       padding: 0;
     }
@@ -152,6 +152,10 @@
 
     #repo-nav-link {
       font-size: 2em;
+    }
+
+    .login-container > form .login-submit{
+      height: 5em;
     }
 
   }

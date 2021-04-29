@@ -158,4 +158,16 @@
       height: 5em;
     }
 
+    .login-container .demo-login {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 15px;
+    }
+
+    .demo-login button {
+      height: 0%;
+      width: 50%;
+    }
+
   }

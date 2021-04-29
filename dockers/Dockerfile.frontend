@@ -5,8 +5,9 @@ COPY frontend/. .
 
 ENV REACT_APP_BASE_URL=https://climbinvest.herokuapp.com/
 
-RUN npm install --production
+RUN npm install 
+RUN npm run build 
 
 EXPOSE 3000
 
-CMD ["npm", "run", "build"]
+CMD ["npm", "start"]

@@ -1,27 +1,26 @@
 version: "3.3"
 services: 
   nginx:
-    build:
-      dockerfile: dockerfile
+    image: nginx
+    container_name: nginx
   frontend:
     build:
       dockerfile: ./dockers/Dockerfile.frontend
-      context: ./frontend
+      context: ./
     container_name: climbinvest-frontend
   backend:
     build: 
       dockerfile: ./dockers/Dockerfile.web
-      context: ./backend
+      context: ./
     container_name: climbinvest-backend
     env_file:
-      - ./backend/.env_file
+      - ./backend/.env
   postgres:
     image: "postgres"
     container_name: "postgres-db"
     ports:
-      - "80-8080:80-8080"
-      volumes: 
-        - postgresdb
-        - postgresdb_config
-      env_file: 
-        - ./backend/.env_file
+      - "5432:5432"
+    volumes: 
+      - /usr/local/var/postgres/base
+    env_file: 
+      - ./backend/.env

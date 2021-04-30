@@ -1,10 +1,10 @@
 FROM node:12-alpine
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 WORKDIR /backend
 COPY backend/. . 
 
-RUN npm install --production
+RUN npm install 
 
 CMD ["npm", "start"]

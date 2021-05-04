@@ -101,10 +101,6 @@
 @media screen and (min-device-width: 320px)
   and (max-device-width: 1200px) 
   and (orientation: portrait) {
-    .footer-container__no-user {
-      height: 70vh;
-    }
-
     .login-image img {
       display: none;
     }

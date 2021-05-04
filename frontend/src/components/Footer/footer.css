@@ -1,6 +1,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .footer-container__no-user {
+  flex-grow: 1;
   height: 30vh;
   width: 100%;
   background-color: #002b51;

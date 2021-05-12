@@ -1,4 +1,4 @@
-FROM node:12-alpine AS apline
+FROM node:12-alpine AS alpine
 
 WORKDIR /app
 COPY frontend/package.json .

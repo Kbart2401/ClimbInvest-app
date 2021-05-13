@@ -102,7 +102,8 @@ export const logUserIn = (user) => async (dispatch) => {
 
 //Restore User thunk 
 export const restoreUser = () => async (dispatch) => {
-  const res = await fetch('/api/session');
+  debugger
+  const res = await fetch('/backend/api/session');
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
   dispatch(addNews(res.data.news))

@@ -11,7 +11,7 @@ const setTopInvestors = (investors) => ({
 
 /*****Thunks*****/
 export const getTopInvestors = () => async (dispatch) => {
-  const investors = await fetch('/api/session/top-investors')
+  const investors = await fetch('/backend/api/session/top-investors')
   dispatch(setTopInvestors(investors.data))
 }
 

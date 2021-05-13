@@ -24,5 +24,5 @@ export const fetch = async (url, options = {}) => {
 }
 
 export const restoreCSRF = () => {
-  fetch('/api/csrf/restore')
+  fetch('/backend/api/csrf/restore')
 }

@@ -20,7 +20,7 @@ export const removeCompany = () => ({
 //Search basic stock data thunk
 export const setStockData = (stock) => async (dispatch) => {
   try {
-    const res = await fetch('/api/search', {
+    const res = await fetch('/backend/api/search', {
       headers: {
         'Content-Type': 'application/json'
       },

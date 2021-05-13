@@ -81,7 +81,7 @@ const compare = (a, b) => {
 /*********Thunks*********/
 //Login thunk 
 export const logUserIn = (user) => async (dispatch) => {
-  const res = await fetch('/api/session', {
+  const res = await fetch('/backend/api/session', {
     method: 'POST',
     body: JSON.stringify({
       credential: user.credentials,
@@ -102,7 +102,6 @@ export const logUserIn = (user) => async (dispatch) => {
 
 //Restore User thunk 
 export const restoreUser = () => async (dispatch) => {
-  debugger
   const res = await fetch('/backend/api/session');
   dispatch(setUser(res.data.user))
   dispatch(setAccount(res.data.account))
@@ -120,7 +119,7 @@ export const restoreUser = () => async (dispatch) => {
 //Signup thunk
 export const signUpUser = user => async (dispatch) => {
   const { username, email, password } = user;
-  const res = await fetch('/api/users', {
+  const res = await fetch('/backend/api/users', {
     method: 'POST',
     body: JSON.stringify({
       username,
@@ -134,7 +133,7 @@ export const signUpUser = user => async (dispatch) => {
 
 //Logout thunk
 export const logOutUser = () => async (dispatch) => {
-  const res = await fetch('/api/session', {
+  const res = await fetch('/backend/api/session', {
     method: 'DELETE',
   });
   dispatch(removeUser());
@@ -144,7 +143,7 @@ export const logOutUser = () => async (dispatch) => {
 //create account thunk
 export const createAccount = (account) => async (dispatch) => {
   const { userId, name } = account;
-  const res = await fetch('/api/create-account', {
+  const res = await fetch('/backend/api/create-account', {
     method: 'POST',
     body: JSON.stringify({
       userId, name
@@ -156,7 +155,7 @@ export const createAccount = (account) => async (dispatch) => {
 
 //decrease available cash thunk
 export const decreaseCash = (accountId, amount, quantity) => async (dispatch) => {
-  const res = await fetch('/api/trade', {
+  const res = await fetch('/backend/api/trade', {
     method: 'PATCH',
     body: JSON.stringify({ accountId, amount, quantity })
   })
@@ -165,7 +164,7 @@ export const decreaseCash = (accountId, amount, quantity) => async (dispatch) =>
 
 //Buy Stock
 export const addNewStock = ({ name, symbol, costBasis, accountId, quantity, latestPrice, change, changePercent }) => async (dispatch) => {
-  const createStock = await fetch('/api/trade', {
+  const createStock = await fetch('/backend/api/trade', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -183,7 +182,7 @@ export const addNewStock = ({ name, symbol, costBasis, accountId, quantity, late
 
 //Sell Stock
 export const sellStock = ({ symbol, costBasis, accountId, quantity, latestPrice, change, changePercent }) => async (dispatch) => {
-  const soldStock = await fetch('/api/trade/', {
+  const soldStock = await fetch('/backend/api/trade/', {
     method: 'DELETE',
     body: JSON.stringify({
       symbol: symbol.toLowerCase(), cost_basis: costBasis, accountId, quantity

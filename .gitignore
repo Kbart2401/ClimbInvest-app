@@ -1,9 +1,9 @@
 #.env
 backend/.env
 frontend/.env
+db/.env
 
 #node_modules
 backend/node_modules
 frontend/node_modules
 
-docker-compose.yml

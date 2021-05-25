@@ -1,7 +1,7 @@
 create table "Users" (
-  id serial not null primary key,
-  username varchar(30),
-  email varchar(256),
+  id serial not null  primary key,
+  username varchar(30) unique,
+  email varchar(256) unique,
   "hashedPassword" bytea,
   "createdAt" timestamp,
   "updatedAt" timestamp
@@ -13,9 +13,10 @@ create table "Accounts" (
   previous_balance numeric(19,4),
   current_balance numeric(19,4),
   available_cash numeric(19,4),
-  "userId" int,
+  "userId" int unique,
   "createdAt" timestamp,
-  "updatedAt" timestamp
+  "updatedAt" timestamp,
+  foreign key ("userId") references "Users" (id)
 );
 
 create table "Stocks" (
@@ -33,6 +34,7 @@ create table "Stock_in_Accounts" (
   "totalCost" numeric(19,4),  
   quantity int,
   "createdAt" timestamp,
-  "updatedAt" timestamp
+  "updatedAt" timestamp,
+  foreign key ("stockId") references "Stocks" (id),
+  foreign key ("accountId") references "Accounts" (id)
 );
-

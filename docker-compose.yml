@@ -14,6 +14,8 @@ services:
       dockerfile: ./dockers/Dockerfile.frontend
       context: ./
     container_name: climbinvest-frontend
+    volumes: 
+      - ./frontend:/app
   backend:
     build: 
       dockerfile: ./dockers/Dockerfile.web
@@ -21,6 +23,8 @@ services:
     container_name: climbinvest-backend
     env_file:
       - ./backend/.env
+    volumes: 
+      - ./backend:/backend
     depends_on: 
       - postgres
   postgres:

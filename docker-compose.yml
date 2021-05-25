@@ -31,8 +31,8 @@ services:
     volumes: 
       - ./db/create-tables.sql:/docker-entrypoint-initdb.d/create-tables.sql
       - ./db/insert-tables.sql:/docker-entrypoint-initdb.d/insert-tables.sql
-      - /usr/local/var/postgres/base
+      - db-data:/var/lib/postgresql/data
     env_file: 
       - ./db/.env
-# volumes:
-#   db-data:
+volumes:
+  db-data:

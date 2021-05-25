@@ -30,6 +30,8 @@ services:
       - "5432:5432"
     volumes: 
       - /usr/local/var/postgres/base
+      - ./db/create-tables.sql:/docker-entrypoint-initdb.d/create-tables.sql
+      - ./db/insert-tables.sql:/docker-entrypoint-initdb.d/insert-tables.sql
     env_file: 
       - ./db/.env
 # volumes:

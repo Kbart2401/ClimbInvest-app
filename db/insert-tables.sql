@@ -5,3 +5,6 @@ insert into "Users" values
 insert into "Accounts" values
 (1, 'Demo Account', 10000.0000, 10000.0000, 10000.0000, 1,
 '2021-04-11 21:16:09.54-04', '2021-04-11 21:16:09.54-04');
+
+insert into "Historic_data" values
+(1, 1, 9900, '2021-05-27');

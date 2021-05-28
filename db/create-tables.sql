@@ -38,3 +38,11 @@ create table "Stock_in_Accounts" (
   foreign key ("stockId") references "Stocks" (id),
   foreign key ("accountId") references "Accounts" (id)
 );
+
+create table "Historic_data" (
+  id serial not null primary key,
+  "accountId" int,
+  account_value int,
+  date date,
+  foreign key ("accountId") references "Accounts" (id)
+);

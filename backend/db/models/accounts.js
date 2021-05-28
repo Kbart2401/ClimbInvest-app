@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   Account.associate = function(models) {
     Account.belongsTo(models.User, {foreignKey: 'userId'})
     Account.hasMany(models.Stock_in_Account, {foreignKey: 'accountId'})
+    Account.hasMany(models.Historic_data, {foreignKey: 'accountId'})
   };
   return Account;
 };

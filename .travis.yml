@@ -1,0 +1,27 @@
+sudo: required
+services:
+- docker
+
+- docker build -t kbart2401/nginx ./dockers/Dockerfile.nginx
+- docker build -t kbart2401/backend ./dockers/Dockerfile.web
+- docker build -t kbart2401/frontend ./dockers/Dockerfile.frontend
+
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" - password-stdin
+
+- docker push kbart2401/nginx
+- docker push kbart2401/backend
+- docker push kbart2401/frontend
+
+deploy:
+  provider: elasticbeanstalk
+  region: ""
+  app: "ClimbInvest"
+  env: "Climbinvest-env"
+  bucket_name: "elasticbeanstalk-us-east-2-808757270799"
+  bucket_path: "ClimbInvest"
+  on:
+    branch: master
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access:key:
+    secure: "$AWS_SECRET_KEY"

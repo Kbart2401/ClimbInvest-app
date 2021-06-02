@@ -1,13 +1,16 @@
-FROM node:12-alpine AS alpine
+FROM node:12-alpine as builder
 
 WORKDIR /app
 COPY frontend/package.json .
 
-ENV REACT_APP_BASE_URL=https://climbinvest.herokuapp.com/
+RUN npm install
+COPY frontend/. .
 
-RUN npm install 
-COPY frontend/. . 
+RUN npm run builder
+
+FROM nginx 
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+COPY frontend/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY – from=builder /app/build /usr/share/nginx/html

@@ -1,0 +1,13 @@
+FROM node:12-alpine AS alpine
+
+WORKDIR /app
+COPY frontend/package.json .
+
+ENV REACT_APP_BASE_URL=https://climbinvest.herokuapp.com/
+
+RUN npm install 
+COPY frontend/. . 
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

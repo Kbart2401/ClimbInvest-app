@@ -11,7 +11,7 @@ services:
       - 8080:80
   frontend:
     build:
-      dockerfile: ./dockers/Dockerfile.frontend
+      dockerfile: ./dockers/Dockerfile.dev.frontend
       context: ./
     container_name: climbinvest-frontend
     volumes: 

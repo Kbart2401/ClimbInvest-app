@@ -1,0 +1,13 @@
+FROM node:12-alpine
+
+ENV NODE_ENV=development
+
+WORKDIR /backend
+COPY backend/package.json . 
+
+RUN npm install 
+COPY backend/. .
+
+EXPOSE 5000
+
+CMD ["npm", "start"]

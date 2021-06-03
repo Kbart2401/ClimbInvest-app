@@ -1,3 +1,5 @@
+language: node_js
+os: osx
 sudo: required
 services:
 - docker
@@ -14,7 +16,7 @@ services:
 
 deploy:
   provider: elasticbeanstalk
-  region: ""
+  region: "us-east-2-808757270799"
   app: "ClimbInvest"
   env: "Climbinvest-env"
   bucket_name: "elasticbeanstalk-us-east-2-808757270799"

@@ -198,8 +198,9 @@ export const sellStock = ({ symbol, costBasis, accountId, quantity, latestPrice,
 
 
 /***********Reducer**********/
-export const sessionReducer = (state = { 
-  user: null, account: null, accountPortfolio: null, news: null, indexes: null }, action) => {
+export const sessionReducer = (state = {
+  user: null, account: null, accountPortfolio: null, news: null, indexes: null
+}, action) => {
 
   switch (action.type) {
     case SET_USER:
@@ -256,10 +257,10 @@ export const sessionReducer = (state = {
       return {
         ...state, account: { ...state.account, available_cash: action.payload }
       }
-      case SET_NEWS:
-        return {...state, news: action.payload}
+    case SET_NEWS:
+      return { ...state, news: action.payload }
     case SET_INDEXES:
-      return {...state, indexes: action.payload}
+      return { ...state, indexes: action.payload }
 
     default:
       return state

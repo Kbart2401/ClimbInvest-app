@@ -2,22 +2,8 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "frontend",
-      "image": "docker.io/kbart2401/frontend",
-      "hostname": "frontend",
-      "essential": false,
-      "memory": 128
-    },
-    {
-      "name": "backend",
-      "image": "docker.io/kbart2401/frontend",
-      "hostname": "backend",
-      "essential": false,
-      "memory": 128
-    },
-    {
       "name": "nginx",
-      "image": "docker.io/kbart2401/frontend",
+      "image": "kbart2401/climbinvest-nginx",
       "essential": true,
       "portMappings": [
         {
@@ -26,10 +12,60 @@
         }
       ],
       "links": [
-        "client",
-        "server"
+        "climbinvest-frontend",
+        "climbinvest-backend"
       ],
       "memory": 128
+    },
+    {
+      "name": "climbinvest-frontend",
+      "image": "kbart2401/climbinvest-frontend",
+      "hostname": "climbinvest-frontend",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "climbinvest-backend",
+      "image": "kbart2401/climbinvest-backend",
+      "hostname": "climbinvest-backend",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "environment": [
+        {
+          "name": "POSTGRES_DB",
+          "value": "climbinvest"
+        },
+        {
+          "name": "POSTGRES_USER",
+          "value": "climbinvest_app"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "value": "password"
+        }
+      ],
+      "essential": true,
+      "image": "postgres",
+      "memory": 100,
+      "mountPoints": [{
+        "containerPath": "/var/lib/postgresql/data/",
+        "sourceVolume": "postgres_data"
+      }],
+      "name": "db", 
+      "portMappings": [{
+        "containerPort": 5432,
+        "hostPort": 5432
+      }]
+    }
+  ],
+  "volumes": [
+    {
+      "host": {
+        "sourcePath": "postgres_data"
+      },
+      "name": "postgres_data"
     }
   ]
 }

@@ -12,6 +12,7 @@ import TradeHeader from './components/TradeHeader';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  // TODO
   // useEffect(() => {
   //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   // }, [dispatch]);

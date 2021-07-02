@@ -102,12 +102,13 @@ export const logUserIn = (user) => async (dispatch) => {
 
 //Restore User thunk 
 export const restoreUser = () => async (dispatch) => {
+  // TODO
   const res = await fetch('/backend/api/session');
   // dispatch(setUser(res.data.user))
   // dispatch(setAccount(res.data.account))
   // dispatch(addNews(res.data.news))
   // dispatch(addIndexes(res.data.indexes))
-  //sort stocks alphabetically by name
+  // //sort stocks alphabetically by name
   const stocks = res.data.stocks
   if (stocks) {
     stocks.sort(compare)

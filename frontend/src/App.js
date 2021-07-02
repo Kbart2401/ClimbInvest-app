@@ -12,24 +12,23 @@ import TradeHeader from './components/TradeHeader';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // TODO
-  // useEffect(() => {
-  //   dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+  }, [dispatch]);
 
   return isLoaded && (
-    <BrowserRouter>
-      <div className='page-container'>
-        <Navigation />
-        <Switch>
-          <Route path='/signup' component={SignupFormPage} />
-          <Route path='/home' component={HomePage} />
-          <Route path='/stock-info' component={StockHomePage} />
-          <Route path='/trade' component={TradeHeader} />
-          <Route path='/' component={LoginFormPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+      <BrowserRouter>
+        <div className='page-container'>
+          <Navigation />
+          <Switch>
+            <Route path='/signup' component={SignupFormPage} />
+            <Route path='/home' component={HomePage} />
+            <Route path='/stock-info' component={StockHomePage} />
+            <Route path='/trade' component={TradeHeader} />
+            <Route path='/' component={LoginFormPage} />
+          </Switch>
+        </div>
+      </BrowserRouter>
   );
 }
 

@@ -18,7 +18,7 @@ services:
       - ./frontend:/app
   backend:
     build: 
-      dockerfile: ./dockers/Dockerfile.web
+      dockerfile: ./dockers/Dockerfile.dev.web
       context: ./
     container_name: climbinvest-backend
     env_file:

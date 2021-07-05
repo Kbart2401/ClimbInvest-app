@@ -81,7 +81,7 @@ const compare = (a, b) => {
 /*********Thunks*********/
 //Login thunk 
 export const logUserIn = (user) => async (dispatch) => {
-  const res = await fetch('/api/session', {
+  const res = await fetch('/backend/api/session', {
     method: 'POST',
     body: JSON.stringify({
       credential: user.credentials,
@@ -102,18 +102,17 @@ export const logUserIn = (user) => async (dispatch) => {
 
 //Restore User thunk 
 export const restoreUser = () => async (dispatch) => {
-  const res = await fetch('/api/session');
-  // TODO
-  // dispatch(setUser(res.data.user))
-  // dispatch(setAccount(res.data.account))
-  // dispatch(addNews(res.data.news))
-  // dispatch(addIndexes(res.data.indexes))
-  // //sort stocks alphabetically by name
-  // const stocks = res.data.stocks
-  // if (stocks) {
-  //   stocks.sort(compare)
-  //   dispatch(setAccountPortfolio(stocks))
-  // }
+  const res = await fetch('/backend/api/session');
+  dispatch(setUser(res.data.user))
+  dispatch(setAccount(res.data.account))
+  dispatch(addNews(res.data.news))
+  dispatch(addIndexes(res.data.indexes))
+  //sort stocks alphabetically by name
+  const stocks = res.data.stocks
+  if (stocks) {
+    stocks.sort(compare)
+    dispatch(setAccountPortfolio(stocks))
+  }
   return res;
 }
 

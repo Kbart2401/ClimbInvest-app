@@ -9,14 +9,11 @@ const config = require(__dirname + '/../../config/database.js')[env];
 const db = {};
 
 let sequelize;
-// TODO
-console.log('LAKERS')
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env.RDS_DB_NAME, process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
     host: process.env.RDS_HOSTNAME,
     dialect: 'postgres'
   });
-  console.log('HELLO SEQUELIZE', sequelize)
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }

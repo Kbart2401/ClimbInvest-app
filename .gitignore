@@ -7,7 +7,6 @@ db/.env
 backend/node_modules
 frontend/node_modules
 
-Dockerrun.aws.json
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

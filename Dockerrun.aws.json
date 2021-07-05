@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "backend",
+      "essential": false,
+      "image": "kbart2401/climbinvest-backend",
+      "hostname": "backend",
+      "memory": 128
+    },
+    {
+      "name": "frontend",
+      "essential": false,
+      "image": "kbart2401/climbinvest-frontend",
+      "hostname": "frontend",
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "essential": true,
+      "image": "kbart2401/climbinvest-nginx",
+      "hostname": "nginx",
+      "memory": 128,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ],
+      "links": [
+        "frontend",
+        "backend"
+      ]
+    }
+  ]
+}
